@@ -1,0 +1,329 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>REST Service Migration Guide &mdash; FIMS documentation 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="FIMS documentation 1.0 documentation" href="index.html" />
+    <link rel="prev" title="FIMS v1 migration to FIMS v2" href="fims_migration.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="fims_migration.html" title="FIMS v1 migration to FIMS v2"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">FIMS documentation 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="rest-service-migration-guide">
+<h1>REST Service Migration Guide<a class="headerlink" href="#rest-service-migration-guide" title="Permalink to this headline">¶</a></h1>
+<p>This lists only the services that were changed. To get more information about the current REST services visit  <a class="reference external" href="http://biscicol.org:8179/biocode-fims/rest/fims.wadl">http://biscicol.org:8179/biocode-fims/rest/fims.wadl</a></p>
+<p>##biscicol.org/id
+<strong>/authenticationService</strong>
+&gt;  * /loginLDAP
+&gt;    * moved to nmnh-fims
+&gt;  * /entrustChallenge
+&gt;    * moved to nmnh-fims
+&gt;  * /oauth/access_token
+&gt;    * moved to &#8220;id/authenticationService/oauth/accessToken&#8221;
+&gt;    * additional PostParams:
+&gt;      * grant_type: optional. If grant_type = “password”, then the user will be authenticated with the provided username and password POST params. Thus skipping the need to call “/oauth/authorize” service 1st
+&gt;      * username: required if grant_type = “password”
+&gt;      * password: required if grant_type = “password”
+&gt;  * /reset
+&gt;    * moved to “biocode-fims/rest/users/resetPassword”
+&gt;  * /sendResetToken
+&gt;    * moved to “biocode-fims/rest/users/{username}/sendResetToken”</p>
+<p><strong>/projectService</strong>
+&gt;  * /validation/{projectId}
+&gt;    * removed
+&gt;  * /list
+&gt;    * moved to “biocode-fims/rest/projects/list”
+&gt;    * now returns a JSONArray of &#8220;project&#8221; JSONObjects
+&gt;      * each JSONObject contains: &#8220;projectId&#8221;, &#8220;projectCode&#8221;, &#8220;projectTitle&#8221;, &#8220;validationXml&#8221;
+&gt;  * /graphs/{projectId}
+&gt;    * moved to “biocode-fims/rest/projects/{projectId}/graphs&#8221;
+&gt;    * now returns a JSONArray of &#8220;graph&#8221; JSONObjects
+&gt;      * each JSONObject contains: &#8220;expeditionCode&#8221;, &#8220;expeditionTitle&#8221;, &#8220;ts&#8221;, &#8220;identifier&#8221;, &#8220;bcidId&#8221;, &#8220;projectId&#8221;, &#8220;webAddress&#8221;, &#8220;graph&#8221;
+&gt;  * /myGraphs
+&gt;    * moved to “biocode-fims/rest/projects/myGraphs”
+&gt;    * &#8220;ark&#8221; =&gt; &#8220;identifier&#8221;, &#8220;expedition_code&#8221; =&gt; &#8220;expeditionCode&#8221;, &#8220;project_id&#8221; =&gt; &#8220;projectId&#8221;, &#8220;dataset_id&#8221; =&gt; &#8220;bcidId&#8221;, &#8220;expedition_title&#8221; =&gt; &#8220;expeditionTitle&#8221;
+&gt;  * /myDatasets
+&gt;    * moved to “biocode-fims/rest/projects/myDatasets”
+&gt;    * &#8220;ark&#8221; =&gt; &#8220;identifier&#8221;, &#8220;dataset_id&#8221; =&gt; &#8220;bcidId&#8221;
+&gt;  * /admin/list
+&gt;    * moved to “biocode-fims/rest/projects/admin/list”
+&gt;    * now returns a JSONArray of &#8220;project&#8221; JSONObjects
+&gt;      * each JSONObject contains: &#8220;projectId&#8221;, &#8220;projectCode&#8221;, &#8220;projectTitle&#8221;, &#8220;validationXml&#8221;
+&gt;  * /configAsTable/{projectId}
+&gt;    * moved to “biocode-fims/rest/projects/{projectId}/metadata”
+&gt;  * /configEditorAsTable/{projectId}
+&gt;    * moved to “biocode-fims/rest/projects/{projectId}/metadataEditor”
+&gt;  * /updateConfig/{projectId}
+&gt;    * moved to “biocode-fims/rest/projects/{projectId}/metadata/update&#8221;
+&gt;  * /removeUser/{projectId}/{userId}
+&gt;    * moved to “biocode-fims/rest/projects/{projectId}/admin/removeUser/{userId}&#8221;
+&gt;  * /addUser
+&gt;    * moved to “biocode-fims/rest/projects/{projectId}/admin/addUser”
+&gt;  * /listProjectUsersAsTable/{projectId}
+&gt;    * moved to “biocode-fims/rest/projects/{projectId}/users”
+&gt;  * /listUserProjects
+&gt;    * moved to “biocode-fims/rest/projects/user/list”
+&gt;    * now returns a JSONArray of &#8220;project&#8221; JSONObjects
+&gt;      * each JSONObject contains: &#8220;projectId&#8221;, &#8220;projectCode&#8221;, &#8220;projectTitle&#8221;, &#8220;validationXml&#8221;
+&gt;  * /saveTemplateConfig
+&gt;    * moved to “biocode-fims/rest/projects/{projectId}/saveTemplateConfig”
+&gt;  * /getTemplateConfigs/{projectId}
+&gt;    * moved to “biocode-fims/rest/projects/{projectId}/getTemplateConfigs”
+&gt;  * /getTemplateConfig/{projectId}/{configName}
+&gt;     * moved to “biocode-fims/rest/projects/{projectId}/getTemplateConfig/{configName}”
+&gt;  * /removeTemplateConfig/{projectId}/{configName}
+&gt;    * moved to “biocode-fims/rest/projects/{projectId}/removeTemplateConfig/{configName}”</p>
+<p><strong>/expeditionService</strong>
+&gt;  * /associate
+&gt;    * moved to &#8220;biocode-fims/rest/expeditions/associate&#8221;
+&gt;  * /validateExpedition/{projectId}/{expeditionCode}
+&gt;    * moved to &#8220;biocode-fims/rest/expeditions/validate/{projectId}/{expeditionCode}&#8221;
+&gt;  * /
+&gt;    * moved to “biocode-fims/rest/expeditions/”
+&gt;    * now returns JSONObject of expeditionMetadata
+&gt;      * &#8220;identifier&#8221;, &#8220;public&#8221;, &#8220;expeditionCode&#8221;, &#8220;expeditionTitle&#8221;, &#8220;expeditionId&#8221;, &#8220;projectId&#8221;
+&gt;  * /graphMetadata/{graph}
+&gt;    * moved to “biocode-fims/rest/expeditions/graphMetadata/{graph}”
+&gt;    * now returns JSONObject of graphMetadata
+&gt;      * &#8220;graph&#8221;, &#8220;projectId&#8221;, &#8220;expeditionOwner&#8221;, &#8220;uploader&#8221;, &#8220;timestamp&#8221;, &#8220;identifier&#8221;, &#8220;resourceType&#8221;, &#8220;finalCopy&#8221;, &#8220;isPublic&#8221;, &#8220;expeditionCode&#8221;, &#8220;expeditionTitle&#8221;
+&gt;  * /{projectId}/{expeditionCode}/{resourceAlias}
+&gt;    * moved to “biocode-fims/rest/expeditions/{projectId}/{expeditionCode}/{resourceAlias}&#8221;
+&gt;    * &#8220;ark&#8221; =&gt; &#8220;identifier&#8221;
+&gt;  * /deepRoots/{projectId}/{expeditionCode}
+&gt;    * removed
+&gt;  * /list/{projectId}
+&gt;    * moved to “biocode-fims/rest/projects/{projectId}/expeditions&#8221;
+&gt;    * now returns JSONArray of &#8220;expedition&#8221; JSONObjects
+&gt;    * each &#8220;expedition&#8221; object contains:
+&gt;      * &#8220;expeditionCode&#8221;, &#8220;expeditionTitle&#8221;, &#8220;public&#8221;, &#8220;expeditionId&#8221;
+&gt;  * /resourcesAsTable/{expeditionId}
+&gt;    * moved to “biocode-fims/rest/expeditions/{expeditionId}/resourcesAsTable&#8221;
+&gt;  * /datasetsAsTable/{expeditionId}
+&gt;    * moved to “biocode-fims/rest/expeditions/{expeditionId}/datasetsAsTable&#8221;
+&gt;  * /admin/listExpeditionsAsTable/{projectId}
+&gt;    * moved to &#8220;biocode-fims/rest/projects/{projectId}/admin/expeditions&#8221;
+&gt;  * /admin/publicExpeditions
+&gt;    * moved to “biocode-fims/rest/expeditions/admin/updateStatus”
+&gt;  * /publicExpedition/{projectId}/{expeditionCode}/{publicStatus}
+&gt;    * moved to “biocode-fims/rest/expeditions/updateStatus/{projectId}/{expeditionCode}/{publicStatus}&#8221;</p>
+<p><strong>/userService</strong>
+&gt;  * /create
+&gt;    * moved to “biocode-fims/rest/users/admin/create”
+&gt;  * /createFormAsTable
+&gt;    * moved to “biocode-fims/rest/users/admin/createUserForm&#8221;
+&gt;  * /profile/update/{username}
+&gt;    * moved to “biocode-fims/rest/users/profile/update”
+&gt;    * now return JSONObject with: &#8220;adminAccess&#8221;, &#8220;returnTo&#8221;
+&gt;  * /profile/update
+&gt;    * moved to “biocode-fims/rest/users/profile/update”
+&gt;    * now return JSONObject with: &#8220;adminAccess&#8221;, &#8220;returnTo&#8221;
+&gt;  * /profile/listEditorAsTable/{username}
+&gt;    * moved to “biocode-fims/rest/users/admin/profile/listEditorAsTable/{username}&#8221;
+&gt;  * /profile/listEditorAsTable
+&gt;    * moved to “biocode-fims/rest/users/profile/listEditorAsTable&#8221;
+&gt;  * /profile/listAsTable
+&gt;    * moved to “biocode-fims/rest/users/profile/listAsTable&#8221;
+&gt;  * /oauth
+&gt;    * moved to “biocode-fims/rest/users/profile”
+&gt;    * now return JSONObject with: &#8220;firstName&#8221;, &#8220;lastName&#8221;, &#8220;email&#8221;, &#8220;institution&#8221;, &#8220;hasSetPassword&#8221;, &#8220;userId&#8221;, &#8220;username&#8221;, &#8220;projectAdmin&#8221;</p>
+<p><strong>/elementService</strong>
+&gt;  * /select/{select}
+&gt;    * moved to &#8220;biocode-fims/rest/resourceTypes&#8221; or &#8220;biocode-fims/rest/resourceTypes/minusDataset&#8221;
+&gt;    * returns a JSONArray of resourceTypes. Each resourceType containing the following:
+&gt;      * resourceType, uri, description, string
+&gt;  * /resourceTypes
+&gt;    * moved to “biocode-fims/rest/resourceTypes”
+&gt;    * returns a JSONArray of resourceTypes. Each resourceType containing the following:
+&gt;      * resourceType, uri, description, string
+&gt;  * /creator
+&gt;    * removed</p>
+<p><strong>/groupService</strong>
+&gt;  * /
+&gt;    * moved to “biocode-fims/rest/bcids/”
+&gt;    * &#8220;prefix&#8221; =&gt; &#8220;identifier&#8221;
+&gt;  * /metadata/{datasetId}
+&gt;    * moved to “biocode-fims/rest/bcids/metadata/{bcidId}”
+&gt;    * returns JSONObject containing &#8220;metadataElement&#8221; JSONObjects
+&gt;  * /list
+&gt;    * moved to “biocode-fims/rest/bcids/list”
+&gt;    * returns JSONArray of &#8220;bcid&#8221; JSONObjects
+&gt;    * &#8220;identifier&#8221;, &#8220;bcidId&#8221;
+&gt;  * /listUserBCIDsAsTable
+&gt;    * removed
+&gt;  * /listUserExpeditionsAsTable
+&gt;    * removed
+&gt;  * /dataGroupEditorAsTable
+&gt;    * removed
+&gt;  * /dataGroup/update
+&gt;    * moved to “biocode-fims/rest/bcids/update”</p>
+<p>##biscicol.org/biocode-fims/rest
+<strong>/authenticationService</strong>
+&gt;  * /login
+&gt;    * no longer uses oAuth to log a user in. Now accepts a username and password to login
+&gt;  * /access_token
+&gt;    * removed</p>
+<p><strong>/mapping</strong>
+&gt;  * /filterOptions/{projectId}
+&gt;    * moved to “biocode-fims/rest/projects/{projectId}/filterOptions&#8221;
+&gt;    * return JSONArray of JSONObjects
+&gt;      * JSONObject contains &#8220;column&#8221; &amp; &#8220;uri&#8221; attributes</p>
+<p><strong>/query</strong>
+&gt;  * /json (GET)
+&gt;    * moved to “biocode-fims/rest/projects/query/json&#8221; (GET)
+&gt;  * / json (POST)
+&gt;    * moved to “biocode-fims/rest/projects/query/json&#8221; (POST)
+&gt;  * /kml (GET)
+&gt;    * moved to “biocode-fims/rest/projects/query/kml&#8221; (GET)
+&gt;  * /kml (POST)
+&gt;    * moved to “biocode-fims/rest/projects/query/kml&#8221; (POST)
+&gt;  * /cspace
+&gt;    * moved to “biocode-fims/rest/projects/query/cspace&#8221;
+&gt;  * /excel (GET)
+&gt;    * moved to “biocode-fims/rest/projects/query/excel&#8221; (GET)
+&gt;  * /excel (POST)
+&gt;    * moved to “biocode-fims/rest/projects/query/excel&#8221; (POST)
+&gt;  * /tab (GET)
+&gt;    * moved to “biocode-fims/rest/projects/query/tab&#8221; (GET)
+&gt;  * /tab (POST)
+&gt;    * moved to “biocode-fims/rest/projects/query/tab&#8221; (POST)</p>
+<p><strong>/templates</strong>
+&gt;  * /attributes
+&gt;    * moved to “biocode-fims/rest/projects/{projectId}/attributes &#8221;
+&gt;  * /getConfig/{projectId}/{configName}
+&gt;    * moved to “biocode-fims/rest/projects/{projectId}/getTemplateConfig/{configName}”
+&gt;  * /getConfigs/{projectId}
+&gt;    * moved to “biocode-fims/rest/projects/{projectId}/getTemplateConfigs”
+&gt;  * /removeConfig/{projectId}/{configName}
+&gt;    * moved to “biocode-fims/rest/projects/{projectId}/removeTemplateConfig/{configName}”
+&gt;  * /saveConfig/{projectId}
+&gt;    * moved to “biocode-fims/rest/projects/{projectId}/saveTemplateConfig”
+&gt;  * /abstract
+&gt;    * moved to “biocode-fims/rest/projects/{projectId}/abstract”
+&gt;    * returns JSONObject with &#8220;abstract&#8221;
+&gt;  * /createExcel
+&gt;    * moved to “biocode-fims/rest/projects/createExcel&#8221;
+&gt;  * /definition
+&gt;    * moved to “biocode-fims/rest/projects/{projectId}/getDefinition/{columnName}&#8221;</p>
+<p><strong>/utils</strong>
+&gt;  * /refreshCache/{projectId}
+&gt;    * removed
+&gt;  * /expeditionCodes/{projectId}
+&gt;    * moved to “biocode-fims/rest/projects/{projectId}/expeditions&#8221;
+&gt;    * now returns JSONArray of &#8220;expedition&#8221; JSONObjects
+&gt;    * each &#8220;expedition&#8221; object contains:
+&gt;      * &#8220;expeditionCode&#8221;, &#8220;expeditionTitle&#8221;, &#8220;public&#8221;, &#8220;expeditionId&#8221;
+&gt;  * /graphs/{projectId}
+&gt;    * moved to “biocode-fims/rest/projects/{projectId}/graphs&#8221;
+&gt;    * now returns a JSONArray of &#8220;graph&#8221; JSONObjects
+&gt;      * each JSONObject contains: &#8220;expeditionCode&#8221;, &#8220;expeditionTitle&#8221;, &#8220;ts&#8221;, &#8220;identifier&#8221;, &#8220;bcidId&#8221;, &#8220;projectId&#8221;, &#8220;webAddress&#8221;, &#8220;graph&#8221;
+&gt;  * /validateExpedition/{projectId}/{expeditionCode}
+&gt;    * moved to &#8220;biocode-fims/rest/expeditions/validate/{projectId}/{expeditionCode}&#8221;
+&gt;  * /getListFields/{listName}
+&gt;    * moved to “biocode-fims/rest/project/{projectId}/getListFields/{listName}”
+&gt;    * returns a jsonArray with the acceptable values for the list
+&gt;  * /isNMNHProject/{projectId}
+&gt;    * removed
+&gt;  * /listProjects
+&gt;    * moved to “biocode-fims/rest/projects/list”
+&gt;  * /callBCID
+&gt;    * removed
+&gt;  * /getDatasetDashboard
+&gt;    * removed
+&gt;  * /updatePublicStatus
+&gt;    * moved to “biocode-fims/rest/expeditions/updateStatus/{projectId}/{expeditionCode}/{publicStatus}&#8221;
+&gt;  * /getLatLongColumns/{projectId}
+&gt;    * moved to “biocode-fims/rest/projects/{projectId}/getLatLongColumns&#8221;</p>
+<p><strong>/validate</strong>
+&gt;  * /continue_nmnh
+&gt;    * removed
+&gt;  * /continue_spreadsheet
+&gt;    * removed</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="fims_migration.html"
+                        title="previous chapter">FIMS v1 migration to FIMS v2</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="fims_migration.html" title="FIMS v1 migration to FIMS v2"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">FIMS documentation 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016, John Deck, RJ Ewing.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

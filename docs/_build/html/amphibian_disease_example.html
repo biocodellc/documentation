@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Amphibian Disease REST Example &mdash; FIMS documentation 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="FIMS documentation 1.0 documentation" href="index.html" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head>
+  <body role="document">
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">FIMS documentation 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="amphibian-disease-rest-example">
+<h1>Amphibian Disease REST Example<a class="headerlink" href="#amphibian-disease-rest-example" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>With all of the following data parameters, you must replace the {....} with values of your choosing.</li>
+<li>Unless otherwise noted, the params must be sent with the type &#8216;application/x-www-form-urlencoded&#8217;.</li>
+</ul>
+<div class="section" id="determine-your-projectid">
+<h2>Determine your projectID:<a class="headerlink" href="#determine-your-projectid" title="Permalink to this headline">¶</a></h2>
+<p>First determine your projectID <a class="reference external" href="http://www.biscicol.org/biocode-fims/rest/projects/list">http://www.biscicol.org/biocode-fims/rest/projects/list</a></p>
+</div>
+<div class="section" id="mint-bcid">
+<h2>Mint Bcid<a class="headerlink" href="#mint-bcid" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Login:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>send POST request to <a class="reference external" href="http://www.biscicol.org/biocode-fims/rest/authenticationService/login">http://www.biscicol.org/biocode-fims/rest/authenticationService/login</a> with the following data:<ul>
+<li><cite>username=AmphibianDisease</cite></li>
+<li><cite>password={yourPassword}</cite></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Mint Bcid:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>send POST request to <a class="reference external" href="http://www.biscicol.org/biocode-fims/rest/bcids">http://www.biscicol.org/biocode-fims/rest/bcids</a> with the following data:<ul>
+<li><cite>webAddress={dataset_webAddress}</cite></li>
+<li><cite>title={dataset_title}</cite></li>
+<li><cite>graph={dataset_graph}</cite></li>
+<li><cite>resourceType=&#8221;http://purl.org/dc/dcmitype/Dataset&#8221;</cite></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Note the identifier returned in the previous step</li>
+<li>Associate Bcid with Expedition:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>send POST request to <a class="reference external" href="http://www.biscicol.org/biocode-fims/rest/expeditions/associate">http://www.biscicol.org/biocode-fims/rest/expeditions/associate</a> with the following data:<ul>
+<li><cite>expeditionCode={dataset_expeditionCode}</cite></li>
+<li><cite>bcid={identifier returned in step 2}</cite></li>
+<li><cite>projectId={your_projectId}</cite></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="validate-dataset">
+<h2>Validate Dataset<a class="headerlink" href="#validate-dataset" title="Permalink to this headline">¶</a></h2>
+<p><strong>POST params must be sent with type &#8216;multipart/form-data&#8217;</strong></p>
+<ol class="arabic simple">
+<li>Send POST request to <a class="reference external" href="http://www.biscicol.org/biocode-fims/rest/validate">http://www.biscicol.org/biocode-fims/rest/validate</a> with the following data:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><cite>projectId={your_projectId}</cite></li>
+<li><cite>expeditionCode={your_expeditionCode}</cite></li>
+<li><cite>dataset={your_dataset}</cite></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="create-new-expedition">
+<h2>Create new Expedition<a class="headerlink" href="#create-new-expedition" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Login:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>send POST request to www.biscicol.org/biocode-fims/rest/authenticationService/login with the following data:
+* <cite>username=AmphibianDisease</cite>
+* <cite>password={yourPassword}</cite></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Mint Expedition:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>send POST request to <a class="reference external" href="http://www.biscicol.org/biocode-fims/rest/expeditions">http://www.biscicol.org/biocode-fims/rest/expeditions</a> with the following data:
+* <cite>expeditionCode={new_expeditionCode}</cite>
+* <cite>expeditionTitle={new_expeditionTitle}</cite>
+* <cite>projectId={your_projectId}</cite>
+* <cite>public={public_expedition}</cite></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Amphibian Disease REST Example</a><ul>
+<li><a class="reference internal" href="#determine-your-projectid">Determine your projectID:</a></li>
+<li><a class="reference internal" href="#mint-bcid">Mint Bcid</a></li>
+<li><a class="reference internal" href="#validate-dataset">Validate Dataset</a></li>
+<li><a class="reference internal" href="#create-new-expedition">Create new Expedition</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">FIMS documentation 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016, John Deck, RJ Ewing.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>
