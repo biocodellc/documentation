@@ -3,8 +3,9 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to FIMS documentation
-==============================================
+
+FIMS documentation
+====================
 
 Contained here is documentation for developers or anybody else wishing to understand how the FIMS system operates.  
 FIMS is a modular application, and is broken down into components that 1) validate data, create spreadsheet templates, assigns identifers 
@@ -24,6 +25,18 @@ the fuseki_ triplestore, and handles features for querying data.
 .. _fuseki: https://jena.apache.org/documentation/serving_data/
 .. _`BiSciCol homepage`: http://biscicol.org/
 
+.. toctree::
+    :maxdepth: 9
+    :hidden:
+    :glob:
+
+    introduction
+    implementations
+    installation
+    services
+    identifiers
+    migration_guide
+    
 
 * **About the FIMS System**
     * :doc:`introduction`
@@ -39,17 +52,3 @@ the fuseki_ triplestore, and handles features for querying data.
 * **Example Service Calls**
     * :doc:`amphibian_disease_example`
 
-Full Index
-----------
-
-.. toctree::
-    :maxdepth: 2
-
-    introduction
-    implementations
-    services 
-    identifiers
-    data_storage_engines
-    fasta_integration
-    fims_migration
-    migration_guide
