@@ -1,0 +1,279 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installation &mdash; FIMS documentation 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="FIMS documentation 1.0 documentation" href="index.html"/>
+        <link rel="next" title="Identifiers" href="identifiers.html"/>
+        <link rel="prev" title="Implementations" href="implementations.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FIMS documentation
+          
+
+          
+            
+            <img src="_static/fims_logo.gif" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">About the FIMS System</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementations.html">Implementations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#details">Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-and-build">Installation and Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optional-component">Optional Component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#additional-installation-instructions">Additional Installation Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="identifiers.html">Identifiers</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Amphibian Disease REST Example</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Migrating from FIMS1 to FIMS2</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fims_migration.html">FIMS v1 migration to FIMS v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration_guide.html">REST Service Migration Guide</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">FIMS documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Installation</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/installation.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>This content is for people wishing to install Biocode-FIMS on their own server.</p>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>Biocode-FIMS consists of a core set of Java classes and REST services.  Developers have a choice of interacting with the REST services
+running on the <a class="reference external" href="http://biscicol.org/">BiSciCol</a> FIMS instance, which has built in EZID minting capabilities, or running their own
+instance of <a href="#id1"><span class="problematic" id="id2">biocode-fims-commons_</span></a> and installing their own EZID instance requiring a purchase of an <a class="reference external" href="http://ezid.cdlib.org/">EZID account</a>.</p>
+<p>To run an instance of FIMS you will need the following components:</p>
+<ul class="simple">
+<li>A unix-based server
+* A java servlet container e.g. Tomcat, Glassfish, Jetty
+* Connection to a BCID service</li>
+</ul>
+</div>
+<div class="section" id="installation-and-build">
+<h2>Installation and Build<a class="headerlink" href="#installation-and-build" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>Source code is available on this site via Subversion</li>
+<li>Building is done via an Ant build file (provided as part of the distribution)</li>
+<li>a properties file needs to be configured by copying biocode-fims.template to biocode-fims.props (in the root directory of the distribution)</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="optional-component">
+<h2>Optional Component<a class="headerlink" href="#optional-component" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>A triple-store database connection for storing datasets as RDF triples.  We have tested using [<a class="reference external" href="http://jena.apache.org/documentation/serving_data/">http://jena.apache.org/documentation/serving_data/</a> Apache Fuseki]</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="additional-installation-instructions">
+<h2>Additional Installation Instructions<a class="headerlink" href="#additional-installation-instructions" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>The source contains a sample property file called biocode-fims.template which should be copied to biocode-fims.props  &#8211; you will need to adjust references in this document.</dt>
+<dd><ul class="first last simple">
+<li>Note that references to URLs should begin with &#8220;www&#8221; as in www.biscicol.org instead of biscicol.org since some browsers (e.g. Firefox) automatically add the &#8220;www&#8221; and this changes the session designation and creates problems during logging in.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>It is recommended ALL service calls in the properties file begin with a &#8220;www&#8221; in the hostname.</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="identifiers.html" class="btn btn-neutral float-right" title="Identifiers" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="implementations.html" class="btn btn-neutral" title="Implementations" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, John Deck, RJ Ewing.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

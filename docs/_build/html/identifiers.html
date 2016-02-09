@@ -1,0 +1,257 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Identifiers &mdash; FIMS documentation 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="FIMS documentation 1.0 documentation" href="index.html"/>
+        <link rel="next" title="Amphibian Disease REST Example" href="amphibian_disease_example.html"/>
+        <link rel="prev" title="Installation" href="installation.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FIMS documentation
+          
+
+          
+            
+            <img src="_static/fims_logo.gif" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">About the FIMS System</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementations.html">Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Identifiers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#expedition-identifiers">Expedition identifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dataset-identifiers">Dataset identifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resource-identifiers">Resource identifiers</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Amphibian Disease REST Example</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Migrating from FIMS1 to FIMS2</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fims_migration.html">FIMS v1 migration to FIMS v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration_guide.html">REST Service Migration Guide</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">FIMS documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Identifiers</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/identifiers.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="identifiers">
+<h1>Identifiers<a class="headerlink" href="#identifiers" title="Permalink to this headline">¶</a></h1>
+<p>FIMS uses a centralized minting service to assign identifiers for three types of identifiers:
+expeditions, datasets, and resources (described below).  &#8220;Shoulders&#8221; (borrowed from the EZID terminology)
+are minted and encoded/decoded to correspond to Integer values in the &#8220;bcids&#8221; table in mysql.  All Shoulders
+end with the integer &#8220;2&#8221; and use the following character based codes for translation:</p>
+<p><cite>ABCDEFGHIJKLMNPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz</cite></p>
+<div class="section" id="expedition-identifiers">
+<h2>Expedition identifiers<a class="headerlink" href="#expedition-identifiers" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>Mutable</li>
+<li>Metadata:</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="dataset-identifiers">
+<h2>Dataset identifiers<a class="headerlink" href="#dataset-identifiers" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>Immutable</li>
+<li>Belongs to a specific expedition</li>
+<li>Metadata:</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="resource-identifiers">
+<h2>Resource identifiers<a class="headerlink" href="#resource-identifiers" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>Belongs to an expedition</li>
+<li>Implements suffix-passthrough feature to identify individual resources within each dataset</li>
+<li>For example, a single &#8220;Material Sample&#8221; identifier is created for each expedition.  If the expedition has 1000 rows representing physical samples, 1000 identifiers can be resolved by appending a locally unique suffix on to the Resource Identifier root.</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="amphibian_disease_example.html" class="btn btn-neutral float-right" title="Amphibian Disease REST Example" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="installation.html" class="btn btn-neutral" title="Installation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, John Deck, RJ Ewing.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
