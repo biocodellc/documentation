@@ -83,11 +83,20 @@
           
             
             
-                <ul>
+                <p class="caption"><span class="caption-text">About the FIMS System</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="implementations.html">Implementations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="identifiers.html">Identifiers</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Amphibian Disease REST Example</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Migrating from FIMS1 to FIMS2</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fims_migration.html">FIMS v1 migration to FIMS v2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="migration_guide.html">REST Service Migration Guide</a></li>
 </ul>
 
@@ -135,51 +144,48 @@
             
   <div class="section" id="fims-documentation">
 <h1>FIMS documentation<a class="headerlink" href="#fims-documentation" title="Permalink to this headline">¶</a></h1>
-<p>Contained here is documentation for developers or anybody else wishing to understand how the FIMS system operates.
-FIMS is a modular application, and is broken down into components that 1) validate data, create spreadsheet templates, assigns identifers
-using request and responses serialized as JSON, 2) store
-data (either as triples, relational format, or as spreadsheets), 3) and front-end pieces for interacting with users with responses serialized typically
-as HTML.</p>
-<p>An example of how the FIMS componenets work together is running at the <a class="reference external" href="http://biscicol.org/">BiSciCol homepage</a>.   The <a class="reference external" href="https://github.com/biocodellc/biscicol-fims">biscicol-fims</a> codebase
-is a specific FIMS implementation which includes jar files built by the <a class="reference external" href="https://github.com/biocodellc/biocode-fims-commons">biocode-fims-commons</a> and  <a class="reference external" href="https://github.com/biocodellc/biocode-fims-fuseki">biocode-fims-fuseki</a> codebases.
-Common functions and services are run by <a class="reference external" href="https://github.com/biocodellc/biocode-fims-commons">biocode-fims-commons</a>, creating
-identifiers and interpretes validation rules while the <a class="reference external" href="https://github.com/biocodellc/biocode-fims-fuseki">biocode-fims-fuseki</a> codebase sends data to the
-the <a class="reference external" href="https://jena.apache.org/documentation/serving_data/">fuseki</a> triplestore, and handles features for querying data.</p>
-<div class="toctree-wrapper compound">
-</div>
+<div class="toctree-wrapper compound" id="about-the-fims-system">
+<p class="caption"><span class="caption-text">About the FIMS System</span><a class="headerlink" href="#about-the-fims-system" title="Permalink to this toctree">¶</a></p>
 <ul>
-<li><dl class="first docutils">
-<dt><strong>About the FIMS System</strong></dt>
-<dd><ul class="first last simple">
-<li><a class="reference internal" href="introduction.html"><em>Introduction</em></a></li>
-<li><a class="reference internal" href="implementations.html"><em>Implementations</em></a></li>
-<li><a class="reference internal" href="installation.html"><em>Installation</em></a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#operation">Operation</a></li>
 </ul>
-</dd>
-</dl>
 </li>
-<li><dl class="first docutils">
-<dt><strong>Developer Information</strong></dt>
-<dd><ul class="first last simple">
-<li><code class="xref doc docutils literal"><span class="pre">services</span></code></li>
-<li><a class="reference internal" href="identifiers.html"><em>Identifiers</em></a></li>
-<li><code class="xref doc docutils literal"><span class="pre">data_storage_engines</span></code></li>
-<li><code class="xref doc docutils literal"><span class="pre">fasta_integration</span></code></li>
-<li><a class="reference internal" href="fims_migration.html"><em>FIMS v1 migration to FIMS v2</em></a></li>
-<li><a class="reference internal" href="migration_guide.html"><em>REST Service Migration Guide</em></a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementations.html">Implementations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="implementations.html#standalone-instance">Standalone Instance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="implementations.html#biscicol-instances">BiSciCol Instances</a></li>
 </ul>
-</dd>
-</dl>
 </li>
-<li><dl class="first docutils">
-<dt><strong>Example Service Calls</strong></dt>
-<dd><ul class="first last simple">
-<li><a class="reference internal" href="amphibian_disease_example.html"><em>Amphibian Disease REST Example</em></a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#details">Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-and-build">Installation and Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#optional-component">Optional Component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#additional-installation-instructions">Additional Installation Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#notes">Notes</a></li>
 </ul>
-</dd>
-</dl>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="identifiers.html">Identifiers</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound" id="developer-information">
+<p class="caption"><span class="caption-text">Developer Information</span><a class="headerlink" href="#developer-information" title="Permalink to this toctree">¶</a></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Amphibian Disease REST Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="amphibian_disease_example.html#determine-your-projectid">Determine your projectID:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="amphibian_disease_example.html#mint-bcid">Mint Bcid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="amphibian_disease_example.html#validate-dataset">Validate Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="amphibian_disease_example.html#create-new-expedition">Create new Expedition</a></li>
+</ul>
 </li>
 </ul>
+</div>
+<div class="toctree-wrapper compound" id="migrating-from-fims1-to-fims2">
+<p class="caption"><span class="caption-text">Migrating from FIMS1 to FIMS2</span><a class="headerlink" href="#migrating-from-fims1-to-fims2" title="Permalink to this toctree">¶</a></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fims_migration.html">FIMS v1 migration to FIMS v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration_guide.html">REST Service Migration Guide</a></li>
+</ul>
+</div>
 </div>
 
 

@@ -1,3 +1,5 @@
+.. Amphibian Disease REST Example
+
 Amphibian Disease REST Example
 ========================
 
