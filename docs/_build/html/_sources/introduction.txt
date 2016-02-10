@@ -6,7 +6,8 @@ Introduction
 Biocode-FIMS is used for generating spreadsheet templates and validating data for field expeditions, typically involving 
 genomic workflows and working with biological samples and sub-samples.  If you would like to start your own Biocode FIMS 
 project, you can either download and install the source code or contact the owner of the 
-Biocode FIMS code site to see if you can be added as a project to an existing installation.
+`BiSciCol FIMS installation`_ code site to see if you can be added as a project to an existing installation.
+
 
 Operation
 *******************
@@ -28,4 +29,5 @@ the fuseki_ triplestore, and handles features for querying data.
 .. _biscicol-fims: https://github.com/biocodellc/biscicol-fims
 .. _fuseki: https://jena.apache.org/documentation/serving_data/
 .. _`BiSciCol homepage`: http://biscicol.org/
+.. _`BiSciCol FIMS installation`: http://biscicol.org/index.jsp
 
