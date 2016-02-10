@@ -152,25 +152,51 @@
 <h1>Identifiers<a class="headerlink" href="#identifiers" title="Permalink to this headline">¶</a></h1>
 <p>FIMS uses a centralized minting service to assign identifiers for three types of identifiers:
 expeditions, datasets, and resources (described below).  &#8220;Shoulders&#8221; (borrowed from the EZID terminology)
-are minted and encoded/decoded to correspond to Integer values in the &#8220;bcids&#8221; table in mysql.  All Shoulders
+are minted and encoded/decoded to correspond to Integer values in the database.  All Shoulders
 end with the integer &#8220;2&#8221; and use the following character based codes for translation:</p>
 <p><cite>ABCDEFGHIJKLMNPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz</cite></p>
+<p>Each FIMS system installation must use its own name assigning authority number and register with California Digital Library&#8217;s EZID service to mint Archival Resource Keys (ARKs).</p>
+<p>All of the following types of identifiers are represented as ARKs and registered with the CDL&#8217;s EZID service:</p>
 <div class="section" id="expedition-identifiers">
 <h2>Expedition identifiers<a class="headerlink" href="#expedition-identifiers" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<div><ul class="simple">
-<li>Mutable</li>
-<li>Metadata:</li>
+<div><ul>
+<li><p class="first">Mutable, representing the most current version of a particular spreadsheet</p>
+</li>
+<li><dl class="first docutils">
+<dt>Metadata:</dt>
+<dd><ul class="first last simple">
+<li>expeditionCode</li>
+<li>expeditionTitle</li>
+<li>userId (who created this expedition)</li>
+<li>ts  (when loaded)</li>
+<li>projectId (project this belongs to)</li>
+<li>public (public or not)</li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 </div></blockquote>
 </div>
 <div class="section" id="dataset-identifiers">
 <h2>Dataset identifiers<a class="headerlink" href="#dataset-identifiers" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<div><ul class="simple">
-<li>Immutable</li>
-<li>Belongs to a specific expedition</li>
-<li>Metadata:</li>
+<div><ul>
+<li><p class="first">Immutable</p>
+</li>
+<li><p class="first">Belongs to a specific expedition</p>
+</li>
+<li><dl class="first docutils">
+<dt>Metadata:</dt>
+<dd><ul class="first last simple">
+<li>webAddress (where this dataset can be found, in its native format, depending on installation)</li>
+<li>userId (who uploaded this dataset)</li>
+<li>doi (an optional doi, in addition to the created ARK)</li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 </div></blockquote>
 </div>
@@ -178,9 +204,9 @@ end with the integer &#8220;2&#8221; and use the following character based codes
 <h2>Resource identifiers<a class="headerlink" href="#resource-identifiers" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li>Belongs to an expedition</li>
-<li>Implements suffix-passthrough feature to identify individual resources within each dataset</li>
-<li>For example, a single &#8220;Material Sample&#8221; identifier is created for each expedition.  If the expedition has 1000 rows representing physical samples, 1000 identifiers can be resolved by appending a locally unique suffix on to the Resource Identifier root.</li>
+<li>Belongs to an expedition.    Multiple resources may be specified for each expedition.</li>
+<li>Implements suffix-passthrough feature to identify individual resources within each dataset. For example, a single &#8220;Material Sample&#8221; identifier is created for each expedition.  If the expedition has 1000 rows representing physical samples, 1000 identifiers can be resolved by appending a locally unique suffix on to the Resource Identifier root.</li>
+<li>A resource identifier plus the locally unique primary key loaded for the most recent dataset in an expedition forms the globally unique identifier for a particular resource.</li>
 </ul>
 </div></blockquote>
 </div>
