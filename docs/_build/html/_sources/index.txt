@@ -1,5 +1,9 @@
 .. FIMS documentation
 
+.. _`Biocode, LLC GitHub Organization`: https://github.com/biocodellc
+
+All source code mentioned in this documentation is open source and freely available and can be found in appropriate repositories living under the `Biocode, LLC GitHub Organization`_.  
+
 FIMS documentation
 ===================
 
