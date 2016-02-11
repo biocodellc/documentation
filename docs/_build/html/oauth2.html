@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>oauth2 &mdash; FIMS documentation 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="FIMS documentation 1.0 documentation" href="index.html"/>
+        <link rel="next" title="FIMS v1 migration to FIMS v2" href="fims_migration.html"/>
+        <link rel="prev" title="curl Examples" href="curl_examples.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FIMS documentation
+          
+
+          
+            
+            <img src="_static/fims_logo.gif" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">About the FIMS System</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementations.html">Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="identifiers.html">Identifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sub_sampling.html">Working with samples and sub-samples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bcids.html">Introduction to BCIDs</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Information</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="user_accounts.html">User Accounts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Amphibian Disease REST Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="curl_examples.html">curl Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">oauth2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#authorization">Authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#access-token">Access Token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#refresh-token">Refresh Token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api-access">API Access</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Migrating from FIMS1 to FIMS2</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fims_migration.html">FIMS v1 migration to FIMS v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration_guide.html">REST Service Migration Guide</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">FIMS documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>oauth2</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/oauth2.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="oauth2">
+<h1>oauth2<a class="headerlink" href="#oauth2" title="Permalink to this headline">¶</a></h1>
+<p>All developers need to register their app. Please contact the system admin to register. You will be issued a client_id and client_secret. The client_secret should be kept private.</p>
+<div class="section" id="authorization">
+<h2>Authorization<a class="headerlink" href="#authorization" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Client app will make a GET request to /id/authenticationService/oauth/authorize. This request will contain the following query parameters:</dt>
+<dd><ul class="first last simple">
+<li>client_id (Required) - The client_id your app was issued during when registered.</li>
+<li>redirect_uri (Required) - The absolute URI you would like the response directed to.</li>
+<li>state (Optional) - Will be returned, unmodified, in the response.</li>
+</ul>
+</dd>
+<dt>The response will contain the following query parameters:</dt>
+<dd><ul class="first last simple">
+<li>code - The random 20 character string used to exchange for an access_token. This code expires in 10 mins and can only be used 1 time.</li>
+<li>state - Only if this parameter was included in the request.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="access-token">
+<h2>Access Token<a class="headerlink" href="#access-token" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Client app will make a POST request to /id/authenticationService/oauth/access_token. This request will contain the following parameters in the request body:</dt>
+<dd><ul class="first last simple">
+<li>client_id (Required) - The client_id your app was issued during when registered.</li>
+<li>client_secret (Required) - The client_secret your app was issued during when registered.</li>
+<li>code (Required) - The authorization code received in the authorization request.</li>
+<li>redirect_uri (Required) - The absolute URI you would like the response directed to. Must be identical to the redirect_uri provided in the authorization request.</li>
+<li>state (Optional) - Will be returned, unmodified, in the response.</li>
+<li>grant_type (Optional) - If grant_type is &#8220;password&#8221;, and a username and password is provided, the username and password will be used for authentication. If authentication is successful, an access_token and refresh_token will be returned</li>
+<li>password (Optional) - Required if grant_type is &#8220;password&#8221;.</li>
+<li>username (Optional) - Required if grant_type is &#8220;password&#8221;.</li>
+</ul>
+</dd>
+<dt>The JSON response will contain the following parameters:</dt>
+<dd><ul class="first last simple">
+<li>access_token - The random 20 character string used to access a user&#8217;s profile.</li>
+<li>refresh_token - The random 20 character string used to obtain a new access_token. This expires after 24 hrs.</li>
+<li>token_type - currently we only issue bearer tokens.</li>
+<li>expires_in - the number of seconds the token is good for.</li>
+<li>state - Only if this parameter was included in the request.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="refresh-token">
+<h2>Refresh Token<a class="headerlink" href="#refresh-token" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Client app will make a POST request to /id/authenticationService/oauth/refresh. This request will contain the following parameters in the request body:</dt>
+<dd><ul class="first last simple">
+<li>client_id (Required) - The client_id your app was issued during when registered.</li>
+<li>client_secret (Required) - The client_secret your app was issued during when registered.</li>
+<li>refresh_token (Required) - The refresh_token you were issued with you access token.</li>
+</ul>
+</dd>
+</dl>
+<p>The server will validate the refresh token and if the refresh token is less then 24 hrs old, a new access token will be issued. The current refresh token will be expired and a new one will be issued.</p>
+<dl class="docutils">
+<dt>The JSON response will contain the following parameters:</dt>
+<dd><ul class="first last simple">
+<li>access_token - The random 20 character string used to access a user&#8217;s profile.</li>
+<li>refresh_token - The random 20 character string used to obtain a new access_token. This expires after 24 hrs.</li>
+<li>token_type - currently we only issue bearer tokens.</li>
+<li>expires_in - the number of seconds the token is good for.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="api-access">
+<h2>API Access<a class="headerlink" href="#api-access" title="Permalink to this headline">¶</a></h2>
+<p>In order to obtain a user&#8217;s profile information, make a GET request to /id/userService/profile with the access_token as a query parameter.</p>
+<dl class="docutils">
+<dt>If the token is still valid, you will receive a JSON response with the following user information:</dt>
+<dd><ul class="first last simple">
+<li>firstName</li>
+<li>lastName</li>
+<li>email</li>
+<li>institution</li>
+<li>userId</li>
+<li>username</li>
+<li>projectAdmin</li>
+<li>hasSetPassword</li>
+</ul>
+</dd>
+</dl>
+<p>We also support access to any rest services on behalf of the user. Just append &#8221;?access_token=your_access_token&#8221; to the url in order to access the service.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fims_migration.html" class="btn btn-neutral float-right" title="FIMS v1 migration to FIMS v2" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="curl_examples.html" class="btn btn-neutral" title="curl Examples" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, John Deck, RJ Ewing.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -9,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; FIMS documentation 1.0 documentation</title>
+  <title>curl Examples &mdash; FIMS documentation 1.0 documentation</title>
   
 
   
@@ -31,7 +30,9 @@
   
 
   
-    <link rel="top" title="FIMS documentation 1.0 documentation" href="index.html"/> 
+    <link rel="top" title="FIMS documentation 1.0 documentation" href="index.html"/>
+        <link rel="next" title="oauth2" href="oauth2.html"/>
+        <link rel="prev" title="Amphibian Disease REST Example" href="amphibian_disease_example.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -93,10 +94,10 @@
 <li class="toctree-l1"><a class="reference internal" href="bcids.html">Introduction to BCIDs</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Information</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="user_accounts.html">User Accounts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Amphibian Disease REST Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="curl_examples.html">curl Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">curl Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">oauth2</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Migrating from FIMS1 to FIMS2</span></p>
@@ -133,9 +134,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li></li>
+    <li>curl Examples</li>
       <li class="wy-breadcrumbs-aside">
         
+          
+            <a href="_sources/curl_examples.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -145,17 +148,55 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <div class="section" id="curl-examples">
+<h1>curl Examples<a class="headerlink" href="#curl-examples" title="Permalink to this headline">¶</a></h1>
+<p>NOTE: this page needs updating to show FIMS v2 service examples!</p>
+<p>This page explains how to call Biocode-Fims services using curl  &#8211;  For a list of Biocode-FIms service call options see the [<a class="reference external" href="http://biscicol.org/biocode-fims/rest/biocode-fims.wadl">http://biscicol.org/biocode-fims/rest/biocode-fims.wadl</a> Service Descriptions].</p>
+<p>##Public Content</p>
+<p>Attempt a simple call to resolve an ARK (return HTML)</p>
+<p><code class="docutils literal"><span class="pre">`</span>
+<span class="pre">curl</span> <span class="pre">-L</span> <span class="pre">http://biscicol.org/id/ark:/21547/R2</span>
+<span class="pre">`</span></code></p>
+<p>Resolve an ARK, returning RDF/XML, for a group + suffix:
+<code class="docutils literal"><span class="pre">`</span>
+<span class="pre">curl</span> <span class="pre">-L</span>&nbsp; <span class="pre">-H</span> <span class="pre">&quot;Accept:</span> <span class="pre">application/rdf+xml&quot;</span> <span class="pre">http://biscicol.org/id/ark:/21547/R2MBIO56</span>
+<span class="pre">`</span></code></p>
+<p>##Secure Content</p>
+<p>First thing is to authenticate and set cookies.  Make sure to do this in a directory where you have write access:</p>
+<p><code class="docutils literal"><span class="pre">`</span>
+<span class="pre">curl</span> <span class="pre">--data</span> <span class="pre">&quot;username=USER&amp;password=PSWD&quot;</span> <span class="pre">http://biscicol.org/id/authenticationService/login</span> <span class="pre">--location</span> <span class="pre">--cookie-jar</span> <span class="pre">cookies.txt</span>
+<span class="pre">`</span></code></p>
+<p>Then, call the service in question, for example, to list datasets associated with the account you authenticated as:</p>
+<p><code class="docutils literal"><span class="pre">`</span>
+<span class="pre">curl</span> <span class="pre">http://biscicol.org/id/projectService/list</span> <span class="pre">--cookie</span> <span class="pre">cookies.txt</span>
+<span class="pre">`</span></code></p>
+<p>If this is a new account without any datasets associated with it, if this request is successful, you will see the result:</p>
+<p>{&#8220;0&#8221;:&#8221;Create new group&#8221;}]</p>
+<p>##Using the Creator</p>
+<p>The following is an example of how to create a new data group and register local IDs with BCID.    There are two main ways to create new data groups. The first way is to specify the resourceType in the request, such as:</p>
+<p><code class="docutils literal"><span class="pre">`</span>
+<span class="pre">curl</span> <span class="pre">-d</span>&nbsp; <span class="pre">&quot;title=This</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">test&amp;resourceType=dwc:MaterialSample&amp;suffixPassThrough=true&quot;</span> <span class="pre">http://biscicol.org/id/groupService</span> <span class="pre">--cookie</span> <span class="pre">cookies.txt</span>
+<span class="pre">`</span></code></p>
+<p>The second way is to first lookup one of the standard resourceTypes in a list, and then using an integer to call the service:</p>
+<p><code class="docutils literal"><span class="pre">`</span>
+<span class="pre">curl</span> <span class="pre">http://biscicol.org/id/elementService/select/resourceTypes</span>
+<span class="pre">curl</span> <span class="pre">-d</span>&nbsp; <span class="pre">&quot;title=This</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">test&amp;resourceTypesMinusDataset=3&amp;suffixPassThrough=true&quot;</span> <span class="pre">http://biscicol.org/id/groupService</span> <span class="pre">--cookie</span> <span class="pre">cookies.txt</span>
+<span class="pre">`</span></code></p>
 </div>
 
 
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="oauth2.html" class="btn btn-neutral float-right" title="oauth2" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="amphibian_disease_example.html" class="btn btn-neutral" title="Amphibian Disease REST Example" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

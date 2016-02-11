@@ -3,21 +3,26 @@
 Implementations
 ====================
 
-Standalone Instance
+.. _`BiSciCol`: http://biscicol.org/
+.. _`NMNH`: http://nmnh-fims.si.edu/
+
+BiSciCol Implementation
 --------------------
-The following are standalone instances, meaning that they are deployed separately on different servers or different containers.
+The `BiSciCol`_ implementation uses a triplestore data storage engine, a dedicated EZID name assigning authority number, and supports a number of different projects that use this implementation directly:
 
- * BiSciCol (see below)
- * Smithsonian National Museum of Natural History
- * Automated Reef Monitoring System Project
+ * Barcode of Wildlife sites (currently Kenya, Mexico, Nigeria, South Africa)
+ * University and Jepson Herbarium
+ * Diversity of the IndoPacific (DIPNet)
+ * New York Botanical Garden
 
-BiSciCol Instances 
+Instances calling some portion of BiSciCol services but running their own interfaces:
+++++++++++++++++
+ * Amphibian Disease Portal  (in development: this instance will only mint expedition identifiers and use validation services)
+ * Automated Reef Monitoring System Project (in development: substitutes a mysql data storage engine for the triplestore data storage)
+
+Smithsonian Institution National Museum of Natural Histrory
 --------------------
-This server hosts a number of projects collectively
+The `NMNH`_  installation uses a dedicated EZID name assigning authority number, has its own web interface, and stores data as spreadsheets.  In addition, it offers services for notifying data managers of loaded datasets.
 
- * DIPNet (diversity of the IndoPacific)
- * University and Jepson Herbaria
- * Amphibian Disease Portal
- * Barcode of Wildlife Project, Consortium of the Barcode of Wildlife Project, with 5 sub-projects for each partner country
 
 

@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="FIMS documentation 1.0 documentation" href="index.html"/>
-        <link rel="next" title="Amphibian Disease REST Example" href="amphibian_disease_example.html"/>
+        <link rel="next" title="Working with samples and sub-samples" href="sub_sampling.html"/>
         <link rel="prev" title="Installation" href="installation.html"/> 
 
   
@@ -93,12 +93,18 @@
 <li class="toctree-l2"><a class="reference internal" href="#expedition-identifiers">Expedition identifiers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dataset-identifiers">Dataset identifiers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#resource-identifiers">Resource identifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bcid-resolution-system">BCID Resolution System</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="sub_sampling.html">Working with samples and sub-samples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bcids.html">Introduction to BCIDs</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Information</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="user_accounts.html">User Accounts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Amphibian Disease REST Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="curl_examples.html">curl Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oauth2.html">oauth2</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Migrating from FIMS1 to FIMS2</span></p>
 <ul>
@@ -151,11 +157,7 @@
   <div class="section" id="identifiers">
 <h1>Identifiers<a class="headerlink" href="#identifiers" title="Permalink to this headline">¶</a></h1>
 <p>FIMS uses a centralized minting service to assign identifiers for three types of identifiers:
-expeditions, datasets, and resources (described below).  &#8220;Shoulders&#8221; (borrowed from the EZID terminology)
-are minted and encoded/decoded to correspond to Integer values in the database.  All Shoulders
-end with the integer &#8220;2&#8221; and use the following character based codes for translation:</p>
-<p><cite>ABCDEFGHIJKLMNPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz</cite></p>
-<p>Each FIMS system installation must use its own name assigning authority number and register with California Digital Library&#8217;s EZID service to mint Archival Resource Keys (ARKs).</p>
+expeditions, datasets, and resources (described below).  Each FIMS system installation must use its own name assigning authority number and register with California Digital Library&#8217;s EZID service to mint Archival Resource Keys (ARKs).</p>
 <p>All of the following types of identifiers are represented as ARKs and registered with the CDL&#8217;s EZID service:</p>
 <div class="section" id="expedition-identifiers">
 <h2>Expedition identifiers<a class="headerlink" href="#expedition-identifiers" title="Permalink to this headline">¶</a></h2>
@@ -210,6 +212,15 @@ end with the integer &#8220;2&#8221; and use the following character based codes
 </ul>
 </div></blockquote>
 </div>
+<div class="section" id="bcid-resolution-system">
+<h2>BCID Resolution System<a class="headerlink" href="#bcid-resolution-system" title="Permalink to this headline">¶</a></h2>
+<p>The BCID Resolution system resolves BCID identifiers that are passed through the Name-to-thing resolver (<a class="reference external" href="http://nt2.net/">http://nt2.net/</a>).  All BCID groups identifiers are registered with EZID.  EZID then uses its suffix passthrough feature to pass the suffix back to the BCID resolver.  At this point, a series of decisions are made based on the identifier syntax to determine how to display returned content.  Element-level identifiers,  with registered suffixes in the BCID system, also containing targets, can be resolved to a user-specified homepage.  Un-registered suffixes, or where there is no defined target associated with the identifier, or when machine resolution is specifically requested will return an HTML rendering of the identifier with embedded RDF/XML syntax describing the identifier.  Machine resolution can be specifically requested to any identifier by appending a &#8221;?&#8221; to the identifier.</p>
+<img alt="https://bcid.googlecode.com/svn-history/r27/trunk/web/documents/BCID_flowChart.jpg" src="https://bcid.googlecode.com/svn-history/r27/trunk/web/documents/BCID_flowChart.jpg" />
+<p><em>How does this all work in practice?</em></p>
+<p>Suppose we have group ID = ark:/21547/Et2 (resource=dwc:Event) and do not register any elements.  Now, suppose someone passes in a resolution request for ark:/21547/Et2_UUID, the system will still tell you that this is some (dwc:Event) but can&#8217;t tell you anything else &#8211; the response will be a machine readable response (RDF/XML).  The response will be rather minimal but extremely predictable- it will tell you the resourceType, date it was loaded, a title and if there is a DOI associated with it.</p>
+<p>Now, suppose we decide to register those UUIDs associated with ark:/21547/Et2 and also provide web pages that have some HTML content to look at (targets) then we can show a nicely formatted, human readable page of the collecting event itself and some formatted human readable text (HTML).</p>
+<p>However, what if we&#8217;re a machine and we don&#8217;t want to look at all the style sheets and extraneous, difficult to parse text, we just want to know when this thing was loaded and the resourceType (regardless if there is some target or not).   This is where &#8221;?&#8221; comes in... if the &#8221;?&#8221; is appended on the end of the ark like:  ark://21547/Et2_UUID? then we automatically get RDF/XML.  Minimalist but predictable.</p>
+</div>
 </div>
 
 
@@ -219,7 +230,7 @@ end with the integer &#8220;2&#8221; and use the following character based codes
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="amphibian_disease_example.html" class="btn btn-neutral float-right" title="Amphibian Disease REST Example" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="sub_sampling.html" class="btn btn-neutral float-right" title="Working with samples and sub-samples" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="installation.html" class="btn btn-neutral" title="Installation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

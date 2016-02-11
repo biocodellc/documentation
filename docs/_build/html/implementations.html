@@ -88,16 +88,24 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Implementations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#standalone-instance">Standalone Instance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#biscicol-instances">BiSciCol Instances</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#biscicol-implementation">BiSciCol Implementation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#instances-calling-some-portion-of-biscicol-services-but-running-their-own-interfaces">Instances calling some portion of BiSciCol services but running their own interfaces:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#smithsonian-institution-national-museum-of-natural-histrory">Smithsonian Institution National Museum of Natural Histrory</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="identifiers.html">Identifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sub_sampling.html">Working with samples and sub-samples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bcids.html">Introduction to BCIDs</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Information</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="user_accounts.html">User Accounts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Amphibian Disease REST Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="curl_examples.html">curl Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oauth2.html">oauth2</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Migrating from FIMS1 to FIMS2</span></p>
 <ul>
@@ -149,28 +157,30 @@
             
   <div class="section" id="implementations">
 <h1>Implementations<a class="headerlink" href="#implementations" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="standalone-instance">
-<h2>Standalone Instance<a class="headerlink" href="#standalone-instance" title="Permalink to this headline">¶</a></h2>
-<p>The following are standalone instances, meaning that they are deployed separately on different servers or different containers.</p>
+<div class="section" id="biscicol-implementation">
+<h2>BiSciCol Implementation<a class="headerlink" href="#biscicol-implementation" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="http://biscicol.org/">BiSciCol</a> implementation uses a triplestore data storage engine, a dedicated EZID name assigning authority number, and supports a number of different projects that use this implementation directly:</p>
 <blockquote>
 <div><ul class="simple">
-<li>BiSciCol (see below)</li>
-<li>Smithsonian National Museum of Natural History</li>
-<li>Automated Reef Monitoring System Project</li>
+<li>Barcode of Wildlife sites (currently Kenya, Mexico, Nigeria, South Africa)</li>
+<li>University and Jepson Herbarium</li>
+<li>Diversity of the IndoPacific (DIPNet)</li>
+<li>New York Botanical Garden</li>
+</ul>
+</div></blockquote>
+<div class="section" id="instances-calling-some-portion-of-biscicol-services-but-running-their-own-interfaces">
+<h3>Instances calling some portion of BiSciCol services but running their own interfaces:<a class="headerlink" href="#instances-calling-some-portion-of-biscicol-services-but-running-their-own-interfaces" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>Amphibian Disease Portal  (in development: this instance will only mint expedition identifiers and use validation services)</li>
+<li>Automated Reef Monitoring System Project (in development: substitutes a mysql data storage engine for the triplestore data storage)</li>
 </ul>
 </div></blockquote>
 </div>
-<div class="section" id="biscicol-instances">
-<h2>BiSciCol Instances<a class="headerlink" href="#biscicol-instances" title="Permalink to this headline">¶</a></h2>
-<p>This server hosts a number of projects collectively</p>
-<blockquote>
-<div><ul class="simple">
-<li>DIPNet (diversity of the IndoPacific)</li>
-<li>University and Jepson Herbaria</li>
-<li>Amphibian Disease Portal</li>
-<li>Barcode of Wildlife Project, Consortium of the Barcode of Wildlife Project, with 5 sub-projects for each partner country</li>
-</ul>
-</div></blockquote>
+</div>
+<div class="section" id="smithsonian-institution-national-museum-of-natural-histrory">
+<h2>Smithsonian Institution National Museum of Natural Histrory<a class="headerlink" href="#smithsonian-institution-national-museum-of-natural-histrory" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="http://nmnh-fims.si.edu/">NMNH</a>  installation uses a dedicated EZID name assigning authority number, has its own web interface, and stores data as spreadsheets.  In addition, it offers services for notifying data managers of loaded datasets.</p>
 </div>
 </div>
 

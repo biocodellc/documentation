@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -9,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; FIMS documentation 1.0 documentation</title>
+  <title>Working with samples and sub-samples &mdash; FIMS documentation 1.0 documentation</title>
   
 
   
@@ -31,7 +30,9 @@
   
 
   
-    <link rel="top" title="FIMS documentation 1.0 documentation" href="index.html"/> 
+    <link rel="top" title="FIMS documentation 1.0 documentation" href="index.html"/>
+        <link rel="next" title="Introduction to BCIDs" href="bcids.html"/>
+        <link rel="prev" title="Identifiers" href="identifiers.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -84,12 +85,12 @@
             
             
                 <p class="caption"><span class="caption-text">About the FIMS System</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="implementations.html">Implementations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="identifiers.html">Identifiers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sub_sampling.html">Working with samples and sub-samples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Working with samples and sub-samples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bcids.html">Introduction to BCIDs</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Information</span></p>
@@ -133,9 +134,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li></li>
+    <li>Working with samples and sub-samples</li>
       <li class="wy-breadcrumbs-aside">
         
+          
+            <a href="_sources/sub_sampling.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -145,17 +148,36 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <div class="section" id="working-with-samples-and-sub-samples">
+<h1>Working with samples and sub-samples<a class="headerlink" href="#working-with-samples-and-sub-samples" title="Permalink to this headline">¶</a></h1>
+<p>NOTE: this section assumes the fuseki data storage engine is used in your FIMS installation.</p>
+<p>FIMS is a system of <a class="reference external" href="http://purl.obolibrary.org/obo/OBI_0100051">samples</a> which are the result of some <a class="reference external" href="http://purl.obolibrary.org/obo/OBI_0000659">specimen collection process</a>.   Each specimen collection process can be uniquely defined by the procedure used, who performed it, when it was performed and subject and target samples.  Samples can be thought of in terms of a directed graph with each sample as nodes and processes represented by edges, connecting samples with all respective sub-samples. It is important to maintain all points in the chain where significant transformation of material occurs so we can understand the significance of a distinct sample at any point in the chain.   <strong>The FIMS configuration file defines the relationships between samples and processes that join them, mapping a single flat file to a graph-based representation (using the fuseki module)</strong></p>
+<p>The following are use cases describing the generation of target samples (e.g., specimens, sub-samples, tissues, extract).</p>
+<p><em>Tissue Sub-sample from Organism:</em>
+Remove representative tissue from a specimen where specimen is an individual or organism. Tissue is typically specified by some anatomical part (e.g. blood, heart, liver, leaf, root).  Multiple tissues from the same organism are all distinct tissues even if they are all just categorized as &#8220;muscle&#8221;.</p>
+<p><em>Tissue sub-sample from Tissue:</em>
+Derive a sub-sample from an existing tissue (aliquot).  Each aliquot is a new tissue with time it was sub-divided, how it was divided (e.g. knife), and who divided it.</p>
+<p><em>Environmental Sample (initial collection):</em>
+Refers to the initial sample as extracted from nature (e.g. jar of seawater, core of soil).  This is characterized by isolation from environment at a particular depth, time, and location.</p>
+<p><em>Environmental sub-sample:</em>
+The environmental sample may be sub-sampled directly after initial collection, for example, passing a liter of sea-water over a filter disc.  This is a distinct sample from the initial environmental sub-sample and is represented by the filter disc and any biological residue that did not pass through the disk.   The process of sub-sampling here is defined by time after initial collection, who performed the task, the size of the membrane on the filter.</p>
+<p><em>DNA extract:</em>
+DNA extract is technically a sub-sample from tissue, which is in turn derived from some tissue or some environmental sub-sample.</p>
 </div>
 
 
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="bcids.html" class="btn btn-neutral float-right" title="Introduction to BCIDs" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="identifiers.html" class="btn btn-neutral" title="Identifiers" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
