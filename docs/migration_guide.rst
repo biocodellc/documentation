@@ -1,6 +1,6 @@
 REST Service Migration Guide
 ------------------------
-This lists only the services that were changed. To get more information about the current REST services visit  http://biscicol.org:8179/biocode-fims/rest/fims.wadl
+This lists only the services that were changed. To get more information about the current REST services visit  http://biscicol.org/biocode-fims/rest/fims.wadl
 
 **/id/authenticationService**
   * /loginLDAP
