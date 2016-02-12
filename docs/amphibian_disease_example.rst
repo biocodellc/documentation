@@ -1,7 +1,13 @@
 .. Amphibian Disease REST Example
 
-Amphibian Disease REST Example
+Creating Expeditions and Validation with REST ONLY
 ========================
+
+A frequent use case is a user only wants to use the FIMS validation and expedition creation services.  This
+is possible by calling FIMS services and using the JSON responses in the context of another website.  Of course, there
+are many DIFFERENT permutations that are possible here, such as only creating expedition identifiers, only validating data, 
+only  creating spreadsheet templates or any combination of steps.  The example presented below was created for the
+Amphibian Disease Portal, which wanted expedition identifiers and data validation for datasets loaded into their portal.
 
 * With all of the following data parameters, you must replace the {....} with values of your choosing. 
 * Unless otherwise noted, the params must be sent with the type 'application/x-www-form-urlencoded'.

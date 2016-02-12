@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Amphibian Disease REST Example &mdash; FIMS documentation 1.0 documentation</title>
+  <title>Creating Expeditions and Validation with REST ONLY &mdash; FIMS documentation 1.0 documentation</title>
   
 
   
@@ -95,8 +95,9 @@
 </ul>
 <p class="caption"><span class="caption-text">Developer Information</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="services.html">REST Services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_accounts.html">User Accounts</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Amphibian Disease REST Example</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Creating Expeditions and Validation with REST ONLY</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#determine-your-projectid">Determine your projectID:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#mint-bcid">Mint Bcid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#validate-dataset">Validate Dataset</a></li>
@@ -140,7 +141,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Amphibian Disease REST Example</li>
+    <li>Creating Expeditions and Validation with REST ONLY</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -154,8 +155,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="amphibian-disease-rest-example">
-<h1>Amphibian Disease REST Example<a class="headerlink" href="#amphibian-disease-rest-example" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="creating-expeditions-and-validation-with-rest-only">
+<h1>Creating Expeditions and Validation with REST ONLY<a class="headerlink" href="#creating-expeditions-and-validation-with-rest-only" title="Permalink to this headline">¶</a></h1>
+<p>A frequent use case is a user only wants to use the FIMS validation and expedition creation services.  This
+is possible by calling FIMS services and using the JSON responses in the context of another website.  Of course, there
+are many DIFFERENT permutations that are possible here, such as only creating expedition identifiers, only validating data,
+only  creating spreadsheet templates or any combination of steps.  The example presented below was created for the
+Amphibian Disease Portal, which wanted expedition identifiers and data validation for datasets loaded into their portal.</p>
 <ul class="simple">
 <li>With all of the following data parameters, you must replace the {....} with values of your choosing.</li>
 <li>Unless otherwise noted, the params must be sent with the type &#8216;application/x-www-form-urlencoded&#8217;.</li>
