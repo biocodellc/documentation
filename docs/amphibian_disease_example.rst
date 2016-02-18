@@ -33,7 +33,6 @@ Mint Bcid
  
     * `webAddress={dataset_webAddress}`
     * `title={dataset_title}`
-    * `graph={dataset_graph}`
     * `resourceType="http://purl.org/dc/dcmitype/Dataset"` 
 
 
