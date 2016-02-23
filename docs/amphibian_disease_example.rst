@@ -27,6 +27,9 @@ Mint Bcid
     * `username=AmphibianDisease`
     * `password={yourPassword}`
 
+Be sure to save cookies the cookies that are returned.  How you do this depends on your application (see some curl examples of how to do this here:
+http://fims.readthedocs.org/en/latest/curl_examples.html)
+
 2. Mint Bcid:
 
   * send POST request to http://www.biscicol.org/biocode-fims/rest/bcids with the following data:
@@ -35,6 +38,8 @@ Mint Bcid
     * `title={dataset_title}`
     * `resourceType="http://purl.org/dc/dcmitype/Dataset"` 
 
+Be sure to send cookies with the request.  How you do this depends on your application (see some curl examples of how to do this here:
+http://fims.readthedocs.org/en/latest/curl_examples.html)
 
 3. Note the identifier returned in the previous step
 
