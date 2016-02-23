@@ -15,68 +15,90 @@ Amphibian Disease Portal, which wanted expedition identifiers and data validatio
 
 Determine your projectID:
 ----------------------
-First determine your projectID http://www.biscicol.org/biocode-fims/rest/projects/list
+First determine your projectID::
+
+     http://www.biscicol.org/biocode-fims/rest/projects/list
 
 Mint Bcid
 ----------------------
 
-1. Login:
+**Login by sending POST request to**::
+    
+    http://www.biscicol.org/biocode-fims/rest/authenticationService/login 
 
-  * send POST request to http://www.biscicol.org/biocode-fims/rest/authenticationService/login with the following data:
+    POST Parameters:
+        username=AmphibianDisease
+        password={yourPassword}
 
-    * `username=AmphibianDisease`
-    * `password={yourPassword}`
-
-Be sure to save cookies the cookies that are returned.  How you do this depends on your application (see some curl examples of how to do this here:
+Be sure to save the cookies that are returned.  How you do this depends on your application (see some curl examples of how to do this here:
 http://fims.readthedocs.org/en/latest/curl_examples.html)
 
-2. Mint Bcid:
+**Mint Bcid by send POST request to**::
 
-  * send POST request to http://www.biscicol.org/biocode-fims/rest/bcids with the following data:
+     http://www.biscicol.org/biocode-fims/rest/bcids with the following data:
  
-    * `webAddress={dataset_webAddress}`
-    * `title={dataset_title}`
-    * `resourceType="http://purl.org/dc/dcmitype/Dataset"` 
+     POST Parameters:
+        webAddress={dataset_webAddress}
+        title={dataset_title}
+        resourceType="http://purl.org/dc/dcmitype/Dataset
 
-Be sure to send cookies with the request.  How you do this depends on your application (see some curl examples of how to do this here:
-http://fims.readthedocs.org/en/latest/curl_examples.html)
+    Cookies with login data (For all requests requiring authentication, be sure to send cookies with the request.  How you do this depends on your application (see some curl examples of how to do this here: http://fims.readthedocs.org/en/latest/curl_examples.html)
 
-3. Note the identifier returned in the previous step
+Note the identifier returned  that was returned and use it in the following request.
 
-4. Associate Bcid with Expedition:
+Associate Bcid with Expedition by sending POST request::
  
-  * send POST request to http://www.biscicol.org/biocode-fims/rest/expeditions/associate with the following data:
+    http://www.biscicol.org/biocode-fims/rest/expeditions/associate 
 
-    * `expeditionCode={dataset_expeditionCode}`
-    * `bcid={identifier returned in step 2}`
-    * `projectId={your_projectId}`
+    POST Parameters:
+        expeditionCode={dataset_expeditionCode}
+        bcid={identifier returned in step 2}
+        projectId={your_projectId}
+
+    Cookies with login data
 
 Validate Dataset
 ------------------
 
-**POST params must be sent with type 'multipart/form-data'**
+To validate your dataset, send a POST request to:: 
 
-1. Send POST request to http://www.biscicol.org/biocode-fims/rest/validate with the following data:
+    http://www.biscicol.org/biocode-fims/rest/validate 
 
-  * `projectId={your_projectId}`
-  * `expeditionCode={your_expeditionCode}`
-  * `dataset={your_dataset}`
+    Send request as type 'multipart/form-data'
 
+    POST Parameters:
+        projectId={your_projectId}
+        expeditionCode={your_expeditionCode}
+        dataset={your_dataset}
+
+    Cookies with login data
+
+The response is returned as JSON, which will look something like::
+
+    {"done": [{
+        "Samples": {
+            "errors": [],
+            "warnings": [{
+                "Missing column(s)": [
+                    "yearCollected has a missing cell value", 
+                    "permitInformation has a missing cell value", 
+                    "locality has a missing cell value"
+                ]
+            }]
+        }
+    }]}
 
 Create new Expedition
 --------------------
 
-1. Login:
+Mint Expedition by sending the following POST request::
 
-  * send POST request to www.biscicol.org/biocode-fims/rest/authenticationService/login with the following data:
-    * `username=AmphibianDisease`
-    * `password={yourPassword}`
+    http://www.biscicol.org/biocode-fims/rest/expeditions 
 
-2. Mint Expedition:
+    POST Parameters:
+        expeditionCode={new_expeditionCode}
+        expeditionTitle={new_expeditionTitle}
+        projectId={your_projectId}
+        public={public_expedition}
 
-  * send POST request to http://www.biscicol.org/biocode-fims/rest/expeditions with the following data:
-    * `expeditionCode={new_expeditionCode}`
-    * `expeditionTitle={new_expeditionTitle}`
-    * `projectId={your_projectId}`
-    * `public={public_expedition}`
-
+    Cookies with login data

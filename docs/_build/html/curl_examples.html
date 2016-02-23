@@ -98,7 +98,12 @@
 <li class="toctree-l1"><a class="reference internal" href="services.html">REST Services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_accounts.html">User Accounts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Creating Expeditions and Validation with REST ONLY</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">curl Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">curl Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#public-content">Public Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#secure-content">Secure Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-creator">Using the Creator</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">oauth2</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Migrating from FIMS1 to FIMS2</span></p>
@@ -153,36 +158,44 @@
 <h1>curl Examples<a class="headerlink" href="#curl-examples" title="Permalink to this headline">¶</a></h1>
 <p>NOTE: this page needs updating to show FIMS v2 service examples!</p>
 <p>This page explains how to call Biocode-Fims services using curl  &#8211;  For a list of Biocode-FIms service call options see the [<a class="reference external" href="http://biscicol.org/biocode-fims/rest/biocode-fims.wadl">http://biscicol.org/biocode-fims/rest/biocode-fims.wadl</a> Service Descriptions].</p>
-<p>##Public Content</p>
-<p>Attempt a simple call to resolve an ARK (return HTML)</p>
-<p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">curl</span> <span class="pre">-L</span> <span class="pre">http://biscicol.org/id/ark:/21547/R2</span>
-<span class="pre">`</span></code></p>
-<p>Resolve an ARK, returning RDF/XML, for a group + suffix:
-<code class="docutils literal"><span class="pre">`</span>
-<span class="pre">curl</span> <span class="pre">-L</span>&nbsp; <span class="pre">-H</span> <span class="pre">&quot;Accept:</span> <span class="pre">application/rdf+xml&quot;</span> <span class="pre">http://biscicol.org/id/ark:/21547/R2MBIO56</span>
-<span class="pre">`</span></code></p>
-<p>##Secure Content</p>
+<div class="section" id="public-content">
+<h2>Public Content<a class="headerlink" href="#public-content" title="Permalink to this headline">¶</a></h2>
+<p>Attempt a simple call to resolve an ARK (return HTML):</p>
+<div class="highlight-python"><div class="highlight"><pre>curl -L http://biscicol.org/id/ark:/21547/R2
+</pre></div>
+</div>
+<p>Resolve an ARK, returning RDF/XML, for a group + suffix:</p>
+<div class="highlight-python"><div class="highlight"><pre>curl -L  -H &quot;Accept: application/rdf+xml&quot; http://biscicol.org/id/ark:/21547/R2MBIO56
+</pre></div>
+</div>
+</div>
+<div class="section" id="secure-content">
+<h2>Secure Content<a class="headerlink" href="#secure-content" title="Permalink to this headline">¶</a></h2>
 <p>First thing is to authenticate and set cookies.  Make sure to do this in a directory where you have write access:</p>
-<p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">curl</span> <span class="pre">--data</span> <span class="pre">&quot;username=USER&amp;password=PSWD&quot;</span> <span class="pre">http://biscicol.org/biocode-fims/rest/authenticationService/login</span> <span class="pre">--location</span> <span class="pre">--cookie-jar</span> <span class="pre">cookies.txt</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre>curl --data &quot;username=USER&amp;password=PSWD&quot; http://biscicol.org/biocode-fims/rest/authenticationService/login --location --cookie-jar cookies.txt
+</pre></div>
+</div>
 <p>Then, call the service in question, for example, to list all Identifiers associated with the account you authenticated as:</p>
-<p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">curl</span> <span class="pre">http://biscicol.org/biocode-fims/rest/bcids/list</span> <span class="pre">--cookie</span> <span class="pre">cookies.txt</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre>curl http://biscicol.org/biocode-fims/rest/bcids/list --cookie cookies.txt
+</pre></div>
+</div>
 <p>If this is a new account without any datasets associated with it, if this request is successful, you will see the result:</p>
-<p>{&#8220;0&#8221;:&#8221;Create new group&#8221;}]</p>
-<p>##Using the Creator</p>
+<div class="highlight-python"><div class="highlight"><pre>{&quot;0&quot;:&quot;Create new group&quot;}]
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-the-creator">
+<h2>Using the Creator<a class="headerlink" href="#using-the-creator" title="Permalink to this headline">¶</a></h2>
 <p>The following is an example of how to create a new data group and register local IDs with BCID.    There are two main ways to create new data groups. The first way is to specify the resourceType in the request, such as:</p>
-<p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">curl</span> <span class="pre">-d</span>&nbsp; <span class="pre">&quot;title=This</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">test&amp;resourceType=dwc:MaterialSample&amp;suffixPassThrough=true&quot;</span> <span class="pre">http://biscicol.org/biocode-fims/rest/bcids/</span> <span class="pre">--cookie</span> <span class="pre">cookies.txt</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre>curl -d  &quot;title=This is a test&amp;resourceType=dwc:MaterialSample&amp;suffixPassThrough=true&quot; http://biscicol.org/biocode-fims/rest/bcids/ --cookie cookies.txt
+</pre></div>
+</div>
 <p>The second way is to first lookup one of the standard resourceTypes in a list, and then using an integer to call the service:</p>
-<p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">curl</span> <span class="pre">http://biscicol.org/biocode-fims/rest/resourceTypes</span>
-<span class="pre">curl</span> <span class="pre">-d</span>&nbsp; <span class="pre">&quot;title=This</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">test&amp;resourceTypesMinusDataset=3&amp;suffixPassThrough=true&quot;</span> <span class="pre">http://biscicol.org/biocode-fims/rest/bcids/</span> <span class="pre">--cookie</span> <span class="pre">cookies.txt</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre>curl http://biscicol.org/biocode-fims/rest/resourceTypes
+curl -d  &quot;title=This is a test&amp;resourceTypesMinusDataset=3&amp;suffixPassThrough=true&quot; http://biscicol.org/biocode-fims/rest/bcids/ --cookie cookies.txt
+</pre></div>
+</div>
+</div>
 </div>
 
 

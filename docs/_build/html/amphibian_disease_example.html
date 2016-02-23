@@ -168,92 +168,92 @@ Amphibian Disease Portal, which wanted expedition identifiers and data validatio
 </ul>
 <div class="section" id="determine-your-projectid">
 <h2>Determine your projectID:<a class="headerlink" href="#determine-your-projectid" title="Permalink to this headline">¶</a></h2>
-<p>First determine your projectID <a class="reference external" href="http://www.biscicol.org/biocode-fims/rest/projects/list">http://www.biscicol.org/biocode-fims/rest/projects/list</a></p>
+<p>First determine your projectID:</p>
+<div class="highlight-python"><div class="highlight"><pre>http://www.biscicol.org/biocode-fims/rest/projects/list
+</pre></div>
+</div>
 </div>
 <div class="section" id="mint-bcid">
 <h2>Mint Bcid<a class="headerlink" href="#mint-bcid" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic simple">
-<li>Login:</li>
-</ol>
-<blockquote>
-<div><ul class="simple">
-<li>send POST request to <a class="reference external" href="http://www.biscicol.org/biocode-fims/rest/authenticationService/login">http://www.biscicol.org/biocode-fims/rest/authenticationService/login</a> with the following data:<ul>
-<li><cite>username=AmphibianDisease</cite></li>
-<li><cite>password={yourPassword}</cite></li>
-</ul>
-</li>
-</ul>
-</div></blockquote>
-<p>Be sure to save cookies the cookies that are returned.  How you do this depends on your application (see some curl examples of how to do this here:
+<p><strong>Login by sending POST request to</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre>http://www.biscicol.org/biocode-fims/rest/authenticationService/login
+
+POST Parameters:
+    username=AmphibianDisease
+    password={yourPassword}
+</pre></div>
+</div>
+<p>Be sure to save the cookies that are returned.  How you do this depends on your application (see some curl examples of how to do this here:
 <a class="reference external" href="http://fims.readthedocs.org/en/latest/curl_examples.html">http://fims.readthedocs.org/en/latest/curl_examples.html</a>)</p>
-<ol class="arabic simple" start="2">
-<li>Mint Bcid:</li>
-</ol>
-<blockquote>
-<div><ul class="simple">
-<li>send POST request to <a class="reference external" href="http://www.biscicol.org/biocode-fims/rest/bcids">http://www.biscicol.org/biocode-fims/rest/bcids</a> with the following data:<ul>
-<li><cite>webAddress={dataset_webAddress}</cite></li>
-<li><cite>title={dataset_title}</cite></li>
-<li><cite>resourceType=&#8221;http://purl.org/dc/dcmitype/Dataset&#8221;</cite></li>
-</ul>
-</li>
-</ul>
-</div></blockquote>
-<p>Be sure to send cookies with the request.  How you do this depends on your application (see some curl examples of how to do this here:
-<a class="reference external" href="http://fims.readthedocs.org/en/latest/curl_examples.html">http://fims.readthedocs.org/en/latest/curl_examples.html</a>)</p>
-<ol class="arabic simple" start="3">
-<li>Note the identifier returned in the previous step</li>
-<li>Associate Bcid with Expedition:</li>
-</ol>
-<blockquote>
-<div><ul class="simple">
-<li>send POST request to <a class="reference external" href="http://www.biscicol.org/biocode-fims/rest/expeditions/associate">http://www.biscicol.org/biocode-fims/rest/expeditions/associate</a> with the following data:<ul>
-<li><cite>expeditionCode={dataset_expeditionCode}</cite></li>
-<li><cite>bcid={identifier returned in step 2}</cite></li>
-<li><cite>projectId={your_projectId}</cite></li>
-</ul>
-</li>
-</ul>
-</div></blockquote>
+<p><strong>Mint Bcid by send POST request to</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre> http://www.biscicol.org/biocode-fims/rest/bcids with the following data:
+
+ POST Parameters:
+    webAddress={dataset_webAddress}
+    title={dataset_title}
+    resourceType=&quot;http://purl.org/dc/dcmitype/Dataset
+
+Cookies with login data (For all requests requiring authentication, be sure to send cookies with the request.  How you do this depends on your application (see some curl examples of how to do this here: http://fims.readthedocs.org/en/latest/curl_examples.html)
+</pre></div>
+</div>
+<p>Note the identifier returned  that was returned and use it in the following request.</p>
+<p>Associate Bcid with Expedition by sending POST request:</p>
+<div class="highlight-python"><div class="highlight"><pre>http://www.biscicol.org/biocode-fims/rest/expeditions/associate
+
+POST Parameters:
+    expeditionCode={dataset_expeditionCode}
+    bcid={identifier returned in step 2}
+    projectId={your_projectId}
+
+Cookies with login data
+</pre></div>
+</div>
 </div>
 <div class="section" id="validate-dataset">
 <h2>Validate Dataset<a class="headerlink" href="#validate-dataset" title="Permalink to this headline">¶</a></h2>
-<p><strong>POST params must be sent with type &#8216;multipart/form-data&#8217;</strong></p>
-<ol class="arabic simple">
-<li>Send POST request to <a class="reference external" href="http://www.biscicol.org/biocode-fims/rest/validate">http://www.biscicol.org/biocode-fims/rest/validate</a> with the following data:</li>
-</ol>
-<blockquote>
-<div><ul class="simple">
-<li><cite>projectId={your_projectId}</cite></li>
-<li><cite>expeditionCode={your_expeditionCode}</cite></li>
-<li><cite>dataset={your_dataset}</cite></li>
-</ul>
-</div></blockquote>
+<p>To validate your dataset, send a POST request to:</p>
+<div class="highlight-python"><div class="highlight"><pre>http://www.biscicol.org/biocode-fims/rest/validate
+
+Send request as type &#39;multipart/form-data&#39;
+
+POST Parameters:
+    projectId={your_projectId}
+    expeditionCode={your_expeditionCode}
+    dataset={your_dataset}
+
+Cookies with login data
+</pre></div>
+</div>
+<p>The response is returned as JSON, which will look something like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s2">&quot;done&quot;</span><span class="p">:</span> <span class="p">[{</span>
+    <span class="s2">&quot;Samples&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;errors&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;warnings&quot;</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="s2">&quot;Missing column(s)&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;yearCollected has a missing cell value&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;permitInformation has a missing cell value&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;locality has a missing cell value&quot;</span>
+            <span class="p">]</span>
+        <span class="p">}]</span>
+    <span class="p">}</span>
+<span class="p">}]}</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="create-new-expedition">
 <h2>Create new Expedition<a class="headerlink" href="#create-new-expedition" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic simple">
-<li>Login:</li>
-</ol>
-<blockquote>
-<div><ul class="simple">
-<li>send POST request to www.biscicol.org/biocode-fims/rest/authenticationService/login with the following data:
-* <cite>username=AmphibianDisease</cite>
-* <cite>password={yourPassword}</cite></li>
-</ul>
-</div></blockquote>
-<ol class="arabic simple" start="2">
-<li>Mint Expedition:</li>
-</ol>
-<blockquote>
-<div><ul class="simple">
-<li>send POST request to <a class="reference external" href="http://www.biscicol.org/biocode-fims/rest/expeditions">http://www.biscicol.org/biocode-fims/rest/expeditions</a> with the following data:
-* <cite>expeditionCode={new_expeditionCode}</cite>
-* <cite>expeditionTitle={new_expeditionTitle}</cite>
-* <cite>projectId={your_projectId}</cite>
-* <cite>public={public_expedition}</cite></li>
-</ul>
-</div></blockquote>
+<p>Mint Expedition by sending the following POST request:</p>
+<div class="highlight-python"><div class="highlight"><pre>http://www.biscicol.org/biocode-fims/rest/expeditions
+
+POST Parameters:
+    expeditionCode={new_expeditionCode}
+    expeditionTitle={new_expeditionTitle}
+    projectId={your_projectId}
+    public={public_expedition}
+
+Cookies with login data
+</pre></div>
+</div>
 </div>
 </div>
 
