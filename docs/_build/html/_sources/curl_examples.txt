@@ -26,13 +26,13 @@ curl -L  -H "Accept: application/rdf+xml" http://biscicol.org/id/ark:/21547/R2MB
 First thing is to authenticate and set cookies.  Make sure to do this in a directory where you have write access:
 
 ```
-curl --data "username=USER&password=PSWD" http://biscicol.org/id/authenticationService/login --location --cookie-jar cookies.txt
+curl --data "username=USER&password=PSWD" http://biscicol.org/biocode-fims/rest/authenticationService/login --location --cookie-jar cookies.txt
 ```
 
-Then, call the service in question, for example, to list datasets associated with the account you authenticated as:
+Then, call the service in question, for example, to list all Identifiers associated with the account you authenticated as:
  
 ```
-curl http://biscicol.org/id/projectService/list --cookie cookies.txt
+curl http://biscicol.org/biocode-fims/rest/bcids/list --cookie cookies.txt
 ```
 
 If this is a new account without any datasets associated with it, if this request is successful, you will see the result:
@@ -44,12 +44,12 @@ If this is a new account without any datasets associated with it, if this reques
 The following is an example of how to create a new data group and register local IDs with BCID.    There are two main ways to create new data groups. The first way is to specify the resourceType in the request, such as:
 
 ```
-curl -d  "title=This is a test&resourceType=dwc:MaterialSample&suffixPassThrough=true" http://biscicol.org/id/groupService --cookie cookies.txt
+curl -d  "title=This is a test&resourceType=dwc:MaterialSample&suffixPassThrough=true" http://biscicol.org/biocode-fims/rest/bcids/ --cookie cookies.txt
 ```
 
 The second way is to first lookup one of the standard resourceTypes in a list, and then using an integer to call the service:
 
 ```
-curl http://biscicol.org/id/elementService/select/resourceTypes
-curl -d  "title=This is a test&resourceTypesMinusDataset=3&suffixPassThrough=true" http://biscicol.org/id/groupService --cookie cookies.txt
+curl http://biscicol.org/biocode-fims/rest/resourceTypes
+curl -d  "title=This is a test&resourceTypesMinusDataset=3&suffixPassThrough=true" http://biscicol.org/biocode-fims/rest/bcids/ --cookie cookies.txt
 ```

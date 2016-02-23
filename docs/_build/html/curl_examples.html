@@ -32,7 +32,7 @@
   
     <link rel="top" title="FIMS documentation 1.0 documentation" href="index.html"/>
         <link rel="next" title="oauth2" href="oauth2.html"/>
-        <link rel="prev" title="Amphibian Disease REST Example" href="amphibian_disease_example.html"/> 
+        <link rel="prev" title="Creating Expeditions and Validation with REST ONLY" href="amphibian_disease_example.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -95,8 +95,9 @@
 </ul>
 <p class="caption"><span class="caption-text">Developer Information</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="services.html">REST Services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_accounts.html">User Accounts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Amphibian Disease REST Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Creating Expeditions and Validation with REST ONLY</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">curl Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">oauth2</a></li>
 </ul>
@@ -164,23 +165,23 @@
 <p>##Secure Content</p>
 <p>First thing is to authenticate and set cookies.  Make sure to do this in a directory where you have write access:</p>
 <p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">curl</span> <span class="pre">--data</span> <span class="pre">&quot;username=USER&amp;password=PSWD&quot;</span> <span class="pre">http://biscicol.org/id/authenticationService/login</span> <span class="pre">--location</span> <span class="pre">--cookie-jar</span> <span class="pre">cookies.txt</span>
+<span class="pre">curl</span> <span class="pre">--data</span> <span class="pre">&quot;username=USER&amp;password=PSWD&quot;</span> <span class="pre">http://biscicol.org/biocode-fims/rest/authenticationService/login</span> <span class="pre">--location</span> <span class="pre">--cookie-jar</span> <span class="pre">cookies.txt</span>
 <span class="pre">`</span></code></p>
-<p>Then, call the service in question, for example, to list datasets associated with the account you authenticated as:</p>
+<p>Then, call the service in question, for example, to list all Identifiers associated with the account you authenticated as:</p>
 <p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">curl</span> <span class="pre">http://biscicol.org/id/projectService/list</span> <span class="pre">--cookie</span> <span class="pre">cookies.txt</span>
+<span class="pre">curl</span> <span class="pre">http://biscicol.org/biocode-fims/rest/bcids/list</span> <span class="pre">--cookie</span> <span class="pre">cookies.txt</span>
 <span class="pre">`</span></code></p>
 <p>If this is a new account without any datasets associated with it, if this request is successful, you will see the result:</p>
 <p>{&#8220;0&#8221;:&#8221;Create new group&#8221;}]</p>
 <p>##Using the Creator</p>
 <p>The following is an example of how to create a new data group and register local IDs with BCID.    There are two main ways to create new data groups. The first way is to specify the resourceType in the request, such as:</p>
 <p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">curl</span> <span class="pre">-d</span>&nbsp; <span class="pre">&quot;title=This</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">test&amp;resourceType=dwc:MaterialSample&amp;suffixPassThrough=true&quot;</span> <span class="pre">http://biscicol.org/id/groupService</span> <span class="pre">--cookie</span> <span class="pre">cookies.txt</span>
+<span class="pre">curl</span> <span class="pre">-d</span>&nbsp; <span class="pre">&quot;title=This</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">test&amp;resourceType=dwc:MaterialSample&amp;suffixPassThrough=true&quot;</span> <span class="pre">http://biscicol.org/biocode-fims/rest/bcids/</span> <span class="pre">--cookie</span> <span class="pre">cookies.txt</span>
 <span class="pre">`</span></code></p>
 <p>The second way is to first lookup one of the standard resourceTypes in a list, and then using an integer to call the service:</p>
 <p><code class="docutils literal"><span class="pre">`</span>
-<span class="pre">curl</span> <span class="pre">http://biscicol.org/id/elementService/select/resourceTypes</span>
-<span class="pre">curl</span> <span class="pre">-d</span>&nbsp; <span class="pre">&quot;title=This</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">test&amp;resourceTypesMinusDataset=3&amp;suffixPassThrough=true&quot;</span> <span class="pre">http://biscicol.org/id/groupService</span> <span class="pre">--cookie</span> <span class="pre">cookies.txt</span>
+<span class="pre">curl</span> <span class="pre">http://biscicol.org/biocode-fims/rest/resourceTypes</span>
+<span class="pre">curl</span> <span class="pre">-d</span>&nbsp; <span class="pre">&quot;title=This</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">test&amp;resourceTypesMinusDataset=3&amp;suffixPassThrough=true&quot;</span> <span class="pre">http://biscicol.org/biocode-fims/rest/bcids/</span> <span class="pre">--cookie</span> <span class="pre">cookies.txt</span>
 <span class="pre">`</span></code></p>
 </div>
 
@@ -194,7 +195,7 @@
         <a href="oauth2.html" class="btn btn-neutral float-right" title="oauth2" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="amphibian_disease_example.html" class="btn btn-neutral" title="Amphibian Disease REST Example" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="amphibian_disease_example.html" class="btn btn-neutral" title="Creating Expeditions and Validation with REST ONLY" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
