@@ -101,8 +101,9 @@
 </ul>
 <p class="caption"><span class="caption-text">Developer Information</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="services.html">REST Services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_accounts.html">User Accounts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Amphibian Disease REST Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Creating Expeditions and Validation with REST ONLY</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curl_examples.html">curl Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">oauth2</a></li>
 </ul>
@@ -214,12 +215,17 @@ expeditions, datasets, and resources (described below).  Each FIMS system instal
 </div>
 <div class="section" id="bcid-resolution-system">
 <h2>BCID Resolution System<a class="headerlink" href="#bcid-resolution-system" title="Permalink to this headline">¶</a></h2>
-<p>The BCID Resolution system resolves BCID identifiers that are passed through the Name-to-thing resolver (<a class="reference external" href="http://nt2.net/">http://nt2.net/</a>).  All BCID groups identifiers are registered with EZID.  EZID then uses its suffix passthrough feature to pass the suffix back to the BCID resolver.  At this point, a series of decisions are made based on the identifier syntax to determine how to display returned content.  Element-level identifiers,  with registered suffixes in the BCID system, also containing targets, can be resolved to a user-specified homepage.  Un-registered suffixes, or where there is no defined target associated with the identifier, or when machine resolution is specifically requested will return an HTML rendering of the identifier with embedded RDF/XML syntax describing the identifier.  Machine resolution can be specifically requested to any identifier by appending a &#8221;?&#8221; to the identifier.</p>
-<img alt="https://bcid.googlecode.com/svn-history/r27/trunk/web/documents/BCID_flowChart.jpg" src="https://bcid.googlecode.com/svn-history/r27/trunk/web/documents/BCID_flowChart.jpg" />
-<p><em>How does this all work in practice?</em></p>
-<p>Suppose we have group ID = ark:/21547/Et2 (resource=dwc:Event) and do not register any elements.  Now, suppose someone passes in a resolution request for ark:/21547/Et2_UUID, the system will still tell you that this is some (dwc:Event) but can&#8217;t tell you anything else &#8211; the response will be a machine readable response (RDF/XML).  The response will be rather minimal but extremely predictable- it will tell you the resourceType, date it was loaded, a title and if there is a DOI associated with it.</p>
-<p>Now, suppose we decide to register those UUIDs associated with ark:/21547/Et2 and also provide web pages that have some HTML content to look at (targets) then we can show a nicely formatted, human readable page of the collecting event itself and some formatted human readable text (HTML).</p>
-<p>However, what if we&#8217;re a machine and we don&#8217;t want to look at all the style sheets and extraneous, difficult to parse text, we just want to know when this thing was loaded and the resourceType (regardless if there is some target or not).   This is where &#8221;?&#8221; comes in... if the &#8221;?&#8221; is appended on the end of the ark like:  ark://21547/Et2_UUID? then we automatically get RDF/XML.  Minimalist but predictable.</p>
+<p>The BCID Resolution system resolves BCID identifiers that are passed through the Name-to-thing resolver (<a class="reference external" href="http://nt2.net/">http://nt2.net/</a>).  All BCID groups identifiers are registered with EZID.  EZID redirects requests to the BCID resolver which has resolution capabilities and features.  The Behaviour of the BCID resolver is explained in the following chart.</p>
+<img alt="https://raw.githubusercontent.com/biocodellc/documentation/master/docs/IdentifierService.png" src="https://raw.githubusercontent.com/biocodellc/documentation/master/docs/IdentifierService.png" />
+<dl class="docutils">
+<dt>Table 1 notes</dt>
+<dd><ul class="first last simple">
+<li><strong>graph value</strong> is whether data has been loaded into the FIMS system</li>
+<li><strong>suffixpassthrough</strong> is a boolean indicating whether or not this ID supports suffix passthrough.</li>
+<li><strong>has specified redirection target</strong> indicates whether or a redirection target has been specified for this URL.</li>
+</ul>
+</dd>
+</dl>
 </div>
 </div>
 
