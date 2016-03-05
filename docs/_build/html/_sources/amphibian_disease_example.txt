@@ -100,5 +100,7 @@ Mint Expedition by sending the following POST request::
         expeditionTitle={new_expeditionTitle}
         projectId={your_projectId}
         public={public_expedition}
+        webaddress={target URL for expedition, forwarded when the expedition ID resolved}
+
 
     Cookies with login data
