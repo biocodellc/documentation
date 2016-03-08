@@ -1,13 +1,11 @@
 .. Amphibian Disease REST Example
 
-Creating Expeditions and Validation with REST ONLY
+Minting IDs, Creating Expeditions, and Validating Data using REST calls
 ========================
 
-A frequent use case is a user only wants to use the FIMS validation and expedition creation services.  This
-is possible by calling FIMS services and using the JSON responses in the context of another website.  Of course, there
-are many DIFFERENT permutations that are possible here, such as only creating expedition identifiers, only validating data, 
-only  creating spreadsheet templates or any combination of steps.  The example presented below was created for the
-Amphibian Disease Portal, which wanted expedition identifiers and data validation for datasets loaded into their portal.
+The examples presented here demonstrate possible methods for interacting with the FIMS REST services for 
+creating identifiers, expeditions, and validating datasets.  The full set of REST service calls are at
+http://biscicol.org/biocode-fims/rest/biocode-fims.wadl
 
 * With all of the following data parameters, you must replace the {....} with values of your choosing. 
 * Unless otherwise noted, the params must be sent with the type 'application/x-www-form-urlencoded'.
@@ -64,7 +62,7 @@ To validate your dataset, send a POST request to::
 
     http://www.biscicol.org/biocode-fims/rest/validate 
 
-    Send request as type 'multipart/form-data'
+    Send request as type 'multipart/form-data' (in Curl, use -F for form data vs -d)
 
     POST Parameters:
         projectId={your_projectId}
