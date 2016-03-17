@@ -21,6 +21,7 @@ FIMS documentation
     :caption: Developer Information
 
     services
+    javadocs 
     user_accounts
     data_storage_engines
     fasta_integration
