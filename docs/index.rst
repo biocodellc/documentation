@@ -12,14 +12,13 @@ FIMS documentation
 
     introduction
     implementations
-    installation
     identifiers
     sub_sampling
-    bcids
 
 .. toctree::
     :caption: Developer Information
 
+    installation
     services
     javadocs 
     user_accounts

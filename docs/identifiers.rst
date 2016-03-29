@@ -4,12 +4,13 @@ Identifiers
 =================
 
 FIMS uses a centralized minting service to assign identifiers for three types of identifiers: 
-expeditions, datasets, and resources (described below).  Each FIMS system installation must use its own name assigning authority number and register with California Digital Library's EZID service to mint Archival Resource Keys (ARKs).  
+expeditions, datasets, and resources.  The three types of identifiers are described below. 
 
-All of the following types of identifiers are represented as ARKs and registered with the CDL's EZID service:
+Each FIMS system installation must use its own name assigning authority number and register with California Digital Library's EZID service to mint Archival Resource Keys (ARKs).  
 
 Expedition identifiers
 -------------------------
+ * resourceType: http://purl.org/dc/dcmitype/Collection
  * Mutable, representing the most current version of a particular spreadsheet 
  * Metadata:
     * expeditionCode  
@@ -21,6 +22,7 @@ Expedition identifiers
 
 Dataset identifiers
 -------------------------
+ * resourceType: http://purl.org/dc/dcmitype/Dataset
  * Immutable
  * Belongs to a specific expedition
  * Metadata:
@@ -31,18 +33,20 @@ Dataset identifiers
 
 Resource identifiers
 -------------------------
+ * resourceType: defined in configuration file
  * Belongs to an expedition.    Multiple resources may be specified for each expedition.
  * Implements suffix-passthrough feature to identify individual resources within each dataset. For example, a single "Material Sample" identifier is created for each expedition.  If the expedition has 1000 rows representing physical samples, 1000 identifiers can be resolved by appending a locally unique suffix on to the Resource Identifier root.
  * A resource identifier plus the locally unique primary key loaded for the most recent dataset in an expedition forms the globally unique identifier for a particular resource. 
 
 BCID Resolution System
 -------------------------
-The BCID Resolution system resolves BCID identifiers that are passed through the Name-to-thing resolver (http://nt2.net/).  All BCID groups identifiers are registered with EZID.  EZID redirects requests to the BCID resolver which has resolution capabilities and features.  The Behaviour of the BCID resolver is explained in the following chart.
+The Name-to-Thing resolver (http://n2t.net/) redirects requests to the BCID resolver.  The BCID resolver service enables users to specify forwarding targets by specifying webaddress targets for unique expeditions and datasets.  For resources, targets are defined in the project configuration file, so may be updated dynamically, depending on where the user wants to resolve specific resources.  The followin is a sketch of the resolution service:
 
-.. image:: https://raw.githubusercontent.com/biocodellc/documentation/master/docs/IdentifierService.png
+How BCIDs work with local identifiers, the world wide web, and EZID's name-to-thing resolution service:
 
-Table 1 notes
- * **graph value** is whether data has been loaded into the FIMS system
- * **suffixpassthrough** is a boolean indicating whether or not this ID supports suffix passthrough.
- * **has specified redirection target** indicates whether or a redirection target has been specified for this URL.
+.. image:: https://raw.githubusercontent.com/biocodellc/documentation/master/docs/ResolutionService.jpg
+
+The following chart shows how the BCID resolution works on a finer scale:
+
+.. image:: https://raw.githubusercontent.com/biocodellc/documentation/master/docs/UpdatedIdentifierService.jpg
 

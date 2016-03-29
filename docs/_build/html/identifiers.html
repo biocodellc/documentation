@@ -32,7 +32,7 @@
   
     <link rel="top" title="FIMS documentation 1.0 documentation" href="index.html"/>
         <link rel="next" title="Working with samples and sub-samples" href="sub_sampling.html"/>
-        <link rel="prev" title="Installation" href="installation.html"/> 
+        <link rel="prev" title="Implementations" href="implementations.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -88,7 +88,6 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="implementations.html">Implementations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Identifiers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#expedition-identifiers">Expedition identifiers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dataset-identifiers">Dataset identifiers</a></li>
@@ -97,13 +96,14 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sub_sampling.html">Working with samples and sub-samples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bcids.html">Introduction to BCIDs</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Information</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="services.html">REST Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javadocs.html">FIMS Commons Javadocs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_accounts.html">User Accounts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Creating Expeditions and Validation with REST ONLY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Minting IDs, Creating Expeditions, and Validating Data using REST calls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curl_examples.html">curl Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">oauth2</a></li>
 </ul>
@@ -158,12 +158,14 @@
   <div class="section" id="identifiers">
 <h1>Identifiers<a class="headerlink" href="#identifiers" title="Permalink to this headline">¶</a></h1>
 <p>FIMS uses a centralized minting service to assign identifiers for three types of identifiers:
-expeditions, datasets, and resources (described below).  Each FIMS system installation must use its own name assigning authority number and register with California Digital Library&#8217;s EZID service to mint Archival Resource Keys (ARKs).</p>
-<p>All of the following types of identifiers are represented as ARKs and registered with the CDL&#8217;s EZID service:</p>
+expeditions, datasets, and resources.  The three types of identifiers are described below.</p>
+<p>Each FIMS system installation must use its own name assigning authority number and register with California Digital Library&#8217;s EZID service to mint Archival Resource Keys (ARKs).</p>
 <div class="section" id="expedition-identifiers">
 <h2>Expedition identifiers<a class="headerlink" href="#expedition-identifiers" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul>
+<li><p class="first">resourceType: <a class="reference external" href="http://purl.org/dc/dcmitype/Collection">http://purl.org/dc/dcmitype/Collection</a></p>
+</li>
 <li><p class="first">Mutable, representing the most current version of a particular spreadsheet</p>
 </li>
 <li><dl class="first docutils">
@@ -186,6 +188,8 @@ expeditions, datasets, and resources (described below).  Each FIMS system instal
 <h2>Dataset identifiers<a class="headerlink" href="#dataset-identifiers" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul>
+<li><p class="first">resourceType: <a class="reference external" href="http://purl.org/dc/dcmitype/Dataset">http://purl.org/dc/dcmitype/Dataset</a></p>
+</li>
 <li><p class="first">Immutable</p>
 </li>
 <li><p class="first">Belongs to a specific expedition</p>
@@ -207,6 +211,7 @@ expeditions, datasets, and resources (described below).  Each FIMS system instal
 <h2>Resource identifiers<a class="headerlink" href="#resource-identifiers" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
+<li>resourceType: defined in configuration file</li>
 <li>Belongs to an expedition.    Multiple resources may be specified for each expedition.</li>
 <li>Implements suffix-passthrough feature to identify individual resources within each dataset. For example, a single &#8220;Material Sample&#8221; identifier is created for each expedition.  If the expedition has 1000 rows representing physical samples, 1000 identifiers can be resolved by appending a locally unique suffix on to the Resource Identifier root.</li>
 <li>A resource identifier plus the locally unique primary key loaded for the most recent dataset in an expedition forms the globally unique identifier for a particular resource.</li>
@@ -215,17 +220,11 @@ expeditions, datasets, and resources (described below).  Each FIMS system instal
 </div>
 <div class="section" id="bcid-resolution-system">
 <h2>BCID Resolution System<a class="headerlink" href="#bcid-resolution-system" title="Permalink to this headline">¶</a></h2>
-<p>The BCID Resolution system resolves BCID identifiers that are passed through the Name-to-thing resolver (<a class="reference external" href="http://nt2.net/">http://nt2.net/</a>).  All BCID groups identifiers are registered with EZID.  EZID redirects requests to the BCID resolver which has resolution capabilities and features.  The Behaviour of the BCID resolver is explained in the following chart.</p>
-<img alt="https://raw.githubusercontent.com/biocodellc/documentation/master/docs/IdentifierService.png" src="https://raw.githubusercontent.com/biocodellc/documentation/master/docs/IdentifierService.png" />
-<dl class="docutils">
-<dt>Table 1 notes</dt>
-<dd><ul class="first last simple">
-<li><strong>graph value</strong> is whether data has been loaded into the FIMS system</li>
-<li><strong>suffixpassthrough</strong> is a boolean indicating whether or not this ID supports suffix passthrough.</li>
-<li><strong>has specified redirection target</strong> indicates whether or a redirection target has been specified for this URL.</li>
-</ul>
-</dd>
-</dl>
+<p>The Name-to-Thing resolver (<a class="reference external" href="http://n2t.net/">http://n2t.net/</a>) redirects requests to the BCID resolver.  The BCID resolver service enables users to specify forwarding targets by specifying webaddress targets for unique expeditions and datasets.  For resources, targets are defined in the project configuration file, so may be updated dynamically, depending on where the user wants to resolve specific resources.  The followin is a sketch of the resolution service:</p>
+<p>How BCIDs work with local identifiers, the world wide web, and EZID&#8217;s name-to-thing resolution service:</p>
+<img alt="https://raw.githubusercontent.com/biocodellc/documentation/master/docs/ResolutionService.jpg" src="https://raw.githubusercontent.com/biocodellc/documentation/master/docs/ResolutionService.jpg" />
+<p>The following chart shows how the BCID resolution works on a finer scale:</p>
+<img alt="https://raw.githubusercontent.com/biocodellc/documentation/master/docs/UpdatedIdentifierService.jpg" src="https://raw.githubusercontent.com/biocodellc/documentation/master/docs/UpdatedIdentifierService.jpg" />
 </div>
 </div>
 
@@ -239,7 +238,7 @@ expeditions, datasets, and resources (described below).  Each FIMS system instal
         <a href="sub_sampling.html" class="btn btn-neutral float-right" title="Working with samples and sub-samples" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="installation.html" class="btn btn-neutral" title="Installation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="implementations.html" class="btn btn-neutral" title="Implementations" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
