@@ -11,7 +11,6 @@ FIMS documentation
     :caption: About the FIMS System
 
     introduction
-    implementations
     identifiers
     sub_sampling
 

@@ -52,3 +52,10 @@ Datasets
 
 Expeditions contain many datasets.  A dataset typically refers to an excel spreadsheet.  When loaded through the associated Biocode-FIMS expeditions, a reference to this dataset is stored as part of the Biocode-FIMS BCID system with a unique ARK.  When a dataset is created, it is given a unique code, which is owned by the user that first uploaded it.  This user may choose, to re-load this dataset again, in which case a new reference will be loaded here.
 
+Resources
++++++++++++
+
+All expeditions contain one or more resources.  A special resource identifier is created for each of the expedition resources.  For example, a project cataloging tissue
+samples may choose to define a resource for the tissue itself, a resource for the collecting event data associated with the tissue, and an identification 
+resource containing information about the taxonomic name associated with the tissue.  Or, a project may choose to simply bundle all of this information into a single resource 
+describing all of this data.

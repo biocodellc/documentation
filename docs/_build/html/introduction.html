@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="FIMS documentation 1.0 documentation" href="index.html"/>
-        <link rel="next" title="Implementations" href="implementations.html"/>
+        <link rel="next" title="Identifiers" href="identifiers.html"/>
         <link rel="prev" title="FIMS documentation" href="index.html"/> 
 
   
@@ -92,15 +92,15 @@
 <li class="toctree-l4"><a class="reference internal" href="#projects">Projects</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#expeditions">Expeditions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#datasets">Datasets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resources">Resources</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="implementations.html">Implementations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="identifiers.html">Identifiers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sub_sampling.html">Working with samples and sub-samples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sub_sampling.html">Samples and Sub-sampling</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Information</span></p>
 <ul>
@@ -193,6 +193,13 @@ the <a class="reference external" href="https://jena.apache.org/documentation/se
 <h4>Datasets<a class="headerlink" href="#datasets" title="Permalink to this headline">¶</a></h4>
 <p>Expeditions contain many datasets.  A dataset typically refers to an excel spreadsheet.  When loaded through the associated Biocode-FIMS expeditions, a reference to this dataset is stored as part of the Biocode-FIMS BCID system with a unique ARK.  When a dataset is created, it is given a unique code, which is owned by the user that first uploaded it.  This user may choose, to re-load this dataset again, in which case a new reference will be loaded here.</p>
 </div>
+<div class="section" id="resources">
+<h4>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h4>
+<p>All expeditions contain one or more resources.  A special resource identifier is created for each of the expedition resources.  For example, a project cataloging tissue
+samples may choose to define a resource for the tissue itself, a resource for the collecting event data associated with the tissue, and an identification
+resource containing information about the taxonomic name associated with the tissue.  Or, a project may choose to simply bundle all of this information into a single resource
+describing all of this data.</p>
+</div>
 </div>
 </div>
 </div>
@@ -204,7 +211,7 @@ the <a class="reference external" href="https://jena.apache.org/documentation/se
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="implementations.html" class="btn btn-neutral float-right" title="Implementations" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="identifiers.html" class="btn btn-neutral float-right" title="Identifiers" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="FIMS documentation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
