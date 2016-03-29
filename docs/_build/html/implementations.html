@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="FIMS documentation 1.0 documentation" href="index.html"/>
-        <link rel="next" title="Installation" href="installation.html"/>
+        <link rel="next" title="Identifiers" href="identifiers.html"/>
         <link rel="prev" title="Introduction" href="introduction.html"/> 
 
   
@@ -88,23 +88,22 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Implementations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#biscicol-implementation">BiSciCol Implementation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">BiSciCol</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#instances-calling-some-portion-of-biscicol-services-but-running-their-own-interfaces">Instances calling some portion of BiSciCol services but running their own interfaces:</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#smithsonian-institution-national-museum-of-natural-histrory">Smithsonian Institution National Museum of Natural Histrory</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="identifiers.html">Identifiers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sub_sampling.html">Working with samples and sub-samples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bcids.html">Introduction to BCIDs</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Information</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="services.html">REST Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javadocs.html">FIMS Commons Javadocs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_accounts.html">User Accounts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Creating Expeditions and Validation with REST ONLY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Minting IDs, Creating Expeditions, and Validating Data using REST calls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curl_examples.html">curl Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">oauth2</a></li>
 </ul>
@@ -158,8 +157,9 @@
             
   <div class="section" id="implementations">
 <h1>Implementations<a class="headerlink" href="#implementations" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="biscicol-implementation">
-<h2>BiSciCol Implementation<a class="headerlink" href="#biscicol-implementation" title="Permalink to this headline">¶</a></h2>
+<p>Refer to documentation for particular projects that utilize the FIMS system for instructions on using the interface.  This documentation focuses on development for back-end components and more generally on topics that all implementations share, such as minting globally unique identifiers.  Here we describe just the BiSciCol implementation to show how one possible FIMS implementation may be used.</p>
+<div class="section" id="id1">
+<h2>BiSciCol<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="http://biscicol.org/">BiSciCol</a> implementation uses a triplestore data storage engine, a dedicated EZID name assigning authority number, and supports a number of different projects that use this implementation directly:</p>
 <blockquote>
 <div><ul class="simple">
@@ -179,10 +179,6 @@
 </div></blockquote>
 </div>
 </div>
-<div class="section" id="smithsonian-institution-national-museum-of-natural-histrory">
-<h2>Smithsonian Institution National Museum of Natural Histrory<a class="headerlink" href="#smithsonian-institution-national-museum-of-natural-histrory" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference external" href="http://nmnh-fims.si.edu/">NMNH</a>  installation uses a dedicated EZID name assigning authority number, has its own web interface, and stores data as spreadsheets.  In addition, it offers services for notifying data managers of loaded datasets.</p>
-</div>
 </div>
 
 
@@ -192,7 +188,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="identifiers.html" class="btn btn-neutral float-right" title="Identifiers" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="introduction.html" class="btn btn-neutral" title="Introduction" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
