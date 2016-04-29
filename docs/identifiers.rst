@@ -40,13 +40,12 @@ Resource identifiers
 
 BCID Resolution System
 -------------------------
-The Name-to-Thing resolver (http://n2t.net/) redirects requests to the BCID resolver.  The BCID resolver service enables users to specify forwarding targets by specifying webaddress targets for unique expeditions and datasets.  For resources, targets are defined in the project configuration file, so may be updated dynamically, depending on where the user wants to resolve specific resources.  The followin is a sketch of the resolution service:
 
-The following illustration shows how BCIDs work with local identifiers, the world wide web, and EZID's name-to-thing resolution service.  A field researcher uses their own numbering system, in this casae an identifier labelled 'MBIO56', and uploads their data to FIMS, which assigns it to a resource category 'R2', which being part of the FIMS system has a name assigning authority number (NAAM) of 21547 under the ark: scheme, which is then registered with the Name-to-thing resolution service. Resolution requests coming through name-to-thing are re-directed to the BCID resolution service, which then either displays object metadata or redirects to a project specified web-page, depending on settings in the FIMS configuration file for this project.
+The following illustration shows how BCIDs work with local identifiers, the world wide web, and EZID's name-to-thing resolution service.  A field researcher uses their own numbering system (e.g. 'MBIO56'), and uploads their data to FIMS, which assigns it to a resource category (e.g. 'R2').  The FIMS system itself is registered under the ark: scheme, and has a name assigning authority number (NAAN) of 21547.  Resolution requests coming through name-to-thing are re-directed to the BCID resolution service.
 
-.. image:: https://raw.githubusercontent.com/biocodellc/documentation/master/docs/ResolutionService.jpg
+.. image:: https://raw.githubusercontent.com/biocodellc/documentation/master/docs/resolution.png
 
-The following chart shows how the BCID resolution works for expeditions, datasets, and resource resolution.  All of these elements are 'BCIDs' and how they are resolved depends on whether they are expedition, dataset, or resource:
+The following chart shows how BCID resolution works for expeditions, datasets, and resources in the FIMS system with actions falling under forwarding, or metadata display.  Forwarding behaviour is determined by either the specification of a target webaddress in the database, or absent that, a specification in the project's configuration file.
 
-.. image:: https://raw.githubusercontent.com/biocodellc/documentation/master/docs/UpdatedIdentifierService.jpg
+.. image:: https://raw.githubusercontent.com/biocodellc/documentation/master/docs/resolverBehaviour.png
 
