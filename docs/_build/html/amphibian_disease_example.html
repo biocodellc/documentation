@@ -99,10 +99,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Minting IDs, Creating Expeditions, and Validating Data using REST calls</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#logging-in">Logging in</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#mint-bcid">Mint Bcid</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#determine-your-projectid">Determine your projectID</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#create-new-expedition">Create new Expedition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#associate-bcid-with-expedition-by-sending-post-request">Associate Bcid with Expedition by sending POST request::</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#validate-dataset">Validate Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optional-minting-services">Optional minting services</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="curl_examples.html">curl Examples</a></li>
@@ -172,8 +169,9 @@ POST Parameters:
     password={yourPassword}
 </pre></div>
 </div>
-<p>Be sure to save the cookies that are returned.  How you do this depends on your application (see some curl examples of how to do this here:
-<a class="reference external" href="http://fims.readthedocs.org/en/latest/curl_examples.html">http://fims.readthedocs.org/en/latest/curl_examples.html</a>)</p>
+<p>Save the cookies that are returned.  How you do this depends on your application (some curl examples:
+<a class="reference external" href="http://fims.readthedocs.org/en/latest/curl_examples.html">http://fims.readthedocs.org/en/latest/curl_examples.html</a>).  Pass the cookies file to the POST
+requests below to authenticate each request.</p>
 </div>
 <div class="section" id="mint-bcid">
 <h2>Mint Bcid<a class="headerlink" href="#mint-bcid" title="Permalink to this headline">¶</a></h2>
@@ -188,22 +186,24 @@ POST Parameters:
     *graph={graph} (A sparql endpoint or other location to be included in sparql queries)
     *suffixPassThrough={true|pase} (whether this supports suffixPassthrough}
     *finalCopy={true|false} (if this is a final copy)
-
 * Optional parameters
-Send cookies with your request (e.g. curl examples here: http://fims.readthedocs.org/en/latest/curl_examples.html)
+
+Send Cookies with login data
 </pre></div>
 </div>
 </div>
-<div class="section" id="determine-your-projectid">
-<h2>Determine your projectID<a class="headerlink" href="#determine-your-projectid" title="Permalink to this headline">¶</a></h2>
-<p>First determine your projectID:</p>
+<div class="section" id="optional-minting-services">
+<h2>Optional minting services<a class="headerlink" href="#optional-minting-services" title="Permalink to this headline">¶</a></h2>
+<p><strong>Determine your projectID</strong></p>
+<p>Knowing your projectID is useful when working with the minting services presented below.  Your username must be added to the
+projects before using the projects themselves. Talk to your project administrator to have your username added to a project.
+The following URL lists all available projects in the FIMS system:</p>
 <div class="highlight-python"><div class="highlight"><pre>http://www.biscicol.org/biocode-fims/rest/projects/list
 </pre></div>
 </div>
-</div>
-<div class="section" id="create-new-expedition">
-<h2>Create new Expedition<a class="headerlink" href="#create-new-expedition" title="Permalink to this headline">¶</a></h2>
-<p>Mint  an Expedition by sending the following POST request.  Expeditions are used in the FIMS system for organizing content that is related to versions of and resources  related to, a spreadsheet.:</p>
+<p><strong>Create new Expedition</strong></p>
+<p>Expeditions are used in the FIMS system for organizing content that is related to versions of and resources  related to, a spreadsheet.
+Mint an Expedition by sending the following POST request:</p>
 <div class="highlight-python"><div class="highlight"><pre>http://www.biscicol.org/biocode-fims/rest/expeditions
 
 POST Parameters:
@@ -213,13 +213,10 @@ POST Parameters:
     public={public_expedition}
     webaddress={target URL for expedition, forwarded when the expedition ID resolved}
 
-
-Cookies with login data
+Send Cookies with login data
 </pre></div>
 </div>
-</div>
-<div class="section" id="associate-bcid-with-expedition-by-sending-post-request">
-<h2>Associate Bcid with Expedition by sending POST request::<a class="headerlink" href="#associate-bcid-with-expedition-by-sending-post-request" title="Permalink to this headline">¶</a></h2>
+<p><strong>Associate Bcid with Expedition by sending POST request</strong></p>
 <p>Associate a BCID with an expedition:</p>
 <div class="highlight-python"><div class="highlight"><pre>http://www.biscicol.org/biocode-fims/rest/expeditions/associate
 
@@ -228,12 +225,10 @@ POST Parameters:
     bcid={identifier returned in step 2}
     projectId={your_projectId}
 
-Cookies with login data
+Send Cookies with login data
 </pre></div>
 </div>
-</div>
-<div class="section" id="validate-dataset">
-<h2>Validate Dataset<a class="headerlink" href="#validate-dataset" title="Permalink to this headline">¶</a></h2>
+<p><strong>Validate Dataset</strong></p>
 <p>To validate your dataset, send a POST request to:</p>
 <div class="highlight-python"><div class="highlight"><pre>http://www.biscicol.org/biocode-fims/rest/validate
 
@@ -244,7 +239,7 @@ POST Parameters:
     expeditionCode={your_expeditionCode}
     dataset={your_dataset}
 
-Cookies with login data
+Send Cookies with login data
 </pre></div>
 </div>
 <p>The response is returned as JSON, which will look something like:</p>

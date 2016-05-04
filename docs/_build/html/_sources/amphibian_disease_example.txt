@@ -20,8 +20,9 @@ All BCID minting functions require you to first login.  You can login by sending
         username={yourUsername}
         password={yourPassword}
 
-Be sure to save the cookies that are returned.  How you do this depends on your application (see some curl examples of how to do this here:
-http://fims.readthedocs.org/en/latest/curl_examples.html)
+Save the cookies that are returned.  How you do this depends on your application (some curl examples:
+http://fims.readthedocs.org/en/latest/curl_examples.html).  Pass the cookies file to the POST
+requests below to authenticate each request.
 
 Mint Bcid
 ----------------------
@@ -38,20 +39,25 @@ Mint a Bcid by sending at minimum a title, webAddress, and resourceType.   Send 
         *graph={graph} (A sparql endpoint or other location to be included in sparql queries)
         *suffixPassThrough={true|pase} (whether this supports suffixPassthrough}
         *finalCopy={true|false} (if this is a final copy)
-
     * Optional parameters
-    Send cookies with your request (e.g. curl examples here: http://fims.readthedocs.org/en/latest/curl_examples.html)
 
-Determine your projectID
+    Send Cookies with login data
+
+Optional minting services 
 ----------------------
-First determine your projectID::
+
+**Determine your projectID**
+
+Knowing your projectID is useful when working with the minting services presented below.  Your username must be added to the 
+projects before using the projects themselves. Talk to your project administrator to have your username added to a project.
+The following URL lists all available projects in the FIMS system::
 
      http://www.biscicol.org/biocode-fims/rest/projects/list
 
-Create new Expedition
---------------------
+**Create new Expedition**
 
-Mint  an Expedition by sending the following POST request.  Expeditions are used in the FIMS system for organizing content that is related to versions of and resources  related to, a spreadsheet.::
+Expeditions are used in the FIMS system for organizing content that is related to versions of and resources  related to, a spreadsheet.
+Mint an Expedition by sending the following POST request::
 
     http://www.biscicol.org/biocode-fims/rest/expeditions 
 
@@ -62,11 +68,9 @@ Mint  an Expedition by sending the following POST request.  Expeditions are used
         public={public_expedition}
         webaddress={target URL for expedition, forwarded when the expedition ID resolved}
 
+    Send Cookies with login data
 
-    Cookies with login data
-
-Associate Bcid with Expedition by sending POST request::
------------------------
+**Associate Bcid with Expedition by sending POST request**
 
 Associate a BCID with an expedition::  
  
@@ -77,10 +81,9 @@ Associate a BCID with an expedition::
         bcid={identifier returned in step 2}
         projectId={your_projectId}
 
-    Cookies with login data
+    Send Cookies with login data
 
-Validate Dataset
-------------------
+**Validate Dataset**
 
 To validate your dataset, send a POST request to:: 
 
@@ -93,7 +96,7 @@ To validate your dataset, send a POST request to::
         expeditionCode={your_expeditionCode}
         dataset={your_dataset}
 
-    Cookies with login data
+    Send Cookies with login data
 
 The response is returned as JSON, which will look something like::
 
