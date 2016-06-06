@@ -11,6 +11,7 @@ FIMS documentation
     :caption: About the FIMS System
 
     introduction
+    fims
     bioValidator
     identifiers
     sub_sampling

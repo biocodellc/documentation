@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="FIMS documentation 1.0 documentation" href="index.html"/>
-        <link rel="next" title="bioValidator: A desktop validation tool (legacy)" href="bioValidator.html"/>
+        <link rel="next" title="Biocode FIMS Web Application" href="fims.html"/>
         <link rel="prev" title="FIMS documentation" href="index.html"/> 
 
   
@@ -86,19 +86,8 @@
             
                 <p class="caption"><span class="caption-text">About the FIMS System</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#biocode-fims-web-application">Biocode FIMS Web Application</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#how-fims-is-organized">How FIMS is organized</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#projects">Projects</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#expeditions">Expeditions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#datasets">Datasets</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#resources">Resources</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fims.html">Biocode FIMS Web Application</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bioValidator.html">bioValidator:  A desktop validation tool (legacy)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="identifiers.html">Identifiers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sub_sampling.html">Samples and Sub-sampling</a></li>
@@ -164,39 +153,7 @@
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
 <p>Biocode-FIMS is used for data validation, expedition planning, and data management for field-based surveys enabling tracking physical objects including organisms, soil cores, water samples, and sub-samples.  If you would like to start your own Biocode FIMS project, you can either download and install the relevant modules (all freely available) or contact the owner of the
-<a class="reference external" href="http://biscicol.org/index.jsp">BiSciCol FIMS installation</a> code site to see if you can be added as a project to this installation.</p>
-<div class="section" id="biocode-fims-web-application">
-<h2>Biocode FIMS Web Application<a class="headerlink" href="#biocode-fims-web-application" title="Permalink to this headline">¶</a></h2>
-<p>Biocode FIMS has multiple running instances, in support of a variety of field-based sampling projects.
-An example of how the FIMS components work together is running at the <a class="reference external" href="http://biscicol.org/">BiSciCol homepage</a>.   The <a class="reference external" href="https://github.com/biocodellc/biscicol-fims">biscicol-fims</a> codebase
-is one example of a FIMS implementation which features data validation, a graph-based data storage engine, assignment of globally unique identifiers for expeditions, datasets, and every defined sample and process.  Project administrators to control and validate specific fields, while allowing users to add their own data to spreadsheet templates.</p>
-<p>For developers: All Biocode FIMS installations use the <a class="reference external" href="https://github.com/biocodellc/biocode-fims-commons">biocode-fims-commons</a> code repository and may include
-also the <a class="reference external" href="https://github.com/biocodellc/biocode-fims-fuseki">biocode-fims-fuseki</a> codebase for working with triples.</p>
-<div class="section" id="how-fims-is-organized">
-<h3>How FIMS is organized<a class="headerlink" href="#how-fims-is-organized" title="Permalink to this headline">¶</a></h3>
-<p>The following sections describe how data is stored in the FIMS system.  See the identifiers section for more information how identifiers are applied at each level.</p>
-<div class="section" id="projects">
-<h4>Projects<a class="headerlink" href="#projects" title="Permalink to this headline">¶</a></h4>
-<p>A project defines a set of data held in common by a group of contributors.  The data from a single project shares common concepts, attributes, and validation rules.  It is owned by a project administrator user who has the power to set validation rules, concept mappings, and users that are permitted to share data under the project.  New projects are created infrequently and require super-user status to create (currently the owner of BCID site itself).   However, once created, project values can be edited by an assigned project administrator.</p>
-<p>To create a new project, please contact the BCID owner.</p>
-</div>
-<div class="section" id="expeditions">
-<h4>Expeditions<a class="headerlink" href="#expeditions" title="Permalink to this headline">¶</a></h4>
-<p>Projects contain many expeditions. An Expedition refers to a group of datasets and is associated with a project. Users may freely create expeditions.</p>
-</div>
-<div class="section" id="datasets">
-<h4>Datasets<a class="headerlink" href="#datasets" title="Permalink to this headline">¶</a></h4>
-<p>Expeditions contain many datasets.  A dataset typically refers to an excel spreadsheet.  When loaded through the associated Biocode-FIMS expeditions, a reference to this dataset is stored as part of the Biocode-FIMS BCID system with a unique ARK.  When a dataset is created, it is given a unique code, which is owned by the user that first uploaded it.  This user may choose, to re-load this dataset again, in which case a new reference will be loaded here.</p>
-</div>
-<div class="section" id="resources">
-<h4>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h4>
-<p>All expeditions contain one or more resources.  A special resource identifier is created for each of the expedition resources.  For example, a project cataloging tissue
-samples may choose to define a resource for the tissue itself, a resource for the collecting event data associated with the tissue, and an identification
-resource containing information about the taxonomic name associated with the tissue.  Or, a project may choose to simply bundle all of this information into a single resource
-describing all of this data.</p>
-</div>
-</div>
-</div>
+<a href="#id1"><span class="problematic" id="id2">`BiSciCol FIMS installation`_</span></a> code site to see if you can be added as a project to this installation.</p>
 </div>
 
 
@@ -206,7 +163,7 @@ describing all of this data.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="bioValidator.html" class="btn btn-neutral float-right" title="bioValidator: A desktop validation tool (legacy)" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="fims.html" class="btn btn-neutral float-right" title="Biocode FIMS Web Application" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="FIMS documentation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
