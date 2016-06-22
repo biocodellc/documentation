@@ -1,4 +1,5 @@
 .. Introduction
+.. _`BiSciCol FIMS installation`: https://github.com/biocodellc/biscicol-fims
 
 Introduction
 ===================
