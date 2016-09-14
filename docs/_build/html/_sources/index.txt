@@ -23,6 +23,7 @@ FIMS documentation
     services
     javadocs 
     user_accounts
+    deleting_accou
     data_storage_engines
     fasta_integration
     amphibian_disease_example
