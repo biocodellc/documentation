@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>FIMS v1 migration to FIMS v2 &mdash; FIMS documentation 1.0 documentation</title>
+  <title>XML Configuration File &mdash; FIMS documentation 1.0 documentation</title>
   
 
   
@@ -34,8 +34,8 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="FIMS documentation 1.0 documentation" href="index.html"/>
-        <link rel="next" title="REST Service Migration Guide" href="migration_guide.html"/>
-        <link rel="prev" title="oauth2" href="oauth2.html"/> 
+        <link rel="next" title="REST Services" href="services.html"/>
+        <link rel="prev" title="Installation" href="installation.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -96,8 +96,15 @@
 <li class="toctree-l1"><a class="reference internal" href="sub_sampling.html">Samples and Sub-sampling</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Information</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">XML Configuration File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#attributes">Attributes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#datatype">DataType</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="services.html">REST Services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="javadocs.html">FIMS Commons Javadocs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_accounts.html">User Accounts</a></li>
@@ -106,8 +113,8 @@
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">oauth2</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Migrating from FIMS1 to FIMS2</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">FIMS v1 migration to FIMS v2</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fims_migration.html">FIMS v1 migration to FIMS v2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="migration_guide.html">REST Service Migration Guide</a></li>
 </ul>
 
@@ -139,11 +146,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>FIMS v1 migration to FIMS v2</li>
+    <li>XML Configuration File</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/fims_migration.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/configuration_files.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -153,19 +160,37 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="fims-v1-migration-to-fims-v2">
-<h1>FIMS v1 migration to FIMS v2<a class="headerlink" href="#fims-v1-migration-to-fims-v2" title="Permalink to this headline">¶</a></h1>
-<p>Instructions for updating deployment for nmnh-fims and biscicol-fims.</p>
-<p>Run the FimsAlterTableScript in biocode-fims-commons.</p>
-<p>To use the FimsAlterTablesScript:</p>
-<ol class="arabic simple">
-<li>copy and paste the &#8220;mysql &#8211;batch &#8211;skip-column-names ...&#8221; to the cmd line.</li>
-<li>copy the output</li>
-<li>enter the mysql prompt</li>
-<li>paste the output.</li>
-<li>copy and paste the &#8220;drop table&#8221; and &#8220;alter table&#8221; lines from the FimsAlterTableScript to the mysql prompt. I recommend doing this in blocks and not just copy and pasting everything at once.</li>
-</ol>
-<p>After you complete the db migration, run the biocode.fims.utils.ExpeditionUpdater &#8220;main&#8221; method in biocode-fims-commons. This will create bcids for all of the expeditions.</p>
+  <div class="section" id="xml-configuration-file">
+<h1>XML Configuration File<a class="headerlink" href="#xml-configuration-file" title="Permalink to this headline">¶</a></h1>
+<p>Each project contains its own xml configuration file. This is where the <a class="reference internal" href="fims.html#projects"><span class="std std-ref">Projects</span></a> specific configuration is
+specified. This includes <a class="reference internal" href="fims.html#resources"><span class="std std-ref">Resources</span></a>, attributes, validation rules, and relations.</p>
+<div class="section" id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="datatype">
+<h3>DataType<a class="headerlink" href="#datatype" title="Permalink to this headline">¶</a></h3>
+<p>Each attribute may specify a <code class="docutils literal"><span class="pre">dataType</span></code>. A dataType can be specified to provide additional validation,
+and in the case of date, datetime, and time, can be used for data formatting. This is especially helpful
+for standardizing the data to aid in querying and analysis.</p>
+<p>The following <code class="docutils literal"><span class="pre">dataType</span></code> are supported:</p>
+<ul class="simple">
+<li>String (default if not specified)</li>
+<li>Integer</li>
+<li>Float</li>
+<li>Date<ul>
+<li>must specify <code class="docutils literal"><span class="pre">dataformat</span></code> as well</li>
+</ul>
+</li>
+<li>Time<ul>
+<li>must specify <code class="docutils literal"><span class="pre">dataformat</span></code> as well</li>
+</ul>
+</li>
+<li>Datetime<ul>
+<li>must specify <code class="docutils literal"><span class="pre">dataformat</span></code> as well</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
 </div>
 
 
@@ -175,10 +200,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="migration_guide.html" class="btn btn-neutral float-right" title="REST Service Migration Guide" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="services.html" class="btn btn-neutral float-right" title="REST Services" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="oauth2.html" class="btn btn-neutral" title="oauth2" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="installation.html" class="btn btn-neutral" title="Installation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

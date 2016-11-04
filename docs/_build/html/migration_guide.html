@@ -30,6 +30,9 @@
   
 
   
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="FIMS documentation 1.0 documentation" href="index.html"/>
         <link rel="prev" title="FIMS v1 migration to FIMS v2" href="fims_migration.html"/> 
 
@@ -94,6 +97,7 @@
 <p class="caption"><span class="caption-text">Developer Information</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration_files.html">XML Configuration File</a></li>
 <li class="toctree-l1"><a class="reference internal" href="services.html">REST Services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="javadocs.html">FIMS Commons Javadocs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_accounts.html">User Accounts</a></li>
@@ -104,7 +108,7 @@
 <p class="caption"><span class="caption-text">Migrating from FIMS1 to FIMS2</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="fims_migration.html">FIMS v1 migration to FIMS v2</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">REST Service Migration Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">REST Service Migration Guide</a></li>
 </ul>
 
             
@@ -127,7 +131,7 @@
         <div class="rst-content">
           
 
-
+ 
 
 
 
@@ -154,372 +158,478 @@
 <p>This lists only the services that were changed. To get more information about the current REST services visit  <a class="reference external" href="http://biscicol.org/biocode-fims/rest/fims.wadl">http://biscicol.org/biocode-fims/rest/fims.wadl</a></p>
 <dl class="docutils">
 <dt><strong>/id/authenticationService</strong></dt>
-<dd><ul class="first last">
-<li><p class="first">/loginLDAP
-* moved to nmnh-fims</p>
+<dd><ul class="first last simple">
+<li>/loginLDAP<ul>
+<li>moved to nmnh-fims</li>
+</ul>
 </li>
-<li><p class="first">/entrustChallenge
-* moved to nmnh-fims</p>
+<li>/entrustChallenge<ul>
+<li>moved to nmnh-fims</li>
+</ul>
 </li>
-<li><p class="first">/oauth/access_token
-* moved to &#8220;id/authenticationService/oauth/accessToken&#8221;
-* additional PostParams:</p>
-<blockquote>
-<div><ul class="simple">
+<li>/oauth/access_token<ul>
+<li>moved to &#8220;id/authenticationService/oauth/accessToken&#8221;</li>
+<li>additional PostParams:<ul>
 <li>grant_type: optional. If grant_type = “password”, then the user will be authenticated with the provided username and password POST params. Thus skipping the need to call “/oauth/authorize” service 1st</li>
 <li>username: required if grant_type = “password”</li>
 <li>password: required if grant_type = “password”</li>
 </ul>
-</div></blockquote>
 </li>
-<li><p class="first">/reset
-* moved to “biocode-fims/rest/users/resetPassword”</p>
+</ul>
 </li>
-<li><p class="first">/sendResetToken
-* moved to “biocode-fims/rest/users/{username}/sendResetToken”</p>
+<li>/reset<ul>
+<li>moved to “biocode-fims/rest/users/resetPassword”</li>
+</ul>
+</li>
+<li>/sendResetToken<ul>
+<li>moved to “biocode-fims/rest/users/{username}/sendResetToken”</li>
+</ul>
 </li>
 </ul>
 </dd>
 <dt><strong>/projectService</strong></dt>
 <dd><ul class="first last">
-<li><p class="first">/validation/{projectId}
-* removed</p>
+<li><p class="first">/validation/{projectId}</p>
+<ul class="simple">
+<li>removed</li>
+</ul>
 </li>
-<li><p class="first">/list
-* moved to “biocode-fims/rest/projects/list”
-* now returns a JSONArray of &#8220;project&#8221; JSONObjects</p>
-<blockquote>
-<div><ul class="simple">
+<li><p class="first">/list</p>
+<ul class="simple">
+<li>moved to “biocode-fims/rest/projects/list”</li>
+<li>now returns a JSONArray of &#8220;project&#8221; JSONObjects<ul>
 <li>each JSONObject contains: &#8220;projectId&#8221;, &#8220;projectCode&#8221;, &#8220;projectTitle&#8221;, &#8220;validationXml&#8221;</li>
 </ul>
-</div></blockquote>
 </li>
-<li><p class="first">/graphs/{projectId}
-* moved to “biocode-fims/rest/projects/{projectId}/graphs&#8221;
-* now returns a JSONArray of &#8220;graph&#8221; JSONObjects</p>
-<blockquote>
-<div><ul class="simple">
+</ul>
+</li>
+<li><p class="first">/graphs/{projectId}</p>
+<ul class="simple">
+<li>moved to “biocode-fims/rest/projects/{projectId}/graphs&#8221;</li>
+<li>now returns a JSONArray of &#8220;graph&#8221; JSONObjects<ul>
 <li>each JSONObject contains: &#8220;expeditionCode&#8221;, &#8220;expeditionTitle&#8221;, &#8220;ts&#8221;, &#8220;identifier&#8221;, &#8220;bcidId&#8221;, &#8220;projectId&#8221;, &#8220;webAddress&#8221;, &#8220;graph&#8221;</li>
 </ul>
-</div></blockquote>
 </li>
-<li><p class="first">/myGraphs
-* moved to “biocode-fims/rest/projects/myGraphs”
-* &#8220;ark&#8221; =&gt; &#8220;identifier&#8221;, &#8220;expedition_code&#8221; =&gt; &#8220;expeditionCode&#8221;, &#8220;project_id&#8221; =&gt; &#8220;projectId&#8221;, &#8220;dataset_id&#8221; =&gt; &#8220;bcidId&#8221;, &#8220;expedition_title&#8221; =&gt; &#8220;expeditionTitle&#8221;</p>
+</ul>
 </li>
-<li><p class="first">/myDatasets
-* moved to “biocode-fims/rest/projects/myDatasets”
-* &#8220;ark&#8221; =&gt; &#8220;identifier&#8221;, &#8220;dataset_id&#8221; =&gt; &#8220;bcidId&#8221;</p>
+<li><p class="first">/myGraphs</p>
+<ul class="simple">
+<li>moved to “biocode-fims/rest/projects/myGraphs”</li>
+<li>&#8220;ark&#8221; =&gt; &#8220;identifier&#8221;, &#8220;expedition_code&#8221; =&gt; &#8220;expeditionCode&#8221;, &#8220;project_id&#8221; =&gt; &#8220;projectId&#8221;, &#8220;dataset_id&#8221; =&gt; &#8220;bcidId&#8221;, &#8220;expedition_title&#8221; =&gt; &#8220;expeditionTitle&#8221;</li>
+</ul>
 </li>
-<li><p class="first">/admin/list
-* moved to “biocode-fims/rest/projects/admin/list”
-* now returns a JSONArray of &#8220;project&#8221; JSONObjects</p>
-<blockquote>
-<div><ul class="simple">
+<li><p class="first">/myDatasets</p>
+<ul class="simple">
+<li>moved to “biocode-fims/rest/projects/myDatasets”</li>
+<li>&#8220;ark&#8221; =&gt; &#8220;identifier&#8221;, &#8220;dataset_id&#8221; =&gt; &#8220;bcidId&#8221;</li>
+</ul>
+</li>
+<li><p class="first">/admin/list</p>
+<ul class="simple">
+<li>moved to “biocode-fims/rest/projects/admin/list”</li>
+<li>now returns a JSONArray of &#8220;project&#8221; JSONObjects<ul>
 <li>each JSONObject contains: &#8220;projectId&#8221;, &#8220;projectCode&#8221;, &#8220;projectTitle&#8221;, &#8220;validationXml&#8221;</li>
 </ul>
-</div></blockquote>
 </li>
-<li><p class="first">/configAsTable/{projectId}
-* moved to “biocode-fims/rest/projects/{projectId}/metadata”</p>
+</ul>
 </li>
-<li><p class="first">/configEditorAsTable/{projectId}
-* moved to “biocode-fims/rest/projects/{projectId}/metadataEditor”</p>
+<li><p class="first">/configAsTable/{projectId}</p>
+<ul class="simple">
+<li>moved to “biocode-fims/rest/projects/{projectId}/metadata”</li>
+</ul>
 </li>
-<li><p class="first">/updateConfig/{projectId}
-* moved to “biocode-fims/rest/projects/{projectId}/metadata/update&#8221;</p>
+<li><p class="first">/configEditorAsTable/{projectId}</p>
+<ul class="simple">
+<li>moved to “biocode-fims/rest/projects/{projectId}/metadataEditor”</li>
+</ul>
 </li>
-<li><p class="first">/removeUser/{projectId}/{userId}
-* moved to “biocode-fims/rest/projects/{projectId}/admin/removeUser/{userId}&#8221;</p>
+<li><p class="first">/updateConfig/{projectId}</p>
+<ul class="simple">
+<li>moved to “biocode-fims/rest/projects/{projectId}/metadata/update&#8221;</li>
+</ul>
 </li>
-<li><p class="first">/addUser
-* moved to “biocode-fims/rest/projects/{projectId}/admin/addUser”</p>
+<li><p class="first">/removeUser/{projectId}/{userId}</p>
+<ul class="simple">
+<li>moved to “biocode-fims/rest/projects/{projectId}/admin/removeUser/{userId}&#8221;</li>
+</ul>
 </li>
-<li><p class="first">/listProjectUsersAsTable/{projectId}
-* moved to “biocode-fims/rest/projects/{projectId}/users”</p>
+<li><p class="first">/addUser</p>
+<ul class="simple">
+<li>moved to “biocode-fims/rest/projects/{projectId}/admin/addUser”</li>
+</ul>
 </li>
-<li><p class="first">/listUserProjects
-* moved to “biocode-fims/rest/projects/user/list”
-* now returns a JSONArray of &#8220;project&#8221; JSONObjects</p>
-<blockquote>
-<div><ul class="simple">
+<li><p class="first">/listProjectUsersAsTable/{projectId}</p>
+<ul class="simple">
+<li>moved to “biocode-fims/rest/projects/{projectId}/users”</li>
+</ul>
+</li>
+<li><p class="first">/listUserProjects</p>
+<ul class="simple">
+<li>moved to “biocode-fims/rest/projects/user/list”</li>
+<li>now returns a JSONArray of &#8220;project&#8221; JSONObjects<ul>
 <li>each JSONObject contains: &#8220;projectId&#8221;, &#8220;projectCode&#8221;, &#8220;projectTitle&#8221;, &#8220;validationXml&#8221;</li>
 </ul>
-</div></blockquote>
 </li>
-<li><p class="first">/saveTemplateConfig
-* moved to “biocode-fims/rest/projects/{projectId}/saveTemplateConfig”</p>
+</ul>
 </li>
-<li><p class="first">/getTemplateConfigs/{projectId}
-* moved to “biocode-fims/rest/projects/{projectId}/getTemplateConfigs”</p>
+<li><p class="first">/saveTemplateConfig</p>
+<ul class="simple">
+<li>moved to “biocode-fims/rest/projects/{projectId}/saveTemplateConfig”</li>
+</ul>
 </li>
-<li><dl class="first docutils">
-<dt>/getTemplateConfig/{projectId}/{configName}</dt>
-<dd><ul class="first last simple">
+<li><p class="first">/getTemplateConfigs/{projectId}</p>
+<ul class="simple">
+<li>moved to “biocode-fims/rest/projects/{projectId}/getTemplateConfigs”</li>
+</ul>
+</li>
+<li><p class="first">/getTemplateConfig/{projectId}/{configName}</p>
+<blockquote>
+<div><ul class="simple">
 <li>moved to “biocode-fims/rest/projects/{projectId}/getTemplateConfig/{configName}”</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
-<li><p class="first">/removeTemplateConfig/{projectId}/{configName}
-* moved to “biocode-fims/rest/projects/{projectId}/removeTemplateConfig/{configName}”</p>
+<li><p class="first">/removeTemplateConfig/{projectId}/{configName}</p>
+<ul class="simple">
+<li>moved to “biocode-fims/rest/projects/{projectId}/removeTemplateConfig/{configName}”</li>
+</ul>
 </li>
 </ul>
 </dd>
 <dt><strong>/expeditionService</strong></dt>
-<dd><ul class="first last">
-<li><p class="first">/associate
-* moved to &#8220;biocode-fims/rest/expeditions/associate&#8221;</p>
+<dd><ul class="first last simple">
+<li>/associate<ul>
+<li>moved to &#8220;biocode-fims/rest/expeditions/associate&#8221;</li>
+</ul>
 </li>
-<li><p class="first">/validateExpedition/{projectId}/{expeditionCode}
-* moved to &#8220;biocode-fims/rest/expeditions/validate/{projectId}/{expeditionCode}&#8221;</p>
+<li>/validateExpedition/{projectId}/{expeditionCode}<ul>
+<li>moved to &#8220;biocode-fims/rest/expeditions/validate/{projectId}/{expeditionCode}&#8221;</li>
+</ul>
 </li>
-<li><p class="first">/
-* moved to “biocode-fims/rest/expeditions/”
-* now returns JSONObject of expeditionMetadata</p>
-<blockquote>
-<div><ul class="simple">
+<li>/<ul>
+<li>moved to “biocode-fims/rest/expeditions/”</li>
+<li>now returns JSONObject of expeditionMetadata<ul>
 <li>&#8220;identifier&#8221;, &#8220;public&#8221;, &#8220;expeditionCode&#8221;, &#8220;expeditionTitle&#8221;, &#8220;expeditionId&#8221;, &#8220;projectId&#8221;</li>
 </ul>
-</div></blockquote>
 </li>
-<li><p class="first">/graphMetadata/{graph}
-* moved to “biocode-fims/rest/expeditions/graphMetadata/{graph}”
-* now returns JSONObject of graphMetadata</p>
-<blockquote>
-<div><ul class="simple">
+</ul>
+</li>
+<li>/graphMetadata/{graph}<ul>
+<li>moved to “biocode-fims/rest/expeditions/graphMetadata/{graph}”</li>
+<li>now returns JSONObject of graphMetadata<ul>
 <li>&#8220;graph&#8221;, &#8220;projectId&#8221;, &#8220;expeditionOwner&#8221;, &#8220;uploader&#8221;, &#8220;timestamp&#8221;, &#8220;identifier&#8221;, &#8220;resourceType&#8221;, &#8220;finalCopy&#8221;, &#8220;isPublic&#8221;, &#8220;expeditionCode&#8221;, &#8220;expeditionTitle&#8221;</li>
 </ul>
-</div></blockquote>
 </li>
-<li><p class="first">/{projectId}/{expeditionCode}/{resourceAlias}
-* moved to “biocode-fims/rest/expeditions/{projectId}/{expeditionCode}/{resourceAlias}&#8221;
-* &#8220;ark&#8221; =&gt; &#8220;identifier&#8221;</p>
+</ul>
 </li>
-<li><p class="first">/deepRoots/{projectId}/{expeditionCode}
-* removed</p>
+<li>/{projectId}/{expeditionCode}/{resourceAlias}<ul>
+<li>moved to “biocode-fims/rest/expeditions/{projectId}/{expeditionCode}/{resourceAlias}&#8221;</li>
+<li>&#8220;ark&#8221; =&gt; &#8220;identifier&#8221;</li>
+</ul>
 </li>
-<li><p class="first">/list/{projectId}
-* moved to “biocode-fims/rest/projects/{projectId}/expeditions&#8221;
-* now returns JSONArray of &#8220;expedition&#8221; JSONObjects
-* each &#8220;expedition&#8221; object contains:</p>
-<blockquote>
-<div><ul class="simple">
+<li>/deepRoots/{projectId}/{expeditionCode}<ul>
+<li>removed</li>
+</ul>
+</li>
+<li>/list/{projectId}<ul>
+<li>moved to “biocode-fims/rest/projects/{projectId}/expeditions&#8221;</li>
+<li>now returns JSONArray of &#8220;expedition&#8221; JSONObjects</li>
+<li>each &#8220;expedition&#8221; object contains:<ul>
 <li>&#8220;expeditionCode&#8221;, &#8220;expeditionTitle&#8221;, &#8220;public&#8221;, &#8220;expeditionId&#8221;</li>
 </ul>
-</div></blockquote>
 </li>
-<li><p class="first">/resourcesAsTable/{expeditionId}
-* moved to “biocode-fims/rest/expeditions/{expeditionId}/resourcesAsTable&#8221;</p>
+</ul>
 </li>
-<li><p class="first">/datasetsAsTable/{expeditionId}
-* moved to “biocode-fims/rest/expeditions/{expeditionId}/datasetsAsTable&#8221;</p>
+<li>/resourcesAsTable/{expeditionId}<ul>
+<li>moved to “biocode-fims/rest/expeditions/{expeditionId}/resourcesAsTable&#8221;</li>
+</ul>
 </li>
-<li><p class="first">/admin/listExpeditionsAsTable/{projectId}
-* moved to &#8220;biocode-fims/rest/projects/{projectId}/admin/expeditions&#8221;</p>
+<li>/datasetsAsTable/{expeditionId}<ul>
+<li>moved to “biocode-fims/rest/expeditions/{expeditionId}/datasetsAsTable&#8221;</li>
+</ul>
 </li>
-<li><p class="first">/admin/publicExpeditions
-* moved to “biocode-fims/rest/expeditions/admin/updateStatus”</p>
+<li>/admin/listExpeditionsAsTable/{projectId}<ul>
+<li>moved to &#8220;biocode-fims/rest/projects/{projectId}/admin/expeditions&#8221;</li>
+</ul>
 </li>
-<li><p class="first">/publicExpedition/{projectId}/{expeditionCode}/{publicStatus}
-* moved to “biocode-fims/rest/expeditions/updateStatus/{projectId}/{expeditionCode}/{publicStatus}&#8221;</p>
+<li>/admin/publicExpeditions<ul>
+<li>moved to “biocode-fims/rest/expeditions/admin/updateStatus”</li>
+</ul>
+</li>
+<li>/publicExpedition/{projectId}/{expeditionCode}/{publicStatus}<ul>
+<li>moved to “biocode-fims/rest/expeditions/updateStatus/{projectId}/{expeditionCode}/{publicStatus}&#8221;</li>
+</ul>
 </li>
 </ul>
 </dd>
 <dt><strong>/userService</strong></dt>
 <dd><ul class="first last simple">
-<li>/create
-* moved to “biocode-fims/rest/users/admin/create”</li>
-<li>/createFormAsTable
-* moved to “biocode-fims/rest/users/admin/createUserForm&#8221;</li>
-<li>/profile/update/{username}
-* moved to “biocode-fims/rest/users/profile/update”
-* now return JSONObject with: &#8220;adminAccess&#8221;, &#8220;returnTo&#8221;</li>
-<li>/profile/update
-* moved to “biocode-fims/rest/users/profile/update”
-* now return JSONObject with: &#8220;adminAccess&#8221;, &#8220;returnTo&#8221;</li>
-<li>/profile/listEditorAsTable/{username}
-* moved to “biocode-fims/rest/users/admin/profile/listEditorAsTable/{username}&#8221;</li>
-<li>/profile/listEditorAsTable
-* moved to “biocode-fims/rest/users/profile/listEditorAsTable&#8221;</li>
-<li>/profile/listAsTable
-* moved to “biocode-fims/rest/users/profile/listAsTable&#8221;</li>
-<li>/oauth
-* moved to “biocode-fims/rest/users/profile”
-* now return JSONObject with: &#8220;firstName&#8221;, &#8220;lastName&#8221;, &#8220;email&#8221;, &#8220;institution&#8221;, &#8220;hasSetPassword&#8221;, &#8220;userId&#8221;, &#8220;username&#8221;, &#8220;projectAdmin&#8221;</li>
+<li>/create<ul>
+<li>moved to “biocode-fims/rest/users/admin/create”</li>
+</ul>
+</li>
+<li>/createFormAsTable<ul>
+<li>moved to “biocode-fims/rest/users/admin/createUserForm&#8221;</li>
+</ul>
+</li>
+<li>/profile/update/{username}<ul>
+<li>moved to “biocode-fims/rest/users/profile/update”</li>
+<li>now return JSONObject with: &#8220;adminAccess&#8221;, &#8220;returnTo&#8221;</li>
+</ul>
+</li>
+<li>/profile/update<ul>
+<li>moved to “biocode-fims/rest/users/profile/update”</li>
+<li>now return JSONObject with: &#8220;adminAccess&#8221;, &#8220;returnTo&#8221;</li>
+</ul>
+</li>
+<li>/profile/listEditorAsTable/{username}<ul>
+<li>moved to “biocode-fims/rest/users/admin/profile/listEditorAsTable/{username}&#8221;</li>
+</ul>
+</li>
+<li>/profile/listEditorAsTable<ul>
+<li>moved to “biocode-fims/rest/users/profile/listEditorAsTable&#8221;</li>
+</ul>
+</li>
+<li>/profile/listAsTable<ul>
+<li>moved to “biocode-fims/rest/users/profile/listAsTable&#8221;</li>
+</ul>
+</li>
+<li>/oauth<ul>
+<li>moved to “biocode-fims/rest/users/profile”</li>
+<li>now return JSONObject with: &#8220;firstName&#8221;, &#8220;lastName&#8221;, &#8220;email&#8221;, &#8220;institution&#8221;, &#8220;hasSetPassword&#8221;, &#8220;userId&#8221;, &#8220;username&#8221;, &#8220;projectAdmin&#8221;</li>
+</ul>
+</li>
 </ul>
 </dd>
 <dt><strong>/elementService</strong></dt>
-<dd><ul class="first last">
-<li><p class="first">/select/{select}
-* moved to &#8220;biocode-fims/rest/resourceTypes&#8221; or &#8220;biocode-fims/rest/resourceTypes/minusDataset&#8221;
-* returns a JSONArray of resourceTypes. Each resourceType containing the following:</p>
-<blockquote>
-<div><ul class="simple">
+<dd><ul class="first last simple">
+<li>/select/{select}<ul>
+<li>moved to &#8220;biocode-fims/rest/resourceTypes&#8221; or &#8220;biocode-fims/rest/resourceTypes/minusDataset&#8221;</li>
+<li>returns a JSONArray of resourceTypes. Each resourceType containing the following:
+* resourceType, uri, description, string</li>
+</ul>
+</li>
+<li>/resourceTypes<ul>
+<li>moved to “biocode-fims/rest/resourceTypes”</li>
+<li>returns a JSONArray of resourceTypes. Each resourceType containing the following:<ul>
 <li>resourceType, uri, description, string</li>
 </ul>
-</div></blockquote>
 </li>
-<li><p class="first">/resourceTypes
-* moved to “biocode-fims/rest/resourceTypes”
-* returns a JSONArray of resourceTypes. Each resourceType containing the following:</p>
-<blockquote>
-<div><ul class="simple">
-<li>resourceType, uri, description, string</li>
 </ul>
-</div></blockquote>
 </li>
-<li><p class="first">/creator
-* removed</p>
+<li>/creator<ul>
+<li>removed</li>
+</ul>
 </li>
 </ul>
 </dd>
 <dt><strong>/groupService</strong></dt>
 <dd><ul class="first last simple">
-<li>/
-* moved to “biocode-fims/rest/bcids/”
-* &#8220;prefix&#8221; =&gt; &#8220;identifier&#8221;</li>
-<li>/metadata/{datasetId}
-* moved to “biocode-fims/rest/bcids/metadata/{bcidId}”
-* returns JSONObject containing &#8220;metadataElement&#8221; JSONObjects</li>
-<li>/list
-* moved to “biocode-fims/rest/bcids/list”
-* returns JSONArray of &#8220;bcid&#8221; JSONObjects
-* &#8220;identifier&#8221;, &#8220;bcidId&#8221;</li>
-<li>/listUserBCIDsAsTable
-* removed</li>
-<li>/listUserExpeditionsAsTable
-* removed</li>
-<li>/dataGroupEditorAsTable
-* removed</li>
-<li>/dataGroup/update
-* moved to “biocode-fims/rest/bcids/update”</li>
+<li>/<ul>
+<li>moved to “biocode-fims/rest/bcids/”</li>
+<li>&#8220;prefix&#8221; =&gt; &#8220;identifier&#8221;</li>
+</ul>
+</li>
+<li>/metadata/{datasetId}<ul>
+<li>moved to “biocode-fims/rest/bcids/metadata/{bcidId}”</li>
+<li>returns JSONObject containing &#8220;metadataElement&#8221; JSONObjects</li>
+</ul>
+</li>
+<li>/list<ul>
+<li>moved to “biocode-fims/rest/bcids/list”</li>
+<li>returns JSONArray of &#8220;bcid&#8221; JSONObjects</li>
+<li>&#8220;identifier&#8221;, &#8220;bcidId&#8221;</li>
+</ul>
+</li>
+<li>/listUserBCIDsAsTable<ul>
+<li>removed</li>
+</ul>
+</li>
+<li>/listUserExpeditionsAsTable<ul>
+<li>removed</li>
+</ul>
+</li>
+<li>/dataGroupEditorAsTable<ul>
+<li>removed</li>
+</ul>
+</li>
+<li>/dataGroup/update<ul>
+<li>moved to “biocode-fims/rest/bcids/update”</li>
+</ul>
+</li>
 </ul>
 </dd>
 <dt><strong>/biocode-fims/rest/authenticationService</strong></dt>
 <dd><ul class="first last simple">
-<li>/login
-* no longer uses oAuth to log a user in. Now accepts a username and password to login</li>
-<li>/access_token
-* removed</li>
+<li>/login<ul>
+<li>no longer uses oAuth to log a user in. Now accepts a username and password to login</li>
+</ul>
+</li>
+<li>/access_token<ul>
+<li>removed</li>
+</ul>
+</li>
 </ul>
 </dd>
 <dt><strong>/mapping</strong></dt>
-<dd><ul class="first last">
-<li><p class="first">/filterOptions/{projectId}
-* moved to “biocode-fims/rest/projects/{projectId}/filterOptions&#8221;
-* return JSONArray of JSONObjects</p>
-<blockquote>
-<div><ul class="simple">
-<li>JSONObject contains &#8220;column&#8221; &amp; &#8220;uri&#8221; attributes</li>
+<dd><ul class="first last simple">
+<li>/filterOptions/{projectId}<ul>
+<li>moved to “biocode-fims/rest/projects/{projectId}/filterOptions&#8221;</li>
+<li>return JSONArray of JSONObjects
+* JSONObject contains &#8220;column&#8221; &amp; &#8220;uri&#8221; attributes</li>
 </ul>
-</div></blockquote>
 </li>
 </ul>
 </dd>
 <dt><strong>/query</strong></dt>
 <dd><ul class="first last simple">
-<li>/json (GET)
-* moved to “biocode-fims/rest/projects/query/json&#8221; (GET)</li>
-<li>/ json (POST)
-* moved to “biocode-fims/rest/projects/query/json&#8221; (POST)</li>
-<li>/kml (GET)
-* moved to “biocode-fims/rest/projects/query/kml&#8221; (GET)</li>
-<li>/kml (POST)
-* moved to “biocode-fims/rest/projects/query/kml&#8221; (POST)</li>
-<li>/cspace
-* moved to “biocode-fims/rest/projects/query/cspace&#8221;</li>
-<li>/excel (GET)
-* moved to “biocode-fims/rest/projects/query/excel&#8221; (GET)</li>
-<li>/excel (POST)
-* moved to “biocode-fims/rest/projects/query/excel&#8221; (POST)</li>
-<li>/tab (GET)
-* moved to “biocode-fims/rest/projects/query/tab&#8221; (GET)</li>
-<li>/tab (POST)
-* moved to “biocode-fims/rest/projects/query/tab&#8221; (POST)</li>
+<li>/json (GET)<ul>
+<li>moved to “biocode-fims/rest/projects/query/json&#8221; (GET)</li>
+</ul>
+</li>
+<li>/ json (POST)<ul>
+<li>moved to “biocode-fims/rest/projects/query/json&#8221; (POST)</li>
+</ul>
+</li>
+<li>/kml (GET)<ul>
+<li>moved to “biocode-fims/rest/projects/query/kml&#8221; (GET)</li>
+</ul>
+</li>
+<li>/kml (POST)<ul>
+<li>moved to “biocode-fims/rest/projects/query/kml&#8221; (POST)</li>
+</ul>
+</li>
+<li>/cspace<ul>
+<li>moved to “biocode-fims/rest/projects/query/cspace&#8221;</li>
+</ul>
+</li>
+<li>/excel (GET)<ul>
+<li>moved to “biocode-fims/rest/projects/query/excel&#8221; (GET)</li>
+</ul>
+</li>
+<li>/excel (POST)<ul>
+<li>moved to “biocode-fims/rest/projects/query/excel&#8221; (POST)</li>
+</ul>
+</li>
+<li>/tab (GET)<ul>
+<li>moved to “biocode-fims/rest/projects/query/tab&#8221; (GET)</li>
+</ul>
+</li>
+<li>/tab (POST)<ul>
+<li>moved to “biocode-fims/rest/projects/query/tab&#8221; (POST)</li>
+</ul>
+</li>
 </ul>
 </dd>
 <dt><strong>/templates</strong></dt>
 <dd><ul class="first last simple">
-<li>/attributes
-* moved to “biocode-fims/rest/projects/{projectId}/attributes &#8220;</li>
-<li>/getConfig/{projectId}/{configName}
-* moved to “biocode-fims/rest/projects/{projectId}/getTemplateConfig/{configName}”</li>
-<li>/getConfigs/{projectId}
-* moved to “biocode-fims/rest/projects/{projectId}/getTemplateConfigs”</li>
-<li>/removeConfig/{projectId}/{configName}
-* moved to “biocode-fims/rest/projects/{projectId}/removeTemplateConfig/{configName}”</li>
-<li>/saveConfig/{projectId}
-* moved to “biocode-fims/rest/projects/{projectId}/saveTemplateConfig”</li>
-<li>/abstract
-* moved to “biocode-fims/rest/projects/{projectId}/abstract”
-* returns JSONObject with &#8220;abstract&#8221;</li>
-<li>/createExcel
-* moved to “biocode-fims/rest/projects/createExcel&#8221;</li>
-<li>/definition
-* moved to “biocode-fims/rest/projects/{projectId}/getDefinition/{columnName}&#8221;</li>
+<li>/attributes<ul>
+<li>moved to “biocode-fims/rest/projects/{projectId}/attributes &#8220;</li>
+</ul>
+</li>
+<li>/getConfig/{projectId}/{configName}<ul>
+<li>moved to “biocode-fims/rest/projects/{projectId}/getTemplateConfig/{configName}”</li>
+</ul>
+</li>
+<li>/getConfigs/{projectId}<ul>
+<li>moved to “biocode-fims/rest/projects/{projectId}/getTemplateConfigs”</li>
+</ul>
+</li>
+<li>/removeConfig/{projectId}/{configName}<ul>
+<li>moved to “biocode-fims/rest/projects/{projectId}/removeTemplateConfig/{configName}”</li>
+</ul>
+</li>
+<li>/saveConfig/{projectId}<ul>
+<li>moved to “biocode-fims/rest/projects/{projectId}/saveTemplateConfig”</li>
+</ul>
+</li>
+<li>/abstract<ul>
+<li>moved to “biocode-fims/rest/projects/{projectId}/abstract”</li>
+<li>returns JSONObject with &#8220;abstract&#8221;</li>
+</ul>
+</li>
+<li>/createExcel<ul>
+<li>moved to “biocode-fims/rest/projects/createExcel&#8221;</li>
+</ul>
+</li>
+<li>/definition<ul>
+<li>moved to “biocode-fims/rest/projects/{projectId}/getDefinition/{columnName}&#8221;</li>
+</ul>
+</li>
 </ul>
 </dd>
 <dt><strong>/utils</strong></dt>
-<dd><ul class="first last">
-<li><p class="first">/refreshCache/{projectId}
-* removed</p>
+<dd><ul class="first last simple">
+<li>/refreshCache/{projectId}<ul>
+<li>removed</li>
+</ul>
 </li>
-<li><p class="first">/expeditionCodes/{projectId}
-* moved to “biocode-fims/rest/projects/{projectId}/expeditions&#8221;
-* now returns JSONArray of &#8220;expedition&#8221; JSONObjects
-* each &#8220;expedition&#8221; object contains:</p>
-<blockquote>
-<div><ul class="simple">
+<li>/expeditionCodes/{projectId}<ul>
+<li>moved to “biocode-fims/rest/projects/{projectId}/expeditions&#8221;</li>
+<li>now returns JSONArray of &#8220;expedition&#8221; JSONObjects</li>
+<li>each &#8220;expedition&#8221; object contains:<ul>
 <li>&#8220;expeditionCode&#8221;, &#8220;expeditionTitle&#8221;, &#8220;public&#8221;, &#8220;expeditionId&#8221;</li>
 </ul>
-</div></blockquote>
 </li>
-<li><p class="first">/graphs/{projectId}
-* moved to “biocode-fims/rest/projects/{projectId}/graphs&#8221;
-* now returns a JSONArray of &#8220;graph&#8221; JSONObjects</p>
-<blockquote>
-<div><ul class="simple">
+</ul>
+</li>
+<li>/graphs/{projectId}<ul>
+<li>moved to “biocode-fims/rest/projects/{projectId}/graphs&#8221;</li>
+<li>now returns a JSONArray of &#8220;graph&#8221; JSONObjects<ul>
 <li>each JSONObject contains: &#8220;expeditionCode&#8221;, &#8220;expeditionTitle&#8221;, &#8220;ts&#8221;, &#8220;identifier&#8221;, &#8220;bcidId&#8221;, &#8220;projectId&#8221;, &#8220;webAddress&#8221;, &#8220;graph&#8221;</li>
 </ul>
-</div></blockquote>
-</li>
-<li><p class="first">/validateExpedition/{projectId}/{expeditionCode}
-* moved to &#8220;biocode-fims/rest/expeditions/validate/{projectId}/{expeditionCode}&#8221;</p>
-</li>
-<li><p class="first">/getListFields/{listName}
-* moved to “biocode-fims/rest/project/{projectId}/getListFields/{listName}”
-* returns a jsonArray with the acceptable values for the list</p>
-</li>
-<li><p class="first">/isNMNHProject/{projectId}
-* removed</p>
-</li>
-<li><p class="first">/listProjects
-* moved to “biocode-fims/rest/projects/list”</p>
-</li>
-<li><p class="first">/callBCID
-* removed</p>
-</li>
-<li><p class="first">/getDatasetDashboard
-* removed</p>
-</li>
-<li><p class="first">/updatePublicStatus
-* moved to “biocode-fims/rest/expeditions/updateStatus/{projectId}/{expeditionCode}/{publicStatus}&#8221;</p>
-</li>
-<li><p class="first">/getLatLongColumns/{projectId}
-* moved to “biocode-fims/rest/projects/{projectId}/getLatLongColumns&#8221;</p>
 </li>
 </ul>
-</dd>
-<dt><strong>/validate</strong></dt>
-<dd><ul class="first last simple">
-<li>/continue_nmnh
-* removed</li>
-<li>/continue_spreadsheet
-* removed</li>
+</li>
+<li>/validateExpedition/{projectId}/{expeditionCode}<ul>
+<li>moved to &#8220;biocode-fims/rest/expeditions/validate/{projectId}/{expeditionCode}&#8221;</li>
+</ul>
+</li>
+<li>/getListFields/{listName}<ul>
+<li>moved to “biocode-fims/rest/project/{projectId}/getListFields/{listName}”</li>
+<li>returns a jsonArray with the acceptable values for the list</li>
+</ul>
+</li>
+<li>/isNMNHProject/{projectId}<ul>
+<li>removed</li>
+</ul>
+</li>
+<li>/listProjects<ul>
+<li>moved to “biocode-fims/rest/projects/list”</li>
+</ul>
+</li>
+<li>/callBCID<ul>
+<li>removed</li>
+</ul>
+</li>
+<li>/getDatasetDashboard<ul>
+<li>removed</li>
+</ul>
+</li>
+<li>/updatePublicStatus<ul>
+<li>moved to “biocode-fims/rest/expeditions/updateStatus/{projectId}/{expeditionCode}/{publicStatus}&#8221;</li>
+</ul>
+</li>
+<li>/getLatLongColumns/{projectId}<ul>
+<li>moved to “biocode-fims/rest/projects/{projectId}/getLatLongColumns&#8221;</li>
+</ul>
+</li>
 </ul>
 </dd>
 </dl>
+<p><strong>/validate</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>/continue_nmnh<ul>
+<li>removed</li>
+</ul>
+</li>
+<li>/continue_spreadsheet<ul>
+<li>removed</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
 </div>
 
 

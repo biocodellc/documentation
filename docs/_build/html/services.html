@@ -30,6 +30,9 @@
   
 
   
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="FIMS documentation 1.0 documentation" href="index.html"/>
         <link rel="next" title="FIMS Commons Javadocs" href="javadocs.html"/>
         <link rel="prev" title="Installation" href="installation.html"/> 
@@ -95,7 +98,10 @@
 <p class="caption"><span class="caption-text">Developer Information</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">REST Services</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">REST Services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#versioning">Versioning</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="javadocs.html">FIMS Commons Javadocs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_accounts.html">User Accounts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Minting IDs, Creating Expeditions, and Validating Data using REST calls</a></li>
@@ -128,7 +134,7 @@
         <div class="rst-content">
           
 
-
+ 
 
 
 
@@ -153,6 +159,19 @@
   <div class="section" id="rest-services">
 <h1>REST Services<a class="headerlink" href="#rest-services" title="Permalink to this headline">¶</a></h1>
 <p>FIMS REST Services are available at:  <a class="reference external" href="http://biscicol.org/biocode-fims/rest/fims.wadl">http://biscicol.org/biocode-fims/rest/fims.wadl</a></p>
+<div class="section" id="versioning">
+<h2>Versioning<a class="headerlink" href="#versioning" title="Permalink to this headline">¶</a></h2>
+<p>FIMS REST Services are now versioned. v1 is the default version. You may specify the version by including the header:</p>
+<p><code class="docutils literal"><span class="pre">Api-Version:</span> <span class="pre">{version}</span></code></p>
+<p>or via the url:</p>
+<p><code class="docutils literal"><span class="pre">http://biscicol.org/biocode-fims/rest/{version}/...</span></code></p>
+<p>We currently support the following versions:</p>
+<ul class="simple">
+<li>v1</li>
+<li>v1.1</li>
+</ul>
+<p>more info about the specific version resources to come...</p>
+</div>
 </div>
 
 

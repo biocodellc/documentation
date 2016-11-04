@@ -1,7 +1,7 @@
 .. sub_sampling
 
 Samples and Sub-sampling
-=================
+========================
 
 .. _samples: http://purl.obolibrary.org/obo/OBI_0100051
 .. _`specimen collection process`: http://purl.obolibrary.org/obo/OBI_0000659

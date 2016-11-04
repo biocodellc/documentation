@@ -2,7 +2,7 @@
 .. curl examples
 
 Minting IDs, Creating Expeditions, and Validating Data using REST calls
-========================
+=======================================================================
 
 The examples presented here demonstrate possible methods for interacting with the FIMS REST services for 
 creating identifiers, expeditions, and validating datasets.  The full set of REST service calls are at
@@ -10,7 +10,7 @@ http://biscicol.org/biocode-fims/rest/fims.wadl .  Unless otherwise noted, the p
 examples must be sent with the type 'application/x-www-form-urlencoded'.
 
 Logging in
-----------------------
+----------
 
 All BCID minting functions require you to first login.  You can login by sending a POST request to::
     
@@ -25,7 +25,7 @@ http://fims.readthedocs.org/en/latest/curl_examples.html).  Pass the cookies fil
 requests below to authenticate each request.
 
 Mint Bcid
-----------------------
+---------
 
 Mint a Bcid by sending at minimum a title, webAddress, and resourceType.   Send a POST request to::
 
@@ -44,7 +44,7 @@ Mint a Bcid by sending at minimum a title, webAddress, and resourceType.   Send 
     Send Cookies with login data
 
 Optional minting services 
-----------------------
+-------------------------
 
 **Determine your projectID**
 
@@ -72,7 +72,7 @@ Mint an Expedition by sending the following POST request::
 
 **Associate Bcid with Expedition by sending POST request**
 
-Associate a BCID with an expedition::  
+Associate a BCID with an expedition::
  
     http://www.biscicol.org/biocode-fims/rest/expeditions/associate 
 

@@ -5,7 +5,7 @@
 All source code mentioned in this documentation is open source and freely available and can be found in appropriate repositories living under the `Biocode, LLC GitHub Organization`_.  
 
 FIMS documentation
-===================
+==================
 
 .. toctree::
     :caption: About the FIMS System
@@ -20,6 +20,7 @@ FIMS documentation
     :caption: Developer Information
 
     installation
+    configuration_files
     services
     javadocs 
     user_accounts
