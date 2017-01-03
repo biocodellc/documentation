@@ -1,5 +1,8 @@
 .. _elastic_search_config:
 
+ElasticSearch Configuration
+===========================
+
 Following is information about configurations changes that are made when setting up a new ElasticSearch cluster
 
 Dynamic Templates
