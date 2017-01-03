@@ -32,7 +32,7 @@ Installation and Build
 Optional Component
 ------------------
   * A triple-store database connection for storing datasets as RDF triples.  We have tested using [http://jena.apache.org/documentation/serving_data/ Apache Fuseki]
-  * An ElasticSearch_ instance for indexing. See El
+  * An ElasticSearch_ instance for indexing. See :doc:`ElasticSearch Configuration <elastic_search_config>` for configuration details.
 
 .. _ElasticSearch: https://www.elastic.co/products/elasticsearch
 

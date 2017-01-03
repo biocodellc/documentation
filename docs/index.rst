@@ -21,6 +21,7 @@ FIMS documentation
     :caption: Developer Information
 
     developer/installation
+    developer/elastic_search_config
     developer/implementations
     developer/configuration_files
     developer/services

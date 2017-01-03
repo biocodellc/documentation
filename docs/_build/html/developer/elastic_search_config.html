@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation &mdash; FIMS documentation 1.0 documentation</title>
+  <title>Dynamic Templates &mdash; FIMS documentation 1.0 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="FIMS documentation 1.0 documentation" href="../index.html"/>
         <link rel="next" title="Implementations" href="implementations.html"/>
-        <link rel="prev" title="Samples and Sub-sampling" href="../fims/sub_sampling.html"/> 
+        <link rel="prev" title="Installation" href="installation.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -98,14 +98,12 @@
 </ul>
 <p class="caption"><span class="caption-text">Developer Information</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#details">Details</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installation-and-build">Installation and Build</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#optional-component">Optional Component</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#additional-installation-instructions">Additional Installation Instructions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#notes">Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Dynamic Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#analyzer">Analyzer</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="#index-aliases">Index Aliases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="implementations.html">Implementations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration_files.html">XML Configuration File</a></li>
 <li class="toctree-l1"><a class="reference internal" href="services.html">REST Services</a></li>
@@ -149,11 +147,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>Installation</li>
+    <li>Dynamic Templates</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/developer/installation.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/developer/elastic_search_config.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -163,63 +161,47 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>This content is for people wishing to install Biocode-FIMS on their own server.</p>
-<div class="section" id="details">
-<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
-<p>Biocode-FIMS consists of a core set of Java classes and REST services.  Developers have a choice of interacting with the REST services
-running on the <a class="reference external" href="http://biscicol.org/">BiSciCol</a> FIMS instance, which has built in EZID minting capabilities, or running their own
-instance of <a class="reference external" href="http://github.com/biocodellc/biocode-fims-coomons">biocode-fims-commons</a> and installing their own EZID instance requiring a purchase of an <a class="reference external" href="http://ezid.cdlib.org/">EZID account</a>.</p>
-<p>To run an instance of FIMS you will need the following components:</p>
-<ul class="simple">
-<li>A unix-based server
-* A java servlet container e.g. Tomcat, Glassfish, Jetty
-* Connection to a BCID service</li>
-</ul>
+  <p id="elastic-search-config">Following is information about configurations changes that are made when setting up a new ElasticSearch cluster</p>
+<div class="section" id="dynamic-templates">
+<h1>Dynamic Templates<a class="headerlink" href="#dynamic-templates" title="Permalink to this headline">¶</a></h1>
+<p>Creating dynamic templates allows us to modify the default index settings and mappings.</p>
+<div class="section" id="analyzer">
+<h2>Analyzer<a class="headerlink" href="#analyzer" title="Permalink to this headline">¶</a></h2>
+<p>We are currently using a custom default analyzer. To set this up, make a <code class="docutils literal"><span class="pre">POST</span></code> request to <code class="docutils literal"><span class="pre">/_template/{template_name}</span></code> with the following in the body:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;template&quot;</span> <span class="p">:</span> <span class="s2">&quot;*&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;settings&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;index&quot;</span> <span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;analysis&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;analyzer&quot;</span> <span class="p">:</span> <span class="p">{</span>
+          <span class="s2">&quot;default&quot;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;filter&quot;</span> <span class="p">:</span> <span class="p">[</span>
+              <span class="s2">&quot;word_delimiter&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;lowercase&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;asciifolding&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;kstem&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;stop&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;char_filter&quot;</span> <span class="p">:</span> <span class="p">[</span>
+              <span class="s2">&quot;html_strip&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;custom&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;tokenizer&quot;</span> <span class="p">:</span> <span class="s2">&quot;standard&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 </div>
-<div class="section" id="installation-and-build">
-<h2>Installation and Build<a class="headerlink" href="#installation-and-build" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><ul class="simple">
-<li>Source code is available on this site via Subversion</li>
-<li>Building is done via an Ant build file (provided as part of the distribution)</li>
-<li>a properties file needs to be configured by copying biocode-fims.template to biocode-fims.props (in the root directory of the distribution)</li>
-</ul>
-</div></blockquote>
 </div>
-<div class="section" id="optional-component">
-<h2>Optional Component<a class="headerlink" href="#optional-component" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><ul class="simple">
-<li>A triple-store database connection for storing datasets as RDF triples.  We have tested using [<a class="reference external" href="http://jena.apache.org/documentation/serving_data/">http://jena.apache.org/documentation/serving_data/</a> Apache Fuseki]</li>
-<li>An <a class="reference external" href="https://www.elastic.co/products/elasticsearch">ElasticSearch</a> instance for indexing. See <a class="reference internal" href="elastic_search_config.html"><span class="doc">ElasticSearch Configuration</span></a> for configuration details.</li>
-</ul>
-</div></blockquote>
 </div>
-<div class="section" id="additional-installation-instructions">
-<h2>Additional Installation Instructions<a class="headerlink" href="#additional-installation-instructions" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><ul>
-<li><dl class="first docutils">
-<dt>The source contains a sample property file called biocode-fims.template which should be copied to biocode-fims.props  &#8211; you will need to adjust references in this document.</dt>
-<dd><ul class="first last simple">
-<li>Note that references to URLs should begin with &#8220;www&#8221; as in www.biscicol.org instead of biscicol.org since some browsers (e.g. Firefox) automatically add the &#8220;www&#8221; and this changes the session designation and creates problems during logging in.</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="notes">
-<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><ul class="simple">
-<li>It is recommended ALL service calls in the properties file begin with a &#8220;www&#8221; in the hostname.</li>
-</ul>
-</div></blockquote>
-</div>
+<div class="section" id="index-aliases">
+<h1>Index Aliases<a class="headerlink" href="#index-aliases" title="Permalink to this headline">¶</a></h1>
+<p>Indexes are created for each project. When creating an index, the format is <code class="docutils literal"><span class="pre">{projectId}_{todays_date}</span></code>. Then we use index aliases to point to the latest index version.
+The index alias format is <code class="docutils literal"><span class="pre">{projectId}</span></code>. The advantage to this is that if we need to update any settings, mappings, etc we are able to reindex to existing
+data and point the index alias to the updated index, without changing the index name.</p>
 </div>
 
 
@@ -232,7 +214,7 @@ instance of <a class="reference external" href="http://github.com/biocodellc/bio
         <a href="implementations.html" class="btn btn-neutral float-right" title="Implementations" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../fims/sub_sampling.html" class="btn btn-neutral" title="Samples and Sub-sampling" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="installation.html" class="btn btn-neutral" title="Installation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
