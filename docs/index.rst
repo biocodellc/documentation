@@ -10,29 +10,28 @@ FIMS documentation
 .. toctree::
     :caption: About the FIMS System
 
-    introduction
-    fims
-    bioValidator
-    identifiers
-    sub_sampling
+    fims/introduction
+    fims/fims
+    fims/bioValidator
+    fims/identifiers
+    fims/bcids
+    fims/sub_sampling
 
 .. toctree::
     :caption: Developer Information
 
-    installation
-    configuration_files
-    services
-    javadocs 
-    user_accounts
-    deleting_accou
-    data_storage_engines
-    fasta_integration
-    amphibian_disease_example
-    curl_examples
-    oauth2
+    developer/installation
+    developer/implementations
+    developer/configuration_files
+    developer/services
+    developer/javadocs
+    developer/user_accounts
+    developer/amphibian_disease_example
+    developer/curl_examples
+    developer/oauth2
 
 .. toctree::
     :caption: Migrating from FIMS1 to FIMS2
     
-    fims_migration
-    migration_guide
+    migration/fims_migration
+    migration/migration_guide

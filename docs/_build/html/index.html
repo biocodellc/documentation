@@ -34,7 +34,7 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="FIMS documentation 1.0 documentation" href="#"/>
-        <link rel="next" title="Introduction" href="introduction.html"/> 
+        <link rel="next" title="Introduction" href="fims/introduction.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -88,27 +88,29 @@
             
                 <p class="caption"><span class="caption-text">About the FIMS System</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fims.html">Biocode FIMS Web Application</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bioValidator.html">bioValidator:  A desktop validation tool (legacy)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="identifiers.html">Identifiers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sub_sampling.html">Samples and Sub-sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fims/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fims/fims.html">Biocode FIMS Web Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fims/bioValidator.html">bioValidator:  A desktop validation tool (legacy)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fims/identifiers.html">Identifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fims/bcids.html">Introduction to BCIDs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fims/sub_sampling.html">Samples and Sub-sampling</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Information</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="configuration_files.html">XML Configuration File</a></li>
-<li class="toctree-l1"><a class="reference internal" href="services.html">REST Services</a></li>
-<li class="toctree-l1"><a class="reference internal" href="javadocs.html">FIMS Commons Javadocs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="user_accounts.html">User Accounts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Minting IDs, Creating Expeditions, and Validating Data using REST calls</a></li>
-<li class="toctree-l1"><a class="reference internal" href="curl_examples.html">curl Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="oauth2.html">oauth2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/implementations.html">Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/configuration_files.html">XML Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/services.html">REST Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/javadocs.html">FIMS Commons Javadocs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/user_accounts.html">User Accounts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/amphibian_disease_example.html">Minting IDs, Creating Expeditions, and Validating Data using REST calls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/curl_examples.html">curl Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/oauth2.html">oauth2</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Migrating from FIMS1 to FIMS2</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="fims_migration.html">FIMS v1 migration to FIMS v2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="migration_guide.html">REST Service Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration/fims_migration.html">FIMS v1 migration to FIMS v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration/migration_guide.html">REST Service Migration Guide</a></li>
 </ul>
 
             
@@ -159,80 +161,95 @@
 <div class="toctree-wrapper compound" id="about-the-fims-system">
 <p class="caption"><span class="caption-text">About the FIMS System</span><a class="headerlink" href="#about-the-fims-system" title="Permalink to this toctree">¶</a></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fims.html">Biocode FIMS Web Application</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="fims.html#how-fims-is-organized">How FIMS is organized</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="fims.html#projects">Projects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fims.html#expeditions">Expeditions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fims.html#datasets">Datasets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fims.html#resources">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fims/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fims/fims.html">Biocode FIMS Web Application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fims/fims.html#how-fims-is-organized">How FIMS is organized</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="fims/fims.html#projects">Projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fims/fims.html#expeditions">Expeditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fims/fims.html#datasets">Datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fims/fims.html#resources">Resources</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="bioValidator.html">bioValidator:  A desktop validation tool (legacy)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="bioValidator.html#about">About</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bioValidator.html#getting-started">Getting Started</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bioValidator.html#building-rules-for-data-validation">Building rules for data validation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bioValidator.html#validating-data">Validating Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bioValidator.html#photomatching">PhotoMatching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fims/bioValidator.html">bioValidator:  A desktop validation tool (legacy)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fims/bioValidator.html#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fims/bioValidator.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fims/bioValidator.html#building-rules-for-data-validation">Building rules for data validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fims/bioValidator.html#validating-data">Validating Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fims/bioValidator.html#photomatching">PhotoMatching</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="identifiers.html">Identifiers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="identifiers.html#expedition-identifiers">Expedition identifiers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="identifiers.html#dataset-identifiers">Dataset identifiers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="identifiers.html#resource-identifiers">Resource identifiers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="identifiers.html#bcid-resolution-system">BCID Resolution System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fims/identifiers.html">Identifiers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fims/identifiers.html#expedition-identifiers">Expedition identifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fims/identifiers.html#dataset-identifiers">Dataset identifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fims/identifiers.html#resource-identifiers">Resource identifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fims/identifiers.html#bcid-resolution-system">BCID Resolution System</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="sub_sampling.html">Samples and Sub-sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fims/bcids.html">Introduction to BCIDs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fims/bcids.html#discussion">Discussion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fims/bcids.html#resolution-w-suffixes">Resolution w/ Suffixes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fims/bcids.html#relationship-with-ezids">Relationship with EZIDs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fims/bcids.html#rdf-xml-accept-headers">RDF/XML Accept Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fims/bcids.html#developer-information">Developer Information</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fims/sub_sampling.html">Samples and Sub-sampling</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound" id="developer-information">
 <p class="caption"><span class="caption-text">Developer Information</span><a class="headerlink" href="#developer-information" title="Permalink to this toctree">¶</a></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#details">Details</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-and-build">Installation and Build</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#optional-component">Optional Component</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#additional-installation-instructions">Additional Installation Instructions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#notes">Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer/installation.html#details">Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer/installation.html#installation-and-build">Installation and Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer/installation.html#optional-component">Optional Component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer/installation.html#additional-installation-instructions">Additional Installation Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer/installation.html#notes">Notes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="configuration_files.html">XML Configuration File</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="configuration_files.html#attributes">Attributes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="configuration_files.html#datatype">DataType</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/implementations.html">Implementations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer/implementations.html#id1">BiSciCol</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="developer/implementations.html#instances-calling-some-portion-of-biscicol-services-but-running-their-own-interfaces">Instances calling some portion of BiSciCol services but running their own interfaces:</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="services.html">REST Services</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="services.html#versioning">Versioning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/configuration_files.html">XML Configuration File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer/configuration_files.html#attributes">Attributes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="developer/configuration_files.html#datatype">DataType</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="javadocs.html">FIMS Commons Javadocs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="user_accounts.html">User Accounts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="user_accounts.html#account-creation">Account Creation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_accounts.html#project-administrators">Project Administrators</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Minting IDs, Creating Expeditions, and Validating Data using REST calls</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="amphibian_disease_example.html#logging-in">Logging in</a></li>
-<li class="toctree-l2"><a class="reference internal" href="amphibian_disease_example.html#mint-bcid">Mint Bcid</a></li>
-<li class="toctree-l2"><a class="reference internal" href="amphibian_disease_example.html#optional-minting-services">Optional minting services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/services.html">REST Services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer/services.html#versioning">Versioning</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="curl_examples.html">curl Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="curl_examples.html#public-content">Public Content</a></li>
-<li class="toctree-l2"><a class="reference internal" href="curl_examples.html#secure-content">Secure Content</a></li>
-<li class="toctree-l2"><a class="reference internal" href="curl_examples.html#using-the-creator">Using the Creator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/javadocs.html">FIMS Commons Javadocs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/user_accounts.html">User Accounts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer/user_accounts.html#account-creation">Account Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer/user_accounts.html#project-administrators">Project Administrators</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="oauth2.html">oauth2</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="oauth2.html#authorization">Authorization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="oauth2.html#access-token">Access Token</a></li>
-<li class="toctree-l2"><a class="reference internal" href="oauth2.html#refresh-token">Refresh Token</a></li>
-<li class="toctree-l2"><a class="reference internal" href="oauth2.html#api-access">API Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/amphibian_disease_example.html">Minting IDs, Creating Expeditions, and Validating Data using REST calls</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer/amphibian_disease_example.html#logging-in">Logging in</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer/amphibian_disease_example.html#mint-bcid">Mint Bcid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer/amphibian_disease_example.html#optional-minting-services">Optional minting services</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer/curl_examples.html">curl Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer/curl_examples.html#public-content">Public Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer/curl_examples.html#secure-content">Secure Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer/curl_examples.html#using-the-creator">Using the Creator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer/oauth2.html">oauth2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer/oauth2.html#authorization">Authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer/oauth2.html#access-token">Access Token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer/oauth2.html#refresh-token">Refresh Token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer/oauth2.html#api-access">API Access</a></li>
 </ul>
 </li>
 </ul>
@@ -240,8 +257,8 @@
 <div class="toctree-wrapper compound" id="migrating-from-fims1-to-fims2">
 <p class="caption"><span class="caption-text">Migrating from FIMS1 to FIMS2</span><a class="headerlink" href="#migrating-from-fims1-to-fims2" title="Permalink to this toctree">¶</a></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="fims_migration.html">FIMS v1 migration to FIMS v2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="migration_guide.html">REST Service Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration/fims_migration.html">FIMS v1 migration to FIMS v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration/migration_guide.html">REST Service Migration Guide</a></li>
 </ul>
 </div>
 </div>
@@ -253,7 +270,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="introduction.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="fims/introduction.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>

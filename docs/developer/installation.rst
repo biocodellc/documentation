@@ -14,6 +14,7 @@ instance of biocode-fims-commons_ and installing their own EZID instance requiri
 
 .. _BiSciCol: http://biscicol.org/
 .. _`EZID account`: http://ezid.cdlib.org/
+.. _biocode-fims-commons: http://github.com/biocodellc/biocode-fims-coomons
 
 To run an instance of FIMS you will need the following components:
 
@@ -31,6 +32,9 @@ Installation and Build
 Optional Component
 ------------------
   * A triple-store database connection for storing datasets as RDF triples.  We have tested using [http://jena.apache.org/documentation/serving_data/ Apache Fuseki]
+  * An ElasticSearch_ instance for indexing. See El
+
+.. _ElasticSearch: https://www.elastic.co/products/elasticsearch
 
 Additional Installation Instructions
 ------------------------------------

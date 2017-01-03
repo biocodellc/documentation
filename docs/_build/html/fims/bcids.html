@@ -1,0 +1,302 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Introduction to BCIDs &mdash; FIMS documentation 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="FIMS documentation 1.0 documentation" href="../index.html"/>
+        <link rel="next" title="Samples and Sub-sampling" href="sub_sampling.html"/>
+        <link rel="prev" title="Identifiers" href="identifiers.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FIMS documentation
+          
+
+          
+            
+            <img src="../_static/fims_logo.gif" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">About the FIMS System</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fims.html">Biocode FIMS Web Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bioValidator.html">bioValidator:  A desktop validation tool (legacy)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="identifiers.html">Identifiers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction to BCIDs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#discussion">Discussion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resolution-w-suffixes">Resolution w/ Suffixes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#relationship-with-ezids">Relationship with EZIDs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rdf-xml-accept-headers">RDF/XML Accept Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#developer-information">Developer Information</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sub_sampling.html">Samples and Sub-sampling</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/implementations.html">Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/configuration_files.html">XML Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/services.html">REST Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/javadocs.html">FIMS Commons Javadocs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/user_accounts.html">User Accounts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/amphibian_disease_example.html">Minting IDs, Creating Expeditions, and Validating Data using REST calls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/curl_examples.html">curl Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/oauth2.html">oauth2</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Migrating from FIMS1 to FIMS2</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../migration/fims_migration.html">FIMS v1 migration to FIMS v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration/migration_guide.html">REST Service Migration Guide</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">FIMS documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Introduction to BCIDs</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/fims/bcids.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p>NOTE: This page needs Updating!</p>
+<div class="section" id="introduction-to-bcids">
+<h1>Introduction to BCIDs<a class="headerlink" href="#introduction-to-bcids" title="Permalink to this headline">¶</a></h1>
+<p>BCIDs addresses offer a robust, easy to use service, extending the [<a class="reference external" href="http://n2t.net/ezid">http://n2t.net/ezid</a> California Digital Library EZID] solution for the biological collections community.  EZIDs offer  ease of use, scalability, long-term persistence, resolvability, and a consistent metadata format.  BCIDs extend this by offering an easy mechanism to assign billions of identifiers right now for data elements (individual samples or processes acting on those samples).  BCIDs allow any local ID/UUID to resolve to a group level identifier.  Organizations have the option of later purchasing their own EZID subscription for more control over their identifiers.  All of the representations that are referred to by BCIDs fall under the [<a class="reference external" href="http://creativecommons.org/licenses/by/3.0/">http://creativecommons.org/licenses/by/3.0/</a> Creative Commons Attribution 3.0 License], enabling others to reference your identifiers and the objects that they refer to as long as they attribute them.  Since BCIDs are self-describing in HTML and RDF/XML, downstream users need only maintain the original identifier</p>
+<div class="section" id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+<p>BCIDs are hierarchical identifiers, allowing a single &#8220;group&#8221; to represent and resolve many sub-identifiers.  A group is associated with a column of local identifiers, such as a set of specimens, sharing a single common concept.  These concepts are, for now, a [<a class="reference external" href="http://biscicol.org/bcid/concepts.jsp">http://biscicol.org/bcid/concepts.jsp</a> constrained list] defined by the  biodiversity informatics communities and assembled by the [<a class="reference external" href="http://biscicol.org">http://biscicol.org</a> BiSciCol project].  Elements are references to individual instances, such as an individual specimen.</p>
+<p>A data group may have the following form:</p>
+<blockquote>
+<div><ul class="simple">
+<li>ark:/21547/R2</li>
+</ul>
+</div></blockquote>
+<p>A data element within the group may extend this in the following manner:</p>
+<blockquote>
+<div><ul class="simple">
+<li>ark:/21547/R2MBIO56</li>
+</ul>
+</div></blockquote>
+<p>The structure above defines the following segments:</p>
+<p>||description||value||notes||
+||scheme||ark:||all BCIDs are ARKs||
+||NAAN (Name Assigning Authority Number)||21547||all BCIDs use this NAAN||
+||data group||R2||The data group identifier must be assigned by BCID||
+||data element||MBIO56||The user can supply a local ID, Darwin Core Triplet, or UUID||</p>
+<p>Data elements share a root structure with a data group. The delimiter between the scheme, NAAN, and data group is a forward slash.  Data group identifiers always end with the first number and data elements immediately follow this number.</p>
+<p>Data groups are technically not datasets.  This is because a data group must be defined by a single conceptual entity, and stands for that conceptual entity for all child elements.  For instance, we can define a data group of &#8220;Sound&#8221;.  Any unregistered element that appears following the data group designation will technically be a type of &#8220;Sound&#8221;.  This is useful, for instance, if we have scores of objects or processes that have no web-resolution but we still want to be able to refer to them uniquely and know they are an instance of &#8220;Sound&#8221;.</p>
+<p>We can also attribute a dataset to one or more data groups.  The dataset can be an ARK or a DOI (issued separately).</p>
+</div>
+<div class="section" id="resolution-w-suffixes">
+<h2>Resolution w/ Suffixes<a class="headerlink" href="#resolution-w-suffixes" title="Permalink to this headline">¶</a></h2>
+<p>N2T resolver = {{{<a class="reference external" href="http://n2t.net">http://n2t.net</a>/{ARK}}}}  (e.g. <a class="reference external" href="http://n2t.net/ark:/21547/R2">http://n2t.net/ark:/21547/R2</a>)</p>
+<p>N2T metadata = {{{<a class="reference external" href="http://n2t.net/ezid/id">http://n2t.net/ezid/id</a>/{ARK}}}}  (e.g. <a class="reference external" href="http://n2t.net/ezid/id/ark:/21547/R2">http://n2t.net/ezid/id/ark:/21547/R2</a>)</p>
+<p>BCID resolver = {{{<a class="reference external" href="http://biscicol.org/id">http://biscicol.org/id</a>/{ARK}}}}  (e.g. <a class="reference external" href="http://biscicol.org/id/ark:/21547/R2">http://biscicol.org/id/ark:/21547/R2</a>)</p>
+<p>BCID Metadata = {{{<a class="reference external" href="http://biscicol.org/id/metadata">http://biscicol.org/id/metadata</a>/{ARK}}}}  (e.g. <a class="reference external" href="http://biscicol.org/id/metadata/ark:/21547/R2">http://biscicol.org/id/metadata/ark:/21547/R2</a>)</p>
+<p>BCID Suffix resolver = {{{<a class="reference external" href="http://biscicol.org/id">http://biscicol.org/id</a>/{ARK}_{Suffix}}}}  (e.g. <a class="reference external" href="http://biscicol.org/id/ark:/21547/R2MBIO56">http://biscicol.org/id/ark:/21547/R2MBIO56</a>)</p>
+<p>BCID Suffix Metadata = {{{<a class="reference external" href="http://biscicol.org/id/metadata">http://biscicol.org/id/metadata</a>/{ARK}_{Suffix}}}}  (e.g. <a class="reference external" href="http://biscicol.org/id/metadata/ark:/21547/R2MBIO56">http://biscicol.org/id/metadata/ark:/21547/R2MBIO56</a>)</p>
+<p>Data groups can be assigned a target URL which indicates where to resolve this group.    If the &#8220;Maintain local ID&#8217;s&#8221; box is checked on data group creation then that indicates suffixes will be passed through to the resolution target.  The following table illustrates how identifiers resolve. Note that the N2T resolver does not handle suffix-passthrough <em>yet</em> so in the short term, N2T will only resolve data groups without suffixes.</p>
+<p>||BCID||Maintain Local ID&#8217;s||Target URL (group or element)||Ultimate Resolution Target||
+||http://n2t.net/ark:/21547/R2||true||NULL||(BCID metadata)||
+||http://n2t.net/ark:/21547/R2||false||NULL||(BCID metadata)||
+||http://n2t.net/ark:/21547/R2||true||http://biocode.berkeley.edu/specimens/||(BCID metadata)||
+||http://n2t.net/ark:/21547/R2||false||http://biocode.berkeley.edu/specimens/||http://biocode.berkeley.edu/specimens/||
+||http://n2t.net/ark:/21547/R2MBIO56||true||http://biocode.berkeley.edu/specimens/||http://biocode.berkeley.edu/specimens/MBIO56||
+||http://n2t.net/ark:/21547/R2MBIO56||false||http://biocode.berkeley.edu/specimens/||http://biocode.berkeley.edu/specimens/||</p>
+</div>
+<div class="section" id="relationship-with-ezids">
+<h2>Relationship with EZIDs<a class="headerlink" href="#relationship-with-ezids" title="Permalink to this headline">¶</a></h2>
+<p>All group level identifiers are registered as EZIDs.  It is possible to also register element level identifiers as EZIDs.  Please talk to us if you would like to do this.</p>
+</div>
+<div class="section" id="rdf-xml-accept-headers">
+<h2>RDF/XML Accept Headers<a class="headerlink" href="#rdf-xml-accept-headers" title="Permalink to this headline">¶</a></h2>
+<p>Calling the Metadata or Resolution targets using the BCID resolver will return RDF/XML.  To enable this, you must pass in the &#8220;application/rdf+xml&#8221; accept header.  To do this in curl, try:</p>
+<p>{{{curl -H &#8220;Accept: application/rdf+xml&#8221; <a class="reference external" href="http://biscicol.org/id/metadata/ark:/21547/R2MBIO56">http://biscicol.org/id/metadata/ark:/21547/R2MBIO56</a>}}}</p>
+<p>You can also try it out using [<a class="reference external" href="http://linkeddata.informatik.hu-berlin.de/uridbg/index.php?url=http%3A%2F%2Fbiscicol.org%2Fbcid%2Fid%2Fark%3A%2F21547%2FR2&amp;useragentheader=&amp;acceptheader=application%2Frdf%2Bxml">http://linkeddata.informatik.hu-berlin.de/uridbg/index.php?url=http%3A%2F%2Fbiscicol.org%2Fbcid%2Fid%2Fark%3A%2F21547%2FR2&amp;useragentheader=&amp;acceptheader=application%2Frdf%2Bxml</a> an online tool using and the &#8220;ark:/21547/R2&#8221; BCID].</p>
+</div>
+<div class="section" id="developer-information">
+<h2>Developer Information<a class="headerlink" href="#developer-information" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>View the list of [<a class="reference external" href="http://biscicol.org/id/bcid.wadl">http://biscicol.org/id/bcid.wadl</a> BCID REST services]</li>
+<li>[<a class="reference external" href="http://biscicol.org/bcid/javadoc/index.html">http://biscicol.org/bcid/javadoc/index.html</a> JavaDocs] are available</li>
+<li>This is an open source project, please contact the owner to contribute!</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sub_sampling.html" class="btn btn-neutral float-right" title="Samples and Sub-sampling" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="identifiers.html" class="btn btn-neutral" title="Identifiers" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, John Deck, RJ Ewing.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

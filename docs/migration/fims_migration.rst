@@ -1,5 +1,5 @@
 FIMS v1 migration to FIMS v2
-======================
+============================
 
 Instructions for updating deployment for nmnh-fims and biscicol-fims. 
 

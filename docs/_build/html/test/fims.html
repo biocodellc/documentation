@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Biocode FIMS Web Application &mdash; FIMS documentation 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="FIMS documentation 1.0 documentation" href="../index.html"/>
+        <link rel="next" title="bioValidator: A desktop validation tool (legacy)" href="../bioValidator.html"/>
+        <link rel="prev" title="Introduction" href="introduction.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FIMS documentation
+          
+
+          
+            
+            <img src="../_static/fims_logo.gif" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">About the FIMS System</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Biocode FIMS Web Application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#how-fims-is-organized">How FIMS is organized</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#projects">Projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#expeditions">Expeditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#datasets">Datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../bioValidator.html">bioValidator:  A desktop validation tool (legacy)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../identifiers.html">Identifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sub_sampling.html">Samples and Sub-sampling</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_files.html">XML Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services.html">REST Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javadocs.html">FIMS Commons Javadocs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_accounts.html">User Accounts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../amphibian_disease_example.html">Minting IDs, Creating Expeditions, and Validating Data using REST calls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../curl_examples.html">curl Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oauth2.html">oauth2</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Migrating from FIMS1 to FIMS2</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../fims_migration.html">FIMS v1 migration to FIMS v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration_guide.html">REST Service Migration Guide</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">FIMS documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Biocode FIMS Web Application</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/test/fims.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="biocode-fims-web-application">
+<h1>Biocode FIMS Web Application<a class="headerlink" href="#biocode-fims-web-application" title="Permalink to this headline">¶</a></h1>
+<p>Biocode FIMS has multiple running instances, in support of a variety of field-based sampling projects.
+An example of how the FIMS components work together is running at the <a class="reference external" href="http://biscicol.org/">BiSciCol homepage</a>.   The <a class="reference external" href="https://github.com/biocodellc/biscicol-fims">biscicol-fims</a> codebase
+is one example of a FIMS implementation which features data validation, a graph-based data storage engine, assignment of globally unique identifiers (ARKS) for expeditions, datasets, and all samples and processes.  Project administrators control and validate specific fields, while users can choose to add their own data to spreadsheet templates.</p>
+<p>For developers: All Biocode FIMS installations use the <a class="reference external" href="https://github.com/biocodellc/biocode-fims-commons">biocode-fims-commons</a> code repository and may also include
+the <a class="reference external" href="https://github.com/biocodellc/biocode-fims-fuseki">biocode-fims-fuseki</a> codebase for working with triples and/or the <a class="reference external" href="https://github.com/biocodellc/biocode-fims-sequences">biocode-fims-sequences</a> codebase for working
+with fasta and fastq sequencing files.</p>
+<div class="section" id="how-fims-is-organized">
+<h2>How FIMS is organized<a class="headerlink" href="#how-fims-is-organized" title="Permalink to this headline">¶</a></h2>
+<p>The following sections describe how data is stored in the FIMS system.  See the identifiers section for more information how identifiers are applied at each level.</p>
+<div class="section" id="projects">
+<span id="id1"></span><h3>Projects<a class="headerlink" href="#projects" title="Permalink to this headline">¶</a></h3>
+<p>A project defines a set of data held in common by a group of contributors.  The data from a single project shares common concepts, attributes, and validation rules.  It is owned by a project administrator user who has the power to set validation rules, concept mappings, and users that are permitted to share data under the project.  New projects are created infrequently and require super-user status to create (currently the owner of BCID site itself).   However, once created, project values can be edited by an assigned project administrator.</p>
+<p>To create a new project, please contact the BCID owner.</p>
+</div>
+<div class="section" id="expeditions">
+<h3>Expeditions<a class="headerlink" href="#expeditions" title="Permalink to this headline">¶</a></h3>
+<p>Projects contain many expeditions. An Expedition refers to a group of datasets and is associated with a project. Users may freely create expeditions.</p>
+</div>
+<div class="section" id="datasets">
+<h3>Datasets<a class="headerlink" href="#datasets" title="Permalink to this headline">¶</a></h3>
+<p>Expeditions contain many datasets.  A dataset typically refers to an excel spreadsheet.  When loaded through the associated Biocode-FIMS expeditions, a reference to this dataset is stored as part of the Biocode-FIMS BCID system with a unique ARK.  When a dataset is created, it is given a unique code, which is owned by the user that first uploaded it.  This user may choose, to re-load this dataset again, in which case a new reference will be loaded here.</p>
+</div>
+<div class="section" id="resources">
+<span id="id2"></span><h3>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h3>
+<p>All expeditions contain one or more resources.  A special resource identifier is created for each of the expedition resources.  For example, a project cataloging tissue
+samples may choose to define a resource for the tissue itself, a resource for the collecting event data associated with the tissue, and an identification
+resource containing information about the taxonomic name associated with the tissue.  Or, a project may choose to simply bundle all of this information into a single resource
+describing all of this data.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../bioValidator.html" class="btn btn-neutral float-right" title="bioValidator: A desktop validation tool (legacy)" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction.html" class="btn btn-neutral" title="Introduction" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, John Deck, RJ Ewing.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,339 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Minting IDs, Creating Expeditions, and Validating Data using REST calls &mdash; FIMS documentation 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="FIMS documentation 1.0 documentation" href="../index.html"/>
+        <link rel="next" title="curl Examples" href="curl_examples.html"/>
+        <link rel="prev" title="User Accounts" href="user_accounts.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FIMS documentation
+          
+
+          
+            
+            <img src="../_static/fims_logo.gif" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">About the FIMS System</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../fims/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fims/fims.html">Biocode FIMS Web Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fims/bioValidator.html">bioValidator:  A desktop validation tool (legacy)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fims/identifiers.html">Identifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fims/bcids.html">Introduction to BCIDs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fims/sub_sampling.html">Samples and Sub-sampling</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Information</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementations.html">Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration_files.html">XML Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="services.html">REST Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javadocs.html">FIMS Commons Javadocs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_accounts.html">User Accounts</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Minting IDs, Creating Expeditions, and Validating Data using REST calls</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#logging-in">Logging in</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mint-bcid">Mint Bcid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optional-minting-services">Optional minting services</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="curl_examples.html">curl Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oauth2.html">oauth2</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Migrating from FIMS1 to FIMS2</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../migration/fims_migration.html">FIMS v1 migration to FIMS v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration/migration_guide.html">REST Service Migration Guide</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">FIMS documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Minting IDs, Creating Expeditions, and Validating Data using REST calls</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/developer/amphibian_disease_example.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="minting-ids-creating-expeditions-and-validating-data-using-rest-calls">
+<h1>Minting IDs, Creating Expeditions, and Validating Data using REST calls<a class="headerlink" href="#minting-ids-creating-expeditions-and-validating-data-using-rest-calls" title="Permalink to this headline">¶</a></h1>
+<p>The examples presented here demonstrate possible methods for interacting with the FIMS REST services for
+creating identifiers, expeditions, and validating datasets.  The full set of REST service calls are at
+<a class="reference external" href="http://biscicol.org/biocode-fims/rest/fims.wadl">http://biscicol.org/biocode-fims/rest/fims.wadl</a> .  Unless otherwise noted, the parameters in the following
+examples must be sent with the type &#8216;application/x-www-form-urlencoded&#8217;.</p>
+<div class="section" id="logging-in">
+<h2>Logging in<a class="headerlink" href="#logging-in" title="Permalink to this headline">¶</a></h2>
+<p>All BCID minting functions require you to first login.  You can login by sending a POST request to:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">biscicol</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">biocode</span><span class="o">-</span><span class="n">fims</span><span class="o">/</span><span class="n">rest</span><span class="o">/</span><span class="n">authenticationService</span><span class="o">/</span><span class="n">login</span>
+
+<span class="n">POST</span> <span class="n">Parameters</span><span class="p">:</span>
+    <span class="n">username</span><span class="o">=</span><span class="p">{</span><span class="n">yourUsername</span><span class="p">}</span>
+    <span class="n">password</span><span class="o">=</span><span class="p">{</span><span class="n">yourPassword</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Save the cookies that are returned.  How you do this depends on your application (some curl examples:
+<a class="reference external" href="http://fims.readthedocs.org/en/latest/curl_examples.html">http://fims.readthedocs.org/en/latest/curl_examples.html</a>).  Pass the cookies file to the POST
+requests below to authenticate each request.</p>
+</div>
+<div class="section" id="mint-bcid">
+<h2>Mint Bcid<a class="headerlink" href="#mint-bcid" title="Permalink to this headline">¶</a></h2>
+<p>Mint a Bcid by sending at minimum a title, webAddress, and resourceType.   Send a POST request to:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">biscicol</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">biocode</span><span class="o">-</span><span class="n">fims</span><span class="o">/</span><span class="n">rest</span><span class="o">/</span><span class="n">bcids</span>
+
+ <span class="n">POST</span> <span class="n">Parameters</span><span class="p">:</span>
+    <span class="n">webAddress</span><span class="o">=</span><span class="p">{</span><span class="n">dataset_webAddress</span><span class="p">}</span>
+    <span class="n">title</span><span class="o">=</span><span class="p">{</span><span class="n">dataset_title</span><span class="p">}</span>
+    <span class="n">resourceType</span><span class="o">=</span><span class="p">{</span><span class="n">resourceType</span><span class="p">}</span>  <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="s2">&quot;http://purl.org/dc/dcmitype/Dataset&quot;</span><span class="p">)</span>
+    <span class="o">*</span><span class="n">doi</span><span class="o">=</span><span class="p">{</span><span class="n">doi</span><span class="p">}</span>
+    <span class="o">*</span><span class="n">graph</span><span class="o">=</span><span class="p">{</span><span class="n">graph</span><span class="p">}</span> <span class="p">(</span><span class="n">A</span> <span class="n">sparql</span> <span class="n">endpoint</span> <span class="ow">or</span> <span class="n">other</span> <span class="n">location</span> <span class="n">to</span> <span class="n">be</span> <span class="n">included</span> <span class="ow">in</span> <span class="n">sparql</span> <span class="n">queries</span><span class="p">)</span>
+    <span class="o">*</span><span class="n">suffixPassThrough</span><span class="o">=</span><span class="p">{</span><span class="n">true</span><span class="o">|</span><span class="n">pase</span><span class="p">}</span> <span class="p">(</span><span class="n">whether</span> <span class="n">this</span> <span class="n">supports</span> <span class="n">suffixPassthrough</span><span class="p">}</span>
+    <span class="o">*</span><span class="n">finalCopy</span><span class="o">=</span><span class="p">{</span><span class="n">true</span><span class="o">|</span><span class="n">false</span><span class="p">}</span> <span class="p">(</span><span class="k">if</span> <span class="n">this</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">final</span> <span class="n">copy</span><span class="p">)</span>
+<span class="o">*</span> <span class="n">Optional</span> <span class="n">parameters</span>
+
+<span class="n">Send</span> <span class="n">Cookies</span> <span class="k">with</span> <span class="n">login</span> <span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="optional-minting-services">
+<h2>Optional minting services<a class="headerlink" href="#optional-minting-services" title="Permalink to this headline">¶</a></h2>
+<p><strong>Determine your projectID</strong></p>
+<p>Knowing your projectID is useful when working with the minting services presented below.  Your username must be added to the
+projects before using the projects themselves. Talk to your project administrator to have your username added to a project.
+The following URL lists all available projects in the FIMS system:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">biscicol</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">biocode</span><span class="o">-</span><span class="n">fims</span><span class="o">/</span><span class="n">rest</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="nb">list</span>
+</pre></div>
+</div>
+<p><strong>Create new Expedition</strong></p>
+<p>Expeditions are used in the FIMS system for organizing content that is related to versions of and resources  related to, a spreadsheet.
+Mint an Expedition by sending the following POST request:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">biscicol</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">biocode</span><span class="o">-</span><span class="n">fims</span><span class="o">/</span><span class="n">rest</span><span class="o">/</span><span class="n">expeditions</span>
+
+<span class="n">POST</span> <span class="n">Parameters</span><span class="p">:</span>
+    <span class="n">expeditionCode</span><span class="o">=</span><span class="p">{</span><span class="n">new_expeditionCode</span><span class="p">}</span>
+    <span class="n">expeditionTitle</span><span class="o">=</span><span class="p">{</span><span class="n">new_expeditionTitle</span><span class="p">}</span>
+    <span class="n">projectId</span><span class="o">=</span><span class="p">{</span><span class="n">your_projectId</span><span class="p">}</span>
+    <span class="n">public</span><span class="o">=</span><span class="p">{</span><span class="n">public_expedition</span><span class="p">}</span>
+    <span class="n">webaddress</span><span class="o">=</span><span class="p">{</span><span class="n">target</span> <span class="n">URL</span> <span class="k">for</span> <span class="n">expedition</span><span class="p">,</span> <span class="n">forwarded</span> <span class="n">when</span> <span class="n">the</span> <span class="n">expedition</span> <span class="n">ID</span> <span class="n">resolved</span><span class="p">}</span>
+
+<span class="n">Send</span> <span class="n">Cookies</span> <span class="k">with</span> <span class="n">login</span> <span class="n">data</span>
+</pre></div>
+</div>
+<p><strong>Associate Bcid with Expedition by sending POST request</strong></p>
+<p>Associate a BCID with an expedition:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">biscicol</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">biocode</span><span class="o">-</span><span class="n">fims</span><span class="o">/</span><span class="n">rest</span><span class="o">/</span><span class="n">expeditions</span><span class="o">/</span><span class="n">associate</span>
+
+<span class="n">POST</span> <span class="n">Parameters</span><span class="p">:</span>
+    <span class="n">expeditionCode</span><span class="o">=</span><span class="p">{</span><span class="n">dataset_expeditionCode</span><span class="p">}</span>
+    <span class="n">bcid</span><span class="o">=</span><span class="p">{</span><span class="n">identifier</span> <span class="n">returned</span> <span class="ow">in</span> <span class="n">step</span> <span class="mi">2</span><span class="p">}</span>
+    <span class="n">projectId</span><span class="o">=</span><span class="p">{</span><span class="n">your_projectId</span><span class="p">}</span>
+
+<span class="n">Send</span> <span class="n">Cookies</span> <span class="k">with</span> <span class="n">login</span> <span class="n">data</span>
+</pre></div>
+</div>
+<p><strong>Validate Dataset</strong></p>
+<p>To validate your dataset, send a POST request to:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">biscicol</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">biocode</span><span class="o">-</span><span class="n">fims</span><span class="o">/</span><span class="n">rest</span><span class="o">/</span><span class="n">validate</span>
+
+<span class="n">Send</span> <span class="n">request</span> <span class="k">as</span> <span class="nb">type</span> <span class="s1">&#39;multipart/form-data&#39;</span> <span class="p">(</span><span class="ow">in</span> <span class="n">Curl</span><span class="p">,</span> <span class="n">use</span> <span class="o">-</span><span class="n">F</span> <span class="k">for</span> <span class="n">form</span> <span class="n">data</span> <span class="n">vs</span> <span class="o">-</span><span class="n">d</span><span class="p">)</span>
+
+<span class="n">POST</span> <span class="n">Parameters</span><span class="p">:</span>
+    <span class="n">projectId</span><span class="o">=</span><span class="p">{</span><span class="n">your_projectId</span><span class="p">}</span>
+    <span class="n">expeditionCode</span><span class="o">=</span><span class="p">{</span><span class="n">your_expeditionCode</span><span class="p">}</span>
+    <span class="n">dataset</span><span class="o">=</span><span class="p">{</span><span class="n">your_dataset</span><span class="p">}</span>
+
+<span class="n">Send</span> <span class="n">Cookies</span> <span class="k">with</span> <span class="n">login</span> <span class="n">data</span>
+</pre></div>
+</div>
+<p>The response is returned as JSON, which will look something like:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;done&quot;</span><span class="p">:</span> <span class="p">[{</span>
+    <span class="s2">&quot;Samples&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;errors&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;warnings&quot;</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="s2">&quot;Missing column(s)&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;yearCollected has a missing cell value&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;permitInformation has a missing cell value&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;locality has a missing cell value&quot;</span>
+            <span class="p">]</span>
+        <span class="p">}]</span>
+    <span class="p">}</span>
+<span class="p">}]}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="curl_examples.html" class="btn btn-neutral float-right" title="curl Examples" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="user_accounts.html" class="btn btn-neutral" title="User Accounts" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, John Deck, RJ Ewing.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
