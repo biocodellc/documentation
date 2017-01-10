@@ -12,6 +12,7 @@ FIMS documentation
 
     fims/introduction
     fims/fims
+    fims/query
     fims/bioValidator
     fims/identifiers
     fims/bcids

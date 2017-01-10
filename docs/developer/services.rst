@@ -3,7 +3,7 @@
 REST Services
 =============
 
-FIMS REST Services are available at:  http://biscicol.org/biocode-fims/rest/fims.wadl
+FIMS REST Services are available at:  http://biscicol.org/apidocs/v1.1
 
 Versioning
 ----------

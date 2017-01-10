@@ -91,6 +91,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../fims/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fims/fims.html">Biocode FIMS Web Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fims/query.html">Biocode FIMS ElasticSearch Query Information</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fims/bioValidator.html">bioValidator:  A desktop validation tool (legacy)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fims/identifiers.html">Identifiers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fims/bcids.html">Introduction to BCIDs</a></li>
@@ -99,6 +100,9 @@
 <p class="caption"><span class="caption-text">Developer Information</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elastic_search_config.html">ElasticSearch Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elastic_search_config.html#dynamic-templates">Dynamic Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elastic_search_config.html#index-aliases">Index Aliases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="implementations.html">Implementations</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">XML Configuration File</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#attributes">Attributes</a><ul>
@@ -163,7 +167,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="xml-configuration-file">
-<h1>XML Configuration File<a class="headerlink" href="#xml-configuration-file" title="Permalink to this headline">¶</a></h1>
+<span id="configuration-files"></span><h1>XML Configuration File<a class="headerlink" href="#xml-configuration-file" title="Permalink to this headline">¶</a></h1>
 <p>Each project contains its own xml configuration file. This is where the <a class="reference internal" href="../fims/fims.html#projects"><span class="std std-ref">Projects</span></a> specific configuration is
 specified. This includes <a class="reference internal" href="../fims/fims.html#resources"><span class="std std-ref">Resources</span></a>, attributes, validation rules, and relations.</p>
 <div class="section" id="attributes">

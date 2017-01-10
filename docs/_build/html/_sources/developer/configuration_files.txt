@@ -1,4 +1,4 @@
-.. configuration_files
+.. _configuration_files:
 
 XML Configuration File
 ======================

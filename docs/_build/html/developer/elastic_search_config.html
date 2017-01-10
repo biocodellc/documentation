@@ -91,6 +91,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../fims/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fims/fims.html">Biocode FIMS Web Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fims/query.html">Biocode FIMS ElasticSearch Query Information</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fims/bioValidator.html">bioValidator:  A desktop validation tool (legacy)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fims/identifiers.html">Identifiers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fims/bcids.html">Introduction to BCIDs</a></li>
@@ -170,7 +171,7 @@
 <h1>Dynamic Templates<a class="headerlink" href="#dynamic-templates" title="Permalink to this headline">¶</a></h1>
 <p>Creating dynamic templates allows us to modify the default index settings and mappings.</p>
 <div class="section" id="analyzer">
-<h2>Analyzer<a class="headerlink" href="#analyzer" title="Permalink to this headline">¶</a></h2>
+<span id="elastic-search-config-analyzer"></span><h2>Analyzer<a class="headerlink" href="#analyzer" title="Permalink to this headline">¶</a></h2>
 <p>We are currently using a custom default analyzer. To set this up, make a <code class="docutils literal"><span class="pre">POST</span></code> request to <code class="docutils literal"><span class="pre">/_template/{template_name}</span></code> with the following in the body:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;template&quot;</span> <span class="p">:</span> <span class="s2">&quot;*&quot;</span><span class="p">,</span>

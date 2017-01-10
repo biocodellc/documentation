@@ -10,6 +10,8 @@ Dynamic Templates
 
 Creating dynamic templates allows us to modify the default index settings and mappings.
 
+.. _elastic_search_config-analyzer:
+
 Analyzer
 ^^^^^^^^
 
