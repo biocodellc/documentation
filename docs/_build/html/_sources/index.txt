@@ -8,22 +8,17 @@ FIMS documentation
 ==================
 
 .. toctree::
-    :caption: About the FIMS System
+    :caption: User Information
 
     fims/introduction
     fims/fims
-    fims/query
-    fims/bioValidator
     fims/identifiers
-    fims/bcids
-    fims/sub_sampling
 
 .. toctree::
     :caption: Developer Information
 
     developer/installation
     developer/elastic_search_config
-    developer/implementations
     developer/configuration_files
     developer/services
     developer/javadocs
@@ -31,6 +26,8 @@ FIMS documentation
     developer/amphibian_disease_example
     developer/curl_examples
     developer/oauth2
+    developer/resolution
+    developer/types_of_identifiers
 
 .. toctree::
     :caption: Migrating from FIMS1 to FIMS2

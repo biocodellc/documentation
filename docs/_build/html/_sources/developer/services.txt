@@ -3,7 +3,7 @@
 REST Services
 =============
 
-FIMS REST Services are available at:  http://biscicol.org/apidocs/v1.1
+FIMS REST Services are available at:  http://www.biscicol.org/apidocs/
 
 Versioning
 ----------

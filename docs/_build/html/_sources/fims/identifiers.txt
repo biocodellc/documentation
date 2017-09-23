@@ -1,51 +1,42 @@
-.. Identifers
+.. Identifiers 
 
-Identifiers
-===========
+.. _biocode-fims-commons: https://github.com/biocodellc/biocode-fims-commons
+.. _biocode-fims-fuseki: https://github.com/biocodellc/biocode-fims-fuseki
+.. _biocode-fims-sequences: https://github.com/biocodellc/biocode-fims-sequences
+.. _biscicol-fims: https://github.com/biocodellc/biscicol-fims
+.. _fuseki: https://jena.apache.org/documentation/serving_data/
+.. _`BiSciCol site`: http://www.biscicol.org/
+.. _`GeOMe site`: http://www.geome-db.org/
+.. _`GeOMe documentation`: https://www.geome-db.org/docs/helpDocumentation.pdf
+.. _`NMNH FIMS documentation`: https://nmnh-fims.si.edu/fims/docs/FIMS-NMNH-Help_Master.pdf
+.. _`BiSciCol FIMS installation`: http://biscicol.org/index.jsp
+.. _`http://n2t.net/ark:/21547/R2MBIO56`: http://n2t.net/ark:/21547/R2MBIO56
 
-FIMS uses a centralized minting service to assign identifiers for three types of identifiers: 
-expeditions, datasets, and resources.  The three types of identifiers are described below. 
 
-Each FIMS system installation must use its own name assigning authority number and register with California Digital Library's EZID service to mint Archival Resource Keys (ARKs).  
+User Guide to Creating Local Identifiers
+========================================
 
-Expedition identifiers
-----------------------
- * resourceType: http://purl.org/dc/dcmitype/Collection
- * Mutable, representing the most current version of a particular spreadsheet 
- * Metadata:
-    * expeditionCode  
-    * expeditionTitle 
-    * userId (who created this expedition)
-    * ts  (when loaded)
-    * projectId (project this belongs to)
-    * public (public or not)
+A crucial part of the FIMS system is taking local identifiers that you construct and use in your own research, and turning these into globally unique, resolvable identifiers.  Globally unique identifiers are created by appending your local identifier onto a unique root that is generated for every resource within every expedition.  Examples of locally unique identifiers are "Grinnell1213", "MooreaEvent2", or "MBIO56_1".  
 
-Dataset identifiers
--------------------
- * resourceType: http://purl.org/dc/dcmitype/Dataset
- * Immutable
- * Belongs to a specific expedition
- * Metadata:
-    * webAddress (where this dataset can be found, in its native format, depending on installation)
-    * userId (who uploaded this dataset)
-    * doi (an optional doi, in addition to the created ARK)
-    
+Each identifier that is minted will be resolvable via HTTP using California Digital Library's Name-to-thing resolver.  Since the name-to-thing resolver is sensitive to certain characters, we have limited the characters that are suitable for use as local identifiers.  Allowable characters are validated on data load so if you choose an invalid character you will get an error message.   The following are the allowed local identifier characters:
 
-Resource identifiers
---------------------
- * resourceType: defined in configuration file
- * Belongs to an expedition.    Multiple resources may be specified for each expedition.
- * Implements suffix-passthrough feature to identify individual resources within each dataset. For example, a single "Material Sample" identifier is created for each expedition.  If the expedition has 1000 rows representing physical samples, 1000 identifiers can be resolved by appending a locally unique suffix on to the Resource Identifier root.
- * A resource identifier plus the locally unique primary key loaded for the most recent dataset in an expedition forms the globally unique identifier for a particular resource. 
+  * A-Z
+  * a-z
+  * 0-9
+  * + (plus)
+  * = (equals)
+  * : (colon)
+  * . (period)
+  * _ (underscore)
+  * ( (open parantheses)
+  * ) (close parantheses)
+  * ~ (tilde)
+  * \* (asterisk)
 
-BCID Resolution System
-----------------------
+The following are valid identifiers:  "MVZ:Herp:1234", "Grinnell (1234)"
 
-The following illustration shows how BCIDs work with local identifiers, the world wide web, and EZID's name-to-thing resolution service.  A field researcher uses their own numbering system (e.g. 'MBIO56'), and uploads their data to FIMS, which assigns it to a resource category (e.g. 'R2').  The FIMS system itself is registered under the ark: scheme, and has a name assigning authority number (NAAN) of 21547.  Resolution requests coming through name-to-thing are re-directed to the BCID resolution service.
+The following would be invalid identifiers:  "MVZ-Herp-1234", "Grinnell/Alexander 1234"
 
-.. image:: /images/resolution.png
-
-The following chart shows how BCID resolution works for expeditions, datasets, and resources in the FIMS system with actions falling under forwarding, or metadata display.  Forwarding behaviour is determined by either the specification of a target webaddress in the database, or absent that, a specification in the project's configuration file.
-
-.. image:: /images/resolverBehaviour.png
+Once data is made loaded and made public, you can search for your newly minted globally unique and resolvable identifiers in the Query page, and they 
+will be listed under the "BCID" column.  If the identifier is shown as "ark:/21547/R2MBIO56" you can substitute "http://n2t.net/ark:" for the "ark:" to make a a resolvable identifier as `http://n2t.net/ark:/21547/R2MBIO56`_, where MBIO56 is the locally uinque identifier.
 

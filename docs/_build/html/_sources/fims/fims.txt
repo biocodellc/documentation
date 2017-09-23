@@ -5,51 +5,27 @@
 .. _biocode-fims-sequences: https://github.com/biocodellc/biocode-fims-sequences
 .. _biscicol-fims: https://github.com/biocodellc/biscicol-fims
 .. _fuseki: https://jena.apache.org/documentation/serving_data/
-.. _`BiSciCol homepage`: http://biscicol.org/
+.. _`BiSciCol site`: http://www.biscicol.org/
+.. _`GeOMe site`: http://www.geome-db.org/
+.. _`GeOMe documentation`: https://www.geome-db.org/docs/helpDocumentation.pdf
+.. _`NMNH FIMS documentation`: https://nmnh-fims.si.edu/fims/docs/FIMS-NMNH-Help_Master.pdf
 .. _`BiSciCol FIMS installation`: http://biscicol.org/index.jsp
+.. _`http://n2t.net/ark:/21547/R2MBIO56`: http://n2t.net/ark:/21547/R2MBIO56
 
 
-Biocode FIMS Web Application
-============================
+User Documentation
+==============================
 
-Biocode FIMS has multiple running instances, in support of a variety of field-based sampling projects.  
-An example of how the FIMS components work together is running at the `BiSciCol homepage`_.   The biscicol-fims_ codebase 
-is one example of a FIMS implementation which features data validation, a graph-based data storage engine, assignment of globally unique identifiers (ARKS) for expeditions, datasets, and all samples and processes.  Project administrators control and validate specific fields, while users can choose to add their own data to spreadsheet templates.   
+This document contains some general information for FIMS users to help explain how FIMS is organized.
+since each FIMS installation has its own set of user-documentation, refer to the help documentation provided with each 
+FIMS installation's homepage or project-specific help.  
 
-For developers: All Biocode FIMS installations use the biocode-fims-commons_ code repository and may also include 
-the biocode-fims-fuseki_ codebase for working with triples and/or the biocode-fims-sequences_ codebase for working
-with fasta and fastq sequencing files.
+The FIMS system is organized around a central "network", which is composed of a group of projects that belong to this network.  A project defines a set of data held in common by a group of contributors.  The data from a single project shares common concepts, attributes, and validation rules.  It is owned by a project administrator user who has the power to set validation rules, concept mappings, and users that are permitted to share data under the project.  New projects are created infrequently and require the project administator to create and modify.
 
-How FIMS is organized
----------------------
+Projects contain many expeditions.  Each user can create an expedition representing a unique set of data which may correspond to metadata for samples
+residing in a 96 well plate, data from a single day of collecting, or any other organizing concept.  Expeditions work best if they are limited to less
+than 1,000 records per spreadsheet, however, larger numbers of records per expedition are possible.  Each expedition has a unique name that you assign to it
+and which can be referred to later for modifying or querying data.
 
-The following sections describe how data is stored in the FIMS system.  See the identifiers section for more information how identifiers are applied at each level.
-
-.. _projects:
-
-Projects
-++++++++
-
-A project defines a set of data held in common by a group of contributors.  The data from a single project shares common concepts, attributes, and validation rules.  It is owned by a project administrator user who has the power to set validation rules, concept mappings, and users that are permitted to share data under the project.  New projects are created infrequently and require super-user status to create (currently the owner of BCID site itself).   However, once created, project values can be edited by an assigned project administrator.
-
-To create a new project, please contact the BCID owner.
-
-Expeditions
-+++++++++++
-
-Projects contain many expeditions. An Expedition refers to a group of datasets and is associated with a project. Users may freely create expeditions.
-
-Datasets
-++++++++
-
-Expeditions contain many datasets.  A dataset typically refers to an excel spreadsheet.  When loaded through the associated Biocode-FIMS expeditions, a reference to this dataset is stored as part of the Biocode-FIMS BCID system with a unique ARK.  When a dataset is created, it is given a unique code, which is owned by the user that first uploaded it.  This user may choose, to re-load this dataset again, in which case a new reference will be loaded here.
-
-.. _resources:
-
-Resources
-+++++++++
-
-All expeditions contain one or more resources.  A special resource identifier is created for each of the expedition resources.  For example, a project cataloging tissue
-samples may choose to define a resource for the tissue itself, a resource for the collecting event data associated with the tissue, and an identification 
-resource containing information about the taxonomic name associated with the tissue.  Or, a project may choose to simply bundle all of this information into a single resource 
-describing all of this data.
+All expeditions contain one or more resources.  How many resources exist per expedition is defined by the project itself.  Most projects currently have just
+one resource per project.  Examples of resources may be collecting events, specimens, or tissue samples.  

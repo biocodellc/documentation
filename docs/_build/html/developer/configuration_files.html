@@ -30,12 +30,9 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="FIMS documentation 1.0 documentation" href="../index.html"/>
         <link rel="next" title="REST Services" href="services.html"/>
-        <link rel="prev" title="Implementations" href="implementations.html"/> 
+        <link rel="prev" title="ElasticSearch Configuration" href="elastic_search_config.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -87,15 +84,11 @@
           
             
             
-                <p class="caption"><span class="caption-text">About the FIMS System</span></p>
+                <p class="caption"><span class="caption-text">User Information</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../fims/introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fims/fims.html">Biocode FIMS Web Application</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fims/query.html">FIMS Queries</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fims/bioValidator.html">bioValidator:  A desktop validation tool (legacy)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fims/identifiers.html">Identifiers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fims/bcids.html">Introduction to BCIDs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fims/sub_sampling.html">Samples and Sub-sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fims/fims.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fims/identifiers.html">User Guide to Creating Local Identifiers</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Information</span></p>
 <ul class="current">
@@ -103,8 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="elastic_search_config.html">ElasticSearch Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="elastic_search_config.html#dynamic-templates">Dynamic Templates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="elastic_search_config.html#index-aliases">Index Aliases</a></li>
-<li class="toctree-l1"><a class="reference internal" href="implementations.html">Implementations</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">XML Configuration File</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="">XML Configuration File</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#attributes">Attributes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#datatype">DataType</a></li>
 </ul>
@@ -117,6 +109,8 @@
 <li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Minting IDs, Creating Expeditions, and Validating Data using REST calls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curl_examples.html">curl Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">oauth2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resolution.html">Resolution System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types_of_identifiers.html">Types Of Identifiers</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Migrating from FIMS1 to FIMS2</span></p>
 <ul>
@@ -144,7 +138,7 @@
         <div class="rst-content">
           
 
- 
+
 
 
 
@@ -168,8 +162,8 @@
             
   <div class="section" id="xml-configuration-file">
 <span id="configuration-files"></span><h1>XML Configuration File<a class="headerlink" href="#xml-configuration-file" title="Permalink to this headline">¶</a></h1>
-<p>Each project contains its own xml configuration file. This is where the <a class="reference internal" href="../fims/fims.html#projects"><span class="std std-ref">Projects</span></a> specific configuration is
-specified. This includes <a class="reference internal" href="../fims/fims.html#resources"><span class="std std-ref">Resources</span></a>, attributes, validation rules, and relations.</p>
+<p>Each project contains its own xml configuration file. This is where the <span class="xref std std-ref">projects</span> specific configuration is
+specified. This includes <span class="xref std std-ref">resources</span>, attributes, validation rules, and relations.</p>
 <div class="section" id="attributes">
 <h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="datatype">
@@ -209,7 +203,7 @@ for standardizing the data to aid in querying and analysis.</p>
         <a href="services.html" class="btn btn-neutral float-right" title="REST Services" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="implementations.html" class="btn btn-neutral" title="Implementations" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="elastic_search_config.html" class="btn btn-neutral" title="ElasticSearch Configuration" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

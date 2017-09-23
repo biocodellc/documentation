@@ -30,11 +30,8 @@
   
 
   
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="FIMS documentation 1.0 documentation" href="../index.html"/>
-        <link rel="next" title="Implementations" href="implementations.html"/>
+        <link rel="next" title="XML Configuration File" href="configuration_files.html"/>
         <link rel="prev" title="Installation" href="installation.html"/> 
 
   
@@ -87,26 +84,21 @@
           
             
             
-                <p class="caption"><span class="caption-text">About the FIMS System</span></p>
+                <p class="caption"><span class="caption-text">User Information</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../fims/introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fims/fims.html">Biocode FIMS Web Application</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fims/query.html">FIMS Queries</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fims/bioValidator.html">bioValidator:  A desktop validation tool (legacy)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fims/identifiers.html">Identifiers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fims/bcids.html">Introduction to BCIDs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fims/sub_sampling.html">Samples and Sub-sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fims/fims.html">User Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fims/identifiers.html">User Guide to Creating Local Identifiers</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Information</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">ElasticSearch Configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">ElasticSearch Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#dynamic-templates">Dynamic Templates</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#analyzer">Analyzer</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#index-aliases">Index Aliases</a></li>
-<li class="toctree-l1"><a class="reference internal" href="implementations.html">Implementations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration_files.html">XML Configuration File</a></li>
 <li class="toctree-l1"><a class="reference internal" href="services.html">REST Services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="javadocs.html">FIMS Commons Javadocs</a></li>
@@ -114,6 +106,8 @@
 <li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Minting IDs, Creating Expeditions, and Validating Data using REST calls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curl_examples.html">curl Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">oauth2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resolution.html">Resolution System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types_of_identifiers.html">Types Of Identifiers</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Migrating from FIMS1 to FIMS2</span></p>
 <ul>
@@ -141,7 +135,7 @@
         <div class="rst-content">
           
 
- 
+
 
 
 
@@ -173,7 +167,7 @@
 <div class="section" id="analyzer">
 <span id="elastic-search-config-analyzer"></span><h2>Analyzer<a class="headerlink" href="#analyzer" title="Permalink to this headline">¶</a></h2>
 <p>We are currently using a custom default analyzer. To set this up, make a <code class="docutils literal"><span class="pre">POST</span></code> request to <code class="docutils literal"><span class="pre">/_template/{template_name}</span></code> with the following in the body:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;template&quot;</span> <span class="p">:</span> <span class="s2">&quot;*&quot;</span><span class="p">,</span>
   <span class="s2">&quot;settings&quot;</span> <span class="p">:</span> <span class="p">{</span>
     <span class="s2">&quot;index&quot;</span> <span class="p">:</span> <span class="p">{</span>
@@ -216,7 +210,7 @@ data and point the index alias to the updated index, without changing the index 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="implementations.html" class="btn btn-neutral float-right" title="Implementations" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="configuration_files.html" class="btn btn-neutral float-right" title="XML Configuration File" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="installation.html" class="btn btn-neutral" title="Installation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
