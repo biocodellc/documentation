@@ -30,6 +30,9 @@
   
 
   
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="FIMS documentation 1.0 documentation" href="#"/>
         <link rel="next" title="Introduction" href="fims/introduction.html"/> 
 
@@ -88,14 +91,15 @@
 <li class="toctree-l1"><a class="reference internal" href="fims/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fims/fims.html">User Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fims/identifiers.html">User Guide to Creating Local Identifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fims/query.html">FIMS Queries</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Information</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="developer/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="developer/elastic_search_config.html">ElasticSearch Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="developer/elastic_search_config.html#dynamic-templates">Dynamic Templates</a></li>
-<li class="toctree-l1"><a class="reference internal" href="developer/elastic_search_config.html#index-aliases">Index Aliases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developer/configuration_files.html">XML Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/recordsets.html">Record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/recordsets.html#dataset">Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/recordsets.html#recordset">RecordSet</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developer/services.html">REST Services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developer/javadocs.html">FIMS Commons Javadocs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developer/user_accounts.html">User Accounts</a></li>
@@ -131,7 +135,7 @@
         <div class="rst-content">
           
 
-
+ 
 
 
 
@@ -162,6 +166,20 @@
 <li class="toctree-l1"><a class="reference internal" href="fims/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fims/fims.html">User Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fims/identifiers.html">User Guide to Creating Local Identifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fims/query.html">FIMS Queries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fims/query.html#supported-queries">Supported Queries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="fims/query.html#full-text-search">full text search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fims/query.html#comparison">comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fims/query.html#expedition-query">expedition query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fims/query.html#exists-query">_exists_ query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fims/query.html#like-query">like query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fims/query.html#range-query">range query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fims/query.html#select-query">select query</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fims/query.html#tokenization">Tokenization</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="toctree-wrapper compound" id="developer-information">
@@ -175,17 +193,18 @@
 <li class="toctree-l2"><a class="reference internal" href="developer/installation.html#notes">Notes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="developer/elastic_search_config.html">ElasticSearch Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="developer/elastic_search_config.html#dynamic-templates">Dynamic Templates</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="developer/elastic_search_config.html#analyzer">Analyzer</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="developer/elastic_search_config.html#index-aliases">Index Aliases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developer/configuration_files.html">XML Configuration File</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="developer/configuration_files.html#attributes">Attributes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="developer/configuration_files.html#datatype">DataType</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer/recordsets.html">Record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/recordsets.html#dataset">Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/recordsets.html#recordset">RecordSet</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer/recordsets.html#data-readers">Data Readers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer/recordsets.html#entity">Entity</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="developer/services.html">REST Services</a><ul>

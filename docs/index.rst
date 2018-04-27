@@ -13,13 +13,14 @@ FIMS documentation
     fims/introduction
     fims/fims
     fims/identifiers
+    fims/query
 
 .. toctree::
     :caption: Developer Information
 
     developer/installation
-    developer/elastic_search_config
     developer/configuration_files
+    developer/recordsets
     developer/services
     developer/javadocs
     developer/user_accounts

@@ -30,7 +30,12 @@
   
 
   
-    <link rel="top" title="FIMS documentation 1.0 documentation" href="../index.html"/> 
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="FIMS documentation 1.0 documentation" href="../index.html"/>
+        <link rel="next" title="Installation" href="../developer/installation.html"/>
+        <link rel="prev" title="User Guide to Creating Local Identifiers" href="identifiers.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -83,18 +88,32 @@
             
             
                 <p class="caption"><span class="caption-text">User Information</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fims.html">User Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="identifiers.html">User Guide to Creating Local Identifiers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">FIMS Queries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#supported-queries">Supported Queries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#full-text-search">full text search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#comparison">comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#expedition-query">expedition query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exists-query">_exists_ query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#like-query">like query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#range-query">range query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#select-query">select query</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tokenization">Tokenization</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Information</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../developer/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer/elastic_search_config.html">ElasticSearch Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer/elastic_search_config.html#dynamic-templates">Dynamic Templates</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer/elastic_search_config.html#index-aliases">Index Aliases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../developer/configuration_files.html">XML Configuration File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/recordsets.html">Record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/recordsets.html#dataset">Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/recordsets.html#recordset">RecordSet</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../developer/services.html">REST Services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../developer/javadocs.html">FIMS Commons Javadocs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../developer/user_accounts.html">User Accounts</a></li>
@@ -130,7 +149,7 @@
         <div class="rst-content">
           
 
-
+ 
 
 
 
@@ -154,89 +173,91 @@
             
   <div class="section" id="fims-queries">
 <h1>FIMS Queries<a class="headerlink" href="#fims-queries" title="Permalink to this headline">¶</a></h1>
-<p>FIMS provides a custom query syntax to help you find the data you need. The FIMS Query DSL is built upon the <a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/5.1/query-dsl-query-string-query.html">ElasticSearch QueryString Query</a>.</p>
+<p>FIMS provides a custom sql-like query syntax to help you find the data you need.</p>
 <p>By default, the query terms are executed against all columns in the project. To execute a query against a specific column,
 you can construct the query in the form <code class="docutils literal"><span class="pre">columnName:query</span></code>.</p>
-<p>The <a class="reference internal" href="#text">text</a> query <code class="docutils literal"><span class="pre">japan</span></code> would return all results where a column contains the word <code class="docutils literal"><span class="pre">japan</span></code>. Where as the <a class="reference internal" href="#text">text</a> query
+<p>The <a class="reference internal" href="#full-text-search">full text search</a> query <code class="docutils literal"><span class="pre">japan</span></code> would return all results where a column contains the word <code class="docutils literal"><span class="pre">japan</span></code>. Where as the <a class="reference internal" href="#full-text-search">full text search</a> query
 <code class="docutils literal"><span class="pre">column1:japan</span></code> would return all results where <strong>column1</strong> contains the word <code class="docutils literal"><span class="pre">japan</span></code>.</p>
-<p>All queries can be constructed using the <a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/5.1/query-dsl-query-string-query.html#_boolean_operators">boolean operators</a> <em>must</em>, <em>must_not</em>, and <em>should</em>. These are similar, although
-not equivalent, to the mysql operators <em>AND</em>, <em>NOT</em>, and <em>OR</em> respectively. The default operator is the <em>should</em> operator. The operators
-<em>must</em> and <em>must_not</em> are represented by prefixing the query expression with <strong>+</strong> and <strong>-</strong> respectively.</p>
-<p>If there is only 1 <em>should</em> term (ex query. <code class="docutils literal"><span class="pre">japan</span></code>), this is effectively a <em>must</em> query, and would return all results
-where a column contains the word <code class="docutils literal"><span class="pre">japan</span></code>. However the query <code class="docutils literal"><span class="pre">japan</span> <span class="pre">australia</span></code> will return all results where a column
-contains the word <code class="docutils literal"><span class="pre">japan</span></code> <strong>or</strong> the word <code class="docutils literal"><span class="pre">australia</span></code>.</p>
-<p>The query <code class="docutils literal"><span class="pre">+expedition:myExpedition</span> <span class="pre">-japan</span></code> would return all results in the <em>expedition</em> <code class="docutils literal"><span class="pre">myExpedition</span></code> which do not
+<p>All queries can be constructed using the sql operators <em>AND</em>, <em>OR</em>, and <em>NOT</em> as well as groupings within <cite>()</cite>;</p>
+<p>The query <code class="docutils literal"><span class="pre">_expeditions_:myExpedition</span> <span class="pre">and</span> <span class="pre">!japan</span></code> would return all results in the <em>expedition</em> <code class="docutils literal"><span class="pre">myExpedition</span></code> which do not
 contain the word <code class="docutils literal"><span class="pre">japan</span></code>.</p>
-<p>Complex queries can be constructed using <a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/5.1/query-dsl-query-string-query.html#_grouping">grouping</a>.</p>
-<p>See the <a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/5.1/query-dsl-query-string-query.html#query-string-syntax">ElasticSearch Docs</a> for more information regarding the query syntax.</p>
 <p>Below you will find more information about the supported queries.</p>
 <div class="section" id="supported-queries">
 <h2>Supported Queries<a class="headerlink" href="#supported-queries" title="Permalink to this headline">¶</a></h2>
 <p>The following queries are supported:</p>
 <ul class="simple">
-<li><a class="reference internal" href="#text">text</a></li>
-<li><a class="reference internal" href="#phrase">phrase</a></li>
-<li><a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/5.1/query-dsl-query-string-query.html#_ranges">range</a></li>
+<li><a class="reference internal" href="#full-text-search">full text search</a></li>
+<li><a class="reference internal" href="#comparison">comparison</a></li>
 <li><a class="reference internal" href="#expedition">expedition</a></li>
-<li><a class="reference internal" href="#exists">_exists_</a></li>
-<li><a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/5.1/query-dsl-query-string-query.html#_fuzziness">fuzziness</a></li>
-<li><a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/5.1/query-dsl-query-string-query.html#_proximity_searches">proximity searches</a></li>
-<li><a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/5.1/query-dsl-query-string-query.html#_boosting">boosting</a></li>
+<li><a class="reference internal" href="#bcid">bcid</a></li>
+<li><a href="#id4"><span class="problematic" id="id5">`exists`_</span></a></li>
+<li><a class="reference internal" href="#like">like</a></li>
+<li><a class="reference internal" href="#range">range</a></li>
+<li><a class="reference internal" href="#select">select</a></li>
 </ul>
-<p>We <strong>do not</strong> support the following:</p>
-<ul class="simple">
-<li><a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/5.1/query-dsl-query-string-query.html#_regular_expressions">regular expressions</a></li>
-<li><a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/5.1/query-dsl-query-string-query.html#_wildcards">leading wildcard queries</a></li>
-</ul>
-<div class="section" id="text-query">
-<span id="text"></span><h3>text query<a class="headerlink" href="#text-query" title="Permalink to this headline">¶</a></h3>
-<p>This the default query, and will perform a search on the <a class="reference internal" href="#tokenization"><span>tokenized</span></a> version of the uploaded data.</p>
+<div class="section" id="full-text-search">
+<span id="id1"></span><h3>full text search<a class="headerlink" href="#full-text-search" title="Permalink to this headline">¶</a></h3>
+<p>This the default query, and will perform a search on the <a class="reference internal" href="#tokenization"><span class="std std-ref">tokenized</span></a> version of the uploaded data.</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">col1:value</span></code> - will perform a fts on <code class="docutils literal"><span class="pre">col1</span></code> for <code class="docutils literal"><span class="pre">value</span></code>
+<code class="docutils literal"><span class="pre">col1:val*</span></code> - will perform a fts on <code class="docutils literal"><span class="pre">col1</span></code> for words starting with <code class="docutils literal"><span class="pre">val</span></code>
+<code class="docutils literal"><span class="pre">value</span></code> - will preform a fts on all columns for <code class="docutils literal"><span class="pre">value</span></code>
+<code class="docutils literal"><span class="pre">col1:!value</span></code> - will returns results where <code class="docutils literal"><span class="pre">col1</span></code> does not match <code class="docutils literal"><span class="pre">value</span></code></div></blockquote>
 </div>
-<div class="section" id="phrase-query">
-<span id="phrase"></span><h3>phrase query<a class="headerlink" href="#phrase-query" title="Permalink to this headline">¶</a></h3>
-<p>This query will perform an exact match on the uploaded data. This is done by surrounding your query term in quotes.</p>
-<p>The query <code class="docutils literal"><span class="pre">column1:&quot;exact</span> <span class="pre">phrase&quot;</span></code> will return all results where <code class="docutils literal"><span class="pre">column1</span></code> has the exact value <code class="docutils literal"><span class="pre">exact</span> <span class="pre">phrase</span></code>.</p>
+<div class="section" id="comparison">
+<span id="id2"></span><h3>comparison<a class="headerlink" href="#comparison" title="Permalink to this headline">¶</a></h3>
+<p>This query is used to compare 2 values. The following operators are supported:</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">=</span></code> - equals
+<code class="docutils literal"><span class="pre">&lt;&gt;</span></code> - not equals
+<code class="docutils literal"><span class="pre">&gt;</span></code> - greater then
+<code class="docutils literal"><span class="pre">&gt;=</span></code> - greater then or equal to
+<code class="docutils literal"><span class="pre">&lt;</span></code> - less then
+<code class="docutils literal"><span class="pre">&lt;=</span></code> - less then or equal to</div></blockquote>
 </div>
 <div class="section" id="expedition-query">
 <span id="expedition"></span><h3>expedition query<a class="headerlink" href="#expedition-query" title="Permalink to this headline">¶</a></h3>
-<p>This query is will filter the results based on the expedition that they belong to.</p>
-<p>The query <code class="docutils literal"><span class="pre">+expedition:myExpedition</span></code> would return everything uploaded under <code class="docutils literal"><span class="pre">myExpedition</span></code></p>
+<p>This query is will filter the results based on the expedition(s) that they belong to.</p>
+<p>The query <code class="docutils literal"><span class="pre">_expeditions_:myExpedition</span></code> would return everything uploaded under <code class="docutils literal"><span class="pre">myExpedition</span></code>
+The query <code class="docutils literal"><span class="pre">_expeditions_:[myExpedition1,</span> <span class="pre">myExpedition2]</span></code> would return everything uploaded under <code class="docutils literal"><span class="pre">myExpedition1</span></code> or <code class="docutils literal"><span class="pre">myExpedition2</span></code></p>
 </div>
 <div class="section" id="exists-query">
-<span id="exists"></span><h3>_exists_ query<a class="headerlink" href="#exists-query" title="Permalink to this headline">¶</a></h3>
+<span id="exists"></span><span id="bcid"></span><h3>_exists_ query<a class="headerlink" href="#exists-query" title="Permalink to this headline">¶</a></h3>
 <p>This query returns results where a column has a value.</p>
-<p>The query <code class="docutils literal"><span class="pre">_exists_:column1</span></code> would return all results where <code class="docutils literal"><span class="pre">column1</span></code> has a value.</p>
+<p>The query <code class="docutils literal"><span class="pre">_exists_:column1</span></code> would return all results where <code class="docutils literal"><span class="pre">column1</span></code> has a value.
+The query <code class="docutils literal"><span class="pre">_exists_:[column1,</span> <span class="pre">column2]</span></code> would return all results where <code class="docutils literal"><span class="pre">column1</span></code> or <code class="docutils literal"><span class="pre">column2</span></code> has a value.</p>
+</div>
+<div class="section" id="like-query">
+<span id="like"></span><h3>like query<a class="headerlink" href="#like-query" title="Permalink to this headline">¶</a></h3>
+<p>This query performs a sql <code class="docutils literal"><span class="pre">ILIKE</span></code> (case-insensitive <code class="docutils literal"><span class="pre">LIKE</span></code>) query.</p>
+<p><code class="docutils literal"><span class="pre">col1::&quot;%value&quot;</span></code> - <code class="docutils literal"><span class="pre">col1</span> <span class="pre">ILIKE</span> <span class="pre">'%value'</span></code></p>
+</div>
+<div class="section" id="range-query">
+<span id="range"></span><h3>range query<a class="headerlink" href="#range-query" title="Permalink to this headline">¶</a></h3>
+<p>This is a shorthanded way to perform a comparison query.</p>
+<p><code class="docutils literal"><span class="pre">col1:[1</span> <span class="pre">TO</span> <span class="pre">10]</span></code> - <code class="docutils literal"><span class="pre">&gt;=</span> <span class="pre">1</span> <span class="pre">AND</span> <span class="pre">&lt;=</span> <span class="pre">10</span></code>
+<code class="docutils literal"><span class="pre">col1:[1</span> <span class="pre">TO</span> <span class="pre">10}</span></code> - <code class="docutils literal"><span class="pre">&gt;=</span> <span class="pre">1</span> <span class="pre">AND</span> <span class="pre">&lt;</span> <span class="pre">10</span></code>
+<code class="docutils literal"><span class="pre">col1:{1</span> <span class="pre">TO</span> <span class="pre">10}</span></code> - <code class="docutils literal"><span class="pre">&gt;</span> <span class="pre">1</span> <span class="pre">AND</span> <span class="pre">&lt;</span> <span class="pre">10</span></code>
+<code class="docutils literal"><span class="pre">col1:{*</span> <span class="pre">TO</span> <span class="pre">100]</span></code> - <code class="docutils literal"><span class="pre">&lt;=</span> <span class="pre">100</span></code></p>
+</div>
+<div class="section" id="select-query">
+<span id="select"></span><h3>select query<a class="headerlink" href="#select-query" title="Permalink to this headline">¶</a></h3>
+<p>Used to select related parent/child data along with the queried entity. The provided value should be the conceptAlias of the Entity to select.
+The provided conceptAlias&#8217; do need to be related to the query entity, but do not need to be directly related. For example, if you are querying a
+parent entity, you can also select the grandChildren and the grandParents. Any combination of related entities can be selected.</p>
+<p><code class="docutils literal"><span class="pre">_select_:parentEntity</span></code> - selects both child and parent entity results for the query
+<code class="docutils literal"><span class="pre">_select_:[parentEntity,</span> <span class="pre">grandParentEntity]</span></code> - selects both child and parent entity results for the query</p>
 </div>
 </div>
 <div class="section" id="tokenization">
-<span id="id1"></span><h2>Tokenization<a class="headerlink" href="#tokenization" title="Permalink to this headline">¶</a></h2>
-<p>Text fields go through a tokenization process before they are indexed. Currently the tokenization process splits words
-on any non-letter character or camelCase. The tokens are then lowercased and further processed to remove any possessives
-and plurals.</p>
+<span id="id3"></span><h2>Tokenization<a class="headerlink" href="#tokenization" title="Permalink to this headline">¶</a></h2>
+<p>Text fields go through a tokenization process before they are indexed. This process attempts to breakdown text into words
+and numbers as well as converting words to their normalized form.</p>
 <p>Tokenization Ex:</p>
-<div class="highlight-python"><div class="highlight"><pre>&quot;manyDonkeys&quot; -&gt; [&quot;many&quot;, &quot;donkey&quot;]
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;many donkeys&quot;</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="s2">&quot;many&quot;</span><span class="p">,</span> <span class="s2">&quot;donkey&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>The above result would match the following queries:</p>
-<div class="highlight-python"><div class="highlight"><pre>many
-
-manyMore
-
-many Donkeys
-
-manyDonkeys
-
-DONKEYS
-
-donkey
-</pre></div>
-</div>
-<p>However it will not match:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">manydonkeys</span>
-</pre></div>
-</div>
-<p>For more information, you can view the <a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/5.1/analysis.html">ElasticSearch Analysis</a>. Our current anlyzer settings
-can be found <a class="reference internal" href="../developer/elastic_search_config.html#elastic-search-config-analyzer"><span>here</span></a>.</p>
+<p>For more information, you can view the <a class="reference external" href="https://www.postgresql.org/docs/9.5/static/textsearch-intro.html#TEXTSEARCH-INTRO_CONFIGURATIONS">psql tokenization</a>.</p>
 </div>
 </div>
 
@@ -244,6 +265,15 @@ can be found <a class="reference internal" href="../developer/elastic_search_con
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../developer/installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="identifiers.html" class="btn btn-neutral" title="User Guide to Creating Local Identifiers" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

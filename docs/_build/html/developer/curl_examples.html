@@ -30,6 +30,9 @@
   
 
   
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="FIMS documentation 1.0 documentation" href="../index.html"/>
         <link rel="next" title="oauth2" href="oauth2.html"/>
         <link rel="prev" title="Minting IDs, Creating Expeditions, and Validating Data using REST calls" href="amphibian_disease_example.html"/> 
@@ -101,7 +104,7 @@
 <li class="toctree-l1"><a class="reference internal" href="javadocs.html">FIMS Commons Javadocs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_accounts.html">User Accounts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Minting IDs, Creating Expeditions, and Validating Data using REST calls</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">curl Examples</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">curl Examples</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#public-content">Public Content</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#secure-content">Secure Content</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#using-the-creator">Using the Creator</a></li>
@@ -137,7 +140,7 @@
         <div class="rst-content">
           
 
-
+ 
 
 
 
@@ -166,38 +169,38 @@
 <div class="section" id="public-content">
 <h2>Public Content<a class="headerlink" href="#public-content" title="Permalink to this headline">¶</a></h2>
 <p>Attempt a simple call to resolve an ARK (return HTML):</p>
-<div class="highlight-python"><div class="highlight"><pre>curl -L http://biscicol.org/id/ark:/21547/R2
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">L</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">biscicol</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="nb">id</span><span class="o">/</span><span class="n">ark</span><span class="p">:</span><span class="o">/</span><span class="mi">21547</span><span class="o">/</span><span class="n">R2</span>
 </pre></div>
 </div>
 <p>Resolve an ARK, returning RDF/XML, for a group + suffix:</p>
-<div class="highlight-python"><div class="highlight"><pre>curl -L  -H &quot;Accept: application/rdf+xml&quot; http://biscicol.org/id/ark:/21547/R2MBIO56
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">L</span>  <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Accept: application/rdf+xml&quot;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">biscicol</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="nb">id</span><span class="o">/</span><span class="n">ark</span><span class="p">:</span><span class="o">/</span><span class="mi">21547</span><span class="o">/</span><span class="n">R2MBIO56</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="secure-content">
 <h2>Secure Content<a class="headerlink" href="#secure-content" title="Permalink to this headline">¶</a></h2>
 <p>First thing is to authenticate and set cookies.  Make sure to do this in a directory where you have write access:</p>
-<div class="highlight-python"><div class="highlight"><pre>curl --data &quot;username=USER&amp;password=PSWD&quot; http://biscicol.org/biocode-fims/rest/authenticationService/login --location --cookie-jar cookies.txt
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">--</span><span class="n">data</span> <span class="s2">&quot;username=USER&amp;password=PSWD&quot;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">biscicol</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">biocode</span><span class="o">-</span><span class="n">fims</span><span class="o">/</span><span class="n">rest</span><span class="o">/</span><span class="n">authenticationService</span><span class="o">/</span><span class="n">login</span> <span class="o">--</span><span class="n">location</span> <span class="o">--</span><span class="n">cookie</span><span class="o">-</span><span class="n">jar</span> <span class="n">cookies</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 <p>Then, call the service in question, for example, to list all Identifiers associated with the account you authenticated as:</p>
-<div class="highlight-python"><div class="highlight"><pre>curl http://biscicol.org/biocode-fims/rest/bcids/list --cookie cookies.txt
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">biscicol</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">biocode</span><span class="o">-</span><span class="n">fims</span><span class="o">/</span><span class="n">rest</span><span class="o">/</span><span class="n">bcids</span><span class="o">/</span><span class="nb">list</span> <span class="o">--</span><span class="n">cookie</span> <span class="n">cookies</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 <p>If this is a new account without any datasets associated with it, if this request is successful, you will see the result:</p>
-<div class="highlight-python"><div class="highlight"><pre>{&quot;0&quot;:&quot;Create new group&quot;}]
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;0&quot;</span><span class="p">:</span><span class="s2">&quot;Create new group&quot;</span><span class="p">}]</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="using-the-creator">
 <h2>Using the Creator<a class="headerlink" href="#using-the-creator" title="Permalink to this headline">¶</a></h2>
 <p>The following is an example of how to create a new data group and register local IDs with BCID.    There are two main ways to create new data groups. The first way is to specify the resourceType in the request, such as:</p>
-<div class="highlight-python"><div class="highlight"><pre>curl -d  &quot;title=This is a test&amp;resourceType=dwc:MaterialSample&amp;suffixPassThrough=true&quot; http://biscicol.org/biocode-fims/rest/bcids/ --cookie cookies.txt
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">d</span>  <span class="s2">&quot;title=This is a test&amp;resourceType=dwc:MaterialSample&amp;suffixPassThrough=true&quot;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">biscicol</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">biocode</span><span class="o">-</span><span class="n">fims</span><span class="o">/</span><span class="n">rest</span><span class="o">/</span><span class="n">bcids</span><span class="o">/</span> <span class="o">--</span><span class="n">cookie</span> <span class="n">cookies</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 <p>The second way is to first lookup one of the standard resourceTypes in a list, and then using an integer to call the service:</p>
-<div class="highlight-python"><div class="highlight"><pre>curl http://biscicol.org/biocode-fims/rest/resourceTypes
-curl -d  &quot;title=This is a test&amp;resourceTypesMinusDataset=3&amp;suffixPassThrough=true&quot; http://biscicol.org/biocode-fims/rest/bcids/ --cookie cookies.txt
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">biscicol</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">biocode</span><span class="o">-</span><span class="n">fims</span><span class="o">/</span><span class="n">rest</span><span class="o">/</span><span class="n">resourceTypes</span>
+<span class="n">curl</span> <span class="o">-</span><span class="n">d</span>  <span class="s2">&quot;title=This is a test&amp;resourceTypesMinusDataset=3&amp;suffixPassThrough=true&quot;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">biscicol</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">biocode</span><span class="o">-</span><span class="n">fims</span><span class="o">/</span><span class="n">rest</span><span class="o">/</span><span class="n">bcids</span><span class="o">/</span> <span class="o">--</span><span class="n">cookie</span> <span class="n">cookies</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 </div>

@@ -30,6 +30,9 @@
   
 
   
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="FIMS documentation 1.0 documentation" href="../index.html"/>
         <link rel="next" title="curl Examples" href="curl_examples.html"/>
         <link rel="prev" title="User Accounts" href="user_accounts.html"/> 
@@ -100,7 +103,7 @@
 <li class="toctree-l1"><a class="reference internal" href="services.html">REST Services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="javadocs.html">FIMS Commons Javadocs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_accounts.html">User Accounts</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Minting IDs, Creating Expeditions, and Validating Data using REST calls</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Minting IDs, Creating Expeditions, and Validating Data using REST calls</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#logging-in">Logging in</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#mint-bcid">Mint Bcid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#optional-minting-services">Optional minting services</a></li>
@@ -137,7 +140,7 @@
         <div class="rst-content">
           
 
-
+ 
 
 
 
@@ -168,11 +171,11 @@ examples must be sent with the type &#8216;application/x-www-form-urlencoded&#82
 <div class="section" id="logging-in">
 <h2>Logging in<a class="headerlink" href="#logging-in" title="Permalink to this headline">¶</a></h2>
 <p>All BCID minting functions require you to first login.  You can login by sending a POST request to:</p>
-<div class="highlight-python"><div class="highlight"><pre>http://www.biscicol.org/biocode-fims/rest/authenticationService/login
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">biscicol</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">biocode</span><span class="o">-</span><span class="n">fims</span><span class="o">/</span><span class="n">rest</span><span class="o">/</span><span class="n">authenticationService</span><span class="o">/</span><span class="n">login</span>
 
-POST Parameters:
-    username={yourUsername}
-    password={yourPassword}
+<span class="n">POST</span> <span class="n">Parameters</span><span class="p">:</span>
+    <span class="n">username</span><span class="o">=</span><span class="p">{</span><span class="n">yourUsername</span><span class="p">}</span>
+    <span class="n">password</span><span class="o">=</span><span class="p">{</span><span class="n">yourPassword</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>Save the cookies that are returned.  How you do this depends on your application (some curl examples:
@@ -182,19 +185,19 @@ requests below to authenticate each request.</p>
 <div class="section" id="mint-bcid">
 <h2>Mint Bcid<a class="headerlink" href="#mint-bcid" title="Permalink to this headline">¶</a></h2>
 <p>Mint a Bcid by sending at minimum a title, webAddress, and resourceType.   Send a POST request to:</p>
-<div class="highlight-python"><div class="highlight"><pre> http://www.biscicol.org/biocode-fims/rest/bcids
+<div class="highlight-default"><div class="highlight"><pre><span></span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">biscicol</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">biocode</span><span class="o">-</span><span class="n">fims</span><span class="o">/</span><span class="n">rest</span><span class="o">/</span><span class="n">bcids</span>
 
- POST Parameters:
-    webAddress={dataset_webAddress}
-    title={dataset_title}
-    resourceType={resourceType}  (e.g. &quot;http://purl.org/dc/dcmitype/Dataset&quot;)
-    *doi={doi}
-    *graph={graph} (A sparql endpoint or other location to be included in sparql queries)
-    *suffixPassThrough={true|pase} (whether this supports suffixPassthrough}
-    *finalCopy={true|false} (if this is a final copy)
-* Optional parameters
+ <span class="n">POST</span> <span class="n">Parameters</span><span class="p">:</span>
+    <span class="n">webAddress</span><span class="o">=</span><span class="p">{</span><span class="n">dataset_webAddress</span><span class="p">}</span>
+    <span class="n">title</span><span class="o">=</span><span class="p">{</span><span class="n">dataset_title</span><span class="p">}</span>
+    <span class="n">resourceType</span><span class="o">=</span><span class="p">{</span><span class="n">resourceType</span><span class="p">}</span>  <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="s2">&quot;http://purl.org/dc/dcmitype/Dataset&quot;</span><span class="p">)</span>
+    <span class="o">*</span><span class="n">doi</span><span class="o">=</span><span class="p">{</span><span class="n">doi</span><span class="p">}</span>
+    <span class="o">*</span><span class="n">graph</span><span class="o">=</span><span class="p">{</span><span class="n">graph</span><span class="p">}</span> <span class="p">(</span><span class="n">A</span> <span class="n">sparql</span> <span class="n">endpoint</span> <span class="ow">or</span> <span class="n">other</span> <span class="n">location</span> <span class="n">to</span> <span class="n">be</span> <span class="n">included</span> <span class="ow">in</span> <span class="n">sparql</span> <span class="n">queries</span><span class="p">)</span>
+    <span class="o">*</span><span class="n">suffixPassThrough</span><span class="o">=</span><span class="p">{</span><span class="n">true</span><span class="o">|</span><span class="n">pase</span><span class="p">}</span> <span class="p">(</span><span class="n">whether</span> <span class="n">this</span> <span class="n">supports</span> <span class="n">suffixPassthrough</span><span class="p">}</span>
+    <span class="o">*</span><span class="n">finalCopy</span><span class="o">=</span><span class="p">{</span><span class="n">true</span><span class="o">|</span><span class="n">false</span><span class="p">}</span> <span class="p">(</span><span class="k">if</span> <span class="n">this</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">final</span> <span class="n">copy</span><span class="p">)</span>
+<span class="o">*</span> <span class="n">Optional</span> <span class="n">parameters</span>
 
-Send Cookies with login data
+<span class="n">Send</span> <span class="n">Cookies</span> <span class="k">with</span> <span class="n">login</span> <span class="n">data</span>
 </pre></div>
 </div>
 </div>
@@ -204,52 +207,52 @@ Send Cookies with login data
 <p>Knowing your projectID is useful when working with the minting services presented below.  Your username must be added to the
 projects before using the projects themselves. Talk to your project administrator to have your username added to a project.
 The following URL lists all available projects in the FIMS system:</p>
-<div class="highlight-python"><div class="highlight"><pre>http://www.biscicol.org/biocode-fims/rest/projects/list
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">biscicol</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">biocode</span><span class="o">-</span><span class="n">fims</span><span class="o">/</span><span class="n">rest</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="nb">list</span>
 </pre></div>
 </div>
 <p><strong>Create new Expedition</strong></p>
 <p>Expeditions are used in the FIMS system for organizing content that is related to versions of and resources  related to, a spreadsheet.
 Mint an Expedition by sending the following POST request:</p>
-<div class="highlight-python"><div class="highlight"><pre>http://www.biscicol.org/biocode-fims/rest/expeditions
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">biscicol</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">biocode</span><span class="o">-</span><span class="n">fims</span><span class="o">/</span><span class="n">rest</span><span class="o">/</span><span class="n">expeditions</span>
 
-POST Parameters:
-    expeditionCode={new_expeditionCode}
-    expeditionTitle={new_expeditionTitle}
-    projectId={your_projectId}
-    public={public_expedition}
-    webaddress={target URL for expedition, forwarded when the expedition ID resolved}
+<span class="n">POST</span> <span class="n">Parameters</span><span class="p">:</span>
+    <span class="n">expeditionCode</span><span class="o">=</span><span class="p">{</span><span class="n">new_expeditionCode</span><span class="p">}</span>
+    <span class="n">expeditionTitle</span><span class="o">=</span><span class="p">{</span><span class="n">new_expeditionTitle</span><span class="p">}</span>
+    <span class="n">projectId</span><span class="o">=</span><span class="p">{</span><span class="n">your_projectId</span><span class="p">}</span>
+    <span class="n">public</span><span class="o">=</span><span class="p">{</span><span class="n">public_expedition</span><span class="p">}</span>
+    <span class="n">webaddress</span><span class="o">=</span><span class="p">{</span><span class="n">target</span> <span class="n">URL</span> <span class="k">for</span> <span class="n">expedition</span><span class="p">,</span> <span class="n">forwarded</span> <span class="n">when</span> <span class="n">the</span> <span class="n">expedition</span> <span class="n">ID</span> <span class="n">resolved</span><span class="p">}</span>
 
-Send Cookies with login data
+<span class="n">Send</span> <span class="n">Cookies</span> <span class="k">with</span> <span class="n">login</span> <span class="n">data</span>
 </pre></div>
 </div>
 <p><strong>Associate Bcid with Expedition by sending POST request</strong></p>
 <p>Associate a BCID with an expedition:</p>
-<div class="highlight-python"><div class="highlight"><pre>http://www.biscicol.org/biocode-fims/rest/expeditions/associate
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">biscicol</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">biocode</span><span class="o">-</span><span class="n">fims</span><span class="o">/</span><span class="n">rest</span><span class="o">/</span><span class="n">expeditions</span><span class="o">/</span><span class="n">associate</span>
 
-POST Parameters:
-    expeditionCode={dataset_expeditionCode}
-    bcid={identifier returned in step 2}
-    projectId={your_projectId}
+<span class="n">POST</span> <span class="n">Parameters</span><span class="p">:</span>
+    <span class="n">expeditionCode</span><span class="o">=</span><span class="p">{</span><span class="n">dataset_expeditionCode</span><span class="p">}</span>
+    <span class="n">bcid</span><span class="o">=</span><span class="p">{</span><span class="n">identifier</span> <span class="n">returned</span> <span class="ow">in</span> <span class="n">step</span> <span class="mi">2</span><span class="p">}</span>
+    <span class="n">projectId</span><span class="o">=</span><span class="p">{</span><span class="n">your_projectId</span><span class="p">}</span>
 
-Send Cookies with login data
+<span class="n">Send</span> <span class="n">Cookies</span> <span class="k">with</span> <span class="n">login</span> <span class="n">data</span>
 </pre></div>
 </div>
 <p><strong>Validate Dataset</strong></p>
 <p>To validate your dataset, send a POST request to:</p>
-<div class="highlight-python"><div class="highlight"><pre>http://www.biscicol.org/biocode-fims/rest/validate
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">biscicol</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">biocode</span><span class="o">-</span><span class="n">fims</span><span class="o">/</span><span class="n">rest</span><span class="o">/</span><span class="n">validate</span>
 
-Send request as type &#39;multipart/form-data&#39; (in Curl, use -F for form data vs -d)
+<span class="n">Send</span> <span class="n">request</span> <span class="k">as</span> <span class="nb">type</span> <span class="s1">&#39;multipart/form-data&#39;</span> <span class="p">(</span><span class="ow">in</span> <span class="n">Curl</span><span class="p">,</span> <span class="n">use</span> <span class="o">-</span><span class="n">F</span> <span class="k">for</span> <span class="n">form</span> <span class="n">data</span> <span class="n">vs</span> <span class="o">-</span><span class="n">d</span><span class="p">)</span>
 
-POST Parameters:
-    projectId={your_projectId}
-    expeditionCode={your_expeditionCode}
-    dataset={your_dataset}
+<span class="n">POST</span> <span class="n">Parameters</span><span class="p">:</span>
+    <span class="n">projectId</span><span class="o">=</span><span class="p">{</span><span class="n">your_projectId</span><span class="p">}</span>
+    <span class="n">expeditionCode</span><span class="o">=</span><span class="p">{</span><span class="n">your_expeditionCode</span><span class="p">}</span>
+    <span class="n">dataset</span><span class="o">=</span><span class="p">{</span><span class="n">your_dataset</span><span class="p">}</span>
 
-Send Cookies with login data
+<span class="n">Send</span> <span class="n">Cookies</span> <span class="k">with</span> <span class="n">login</span> <span class="n">data</span>
 </pre></div>
 </div>
 <p>The response is returned as JSON, which will look something like:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s2">&quot;done&quot;</span><span class="p">:</span> <span class="p">[{</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;done&quot;</span><span class="p">:</span> <span class="p">[{</span>
     <span class="s2">&quot;Samples&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;errors&quot;</span><span class="p">:</span> <span class="p">[],</span>
         <span class="s2">&quot;warnings&quot;</span><span class="p">:</span> <span class="p">[{</span>

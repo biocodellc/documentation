@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>REST Services &mdash; FIMS documentation 1.0 documentation</title>
+  <title>Record &mdash; FIMS documentation 1.0 documentation</title>
   
 
   
@@ -34,7 +34,7 @@
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="FIMS documentation 1.0 documentation" href="../index.html"/>
-        <link rel="next" title="FIMS Commons Javadocs" href="javadocs.html"/>
+        <link rel="next" title="REST Services" href="services.html"/>
         <link rel="prev" title="XML Configuration File" href="configuration_files.html"/> 
 
   
@@ -92,19 +92,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../fims/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fims/fims.html">User Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fims/identifiers.html">User Guide to Creating Local Identifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fims/query.html">FIMS Queries</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Information</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="elastic_search_config.html">ElasticSearch Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="elastic_search_config.html#dynamic-templates">Dynamic Templates</a></li>
-<li class="toctree-l1"><a class="reference internal" href="elastic_search_config.html#index-aliases">Index Aliases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration_files.html">XML Configuration File</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">REST Services</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#versioning">Versioning</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#dataset">Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#recordset">RecordSet</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#data-readers">Data Readers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#entity">Entity</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="javadocs.html">FIMS Commons Javadocs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="services.html">REST Services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_accounts.html">User Accounts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="amphibian_disease_example.html">Minting IDs, Creating Expeditions, and Validating Data using REST calls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curl_examples.html">curl Examples</a></li>
@@ -146,11 +147,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>REST Services</li>
+    <li>Record</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/developer/services.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/developer/recordsets.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -160,21 +161,45 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="rest-services">
-<h1>REST Services<a class="headerlink" href="#rest-services" title="Permalink to this headline">¶</a></h1>
-<p>FIMS REST Services are available at:  <a class="reference external" href="http://www.biscicol.org/apidocs/">http://www.biscicol.org/apidocs/</a></p>
-<div class="section" id="versioning">
-<h2>Versioning<a class="headerlink" href="#versioning" title="Permalink to this headline">¶</a></h2>
-<p>FIMS REST Services are now versioned. v1 is the default version. You may specify the version by including the header:</p>
-<p><code class="docutils literal"><span class="pre">Api-Version:</span> <span class="pre">{version}</span></code></p>
-<p>or via the url:</p>
-<p><code class="docutils literal"><span class="pre">http://biscicol.org/biocode-fims/rest/{version}/...</span></code></p>
-<p>We currently support the following versions:</p>
+  <div class="section" id="record">
+<span id="recordsets"></span><h1>Record<a class="headerlink" href="#record" title="Permalink to this headline">¶</a></h1>
+<p>Fims validation and upload is based around the concept of a <cite>Record</cite>. A <cite>Record</cite> is a single instance of an <cite>Entity</cite>.</p>
+<p>A <cite>Record</cite> is typically a k:v map of properties. The key should be the columnUri. It is the responsibility of the <cite>DataReader</cite>
+implementation to map any columnName -&gt; columnUri when creating an instance of a <cite>Record</cite>.</p>
+<p>Each type of <cite>Record</cite> will have a <cite>RecordValidator</cite> implementation that is responsible for handling the validation of
+that <cite>Record</cite> type. The default <cite>Record</cite> type is a <cite>GenericRecord</cite>. A <cite>GenericRecord</cite> is the most common in the fims
+system will be. The validation for a <cite>GenericRecord</cite> is strictly controlled by the project configuration w/o any additional
+validation logic.</p>
+<p>currently we have support for the following types:</p>
 <ul class="simple">
-<li>v1</li>
-<li>v1.1</li>
+<li><cite>GenericRecord</cite></li>
+<li><cite>FastaRecord</cite></li>
+<li><cite>FastqRecord</cite></li>
 </ul>
-<p>more info about the specific version resources to come...</p>
+</div>
+<div class="section" id="dataset">
+<h1>Dataset<a class="headerlink" href="#dataset" title="Permalink to this headline">¶</a></h1>
+<p>A collection of <cite>RecordSet</cite> instances. If a <cite>Dataset</cite> has any <cite>RecordSet`s for a child `Entity</cite>, then the <cite>Dataset</cite> will contain the both the
+parent and child <cite>RecordSet`s. The `DatasetBuilder</cite> should be used to help construct a valid <cite>Dataset</cite> instance.</p>
+</div>
+<div class="section" id="recordset">
+<h1>RecordSet<a class="headerlink" href="#recordset" title="Permalink to this headline">¶</a></h1>
+<p>A collection of <cite>Record</cite> instances.</p>
+<div class="section" id="data-readers">
+<h2>Data Readers<a class="headerlink" href="#data-readers" title="Permalink to this headline">¶</a></h2>
+<p>DataReader implementations contain the logic for reading and converting a specific file type into a RecordSet (TODO: more info about RecordSets).
+When a file is uploaded for validation, it is passed to the <cite>DataReaderFactory</cite> which will return the appropriate
+<cite>DataReader</cite> implementation for the provided file. A <cite>DataReader</cite> should return true when <cite>handlesExtension</cite> is called
+if that reader can handle the provided ext.</p>
+<p>A current limitation of DataReaders is that if multiple <cite>DataReader</cite> implementations handle the same file ext, only 1 can be enabled at a given time.
+This restriction may be lifted in the future.</p>
+</div>
+<div class="section" id="entity">
+<h2>Entity<a class="headerlink" href="#entity" title="Permalink to this headline">¶</a></h2>
+<p>Custom entities can be created and must subclass the <cite>Entity</cite> class. All subclasses must exist in the <cite>biocode.fims.digester</cite> package to be properly
+registered as a valid subtype for polymorphic serialization/deserialization via Jackson. An Entity subclass provides the ability to fix certain parts
+of a given entity, as well as provide additional validation logic (to be executed on ProjectConfig updates) to ensure the entity is well formed
+and not missing any pertinant information.</p>
 </div>
 </div>
 
@@ -185,7 +210,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="javadocs.html" class="btn btn-neutral float-right" title="FIMS Commons Javadocs" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="services.html" class="btn btn-neutral float-right" title="REST Services" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="configuration_files.html" class="btn btn-neutral" title="XML Configuration File" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

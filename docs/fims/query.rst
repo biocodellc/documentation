@@ -1,42 +1,22 @@
 .. query
 
-.. _ElasticSearch Analysis: https://www.elastic.co/guide/en/elasticsearch/reference/5.1/analysis.html
-.. _ElasticSearch QueryString Query: https://www.elastic.co/guide/en/elasticsearch/reference/5.1/query-dsl-query-string-query.html
-.. _ElasticSearch Docs: https://www.elastic.co/guide/en/elasticsearch/reference/5.1/query-dsl-query-string-query.html#query-string-syntax
-.. _boolean operators: https://www.elastic.co/guide/en/elasticsearch/reference/5.1/query-dsl-query-string-query.html#_boolean_operators
-.. _grouping: https://www.elastic.co/guide/en/elasticsearch/reference/5.1/query-dsl-query-string-query.html#_grouping
-.. _range: https://www.elastic.co/guide/en/elasticsearch/reference/5.1/query-dsl-query-string-query.html#_ranges
-.. _fuzziness: https://www.elastic.co/guide/en/elasticsearch/reference/5.1/query-dsl-query-string-query.html#_fuzziness
-.. _proximity searches: https://www.elastic.co/guide/en/elasticsearch/reference/5.1/query-dsl-query-string-query.html#_proximity_searches
-.. _boosting: https://www.elastic.co/guide/en/elasticsearch/reference/5.1/query-dsl-query-string-query.html#_boosting
-.. _regular expressions: https://www.elastic.co/guide/en/elasticsearch/reference/5.1/query-dsl-query-string-query.html#_regular_expressions
-.. _leading wildcard queries: https://www.elastic.co/guide/en/elasticsearch/reference/5.1/query-dsl-query-string-query.html#_wildcards
+.. _psql tokenization: https://www.postgresql.org/docs/9.5/static/textsearch-intro.html#TEXTSEARCH-INTRO_CONFIGURATIONS
 
 FIMS Queries
 ============
 
-FIMS provides a custom query syntax to help you find the data you need. The FIMS Query DSL is built upon the `ElasticSearch QueryString Query`_.
+FIMS provides a custom sql-like query syntax to help you find the data you need.
 
 By default, the query terms are executed against all columns in the project. To execute a query against a specific column,
 you can construct the query in the form ``columnName:query``.
 
-The `text`_ query ``japan`` would return all results where a column contains the word ``japan``. Where as the `text`_ query
+The `full text search`_ query ``japan`` would return all results where a column contains the word ``japan``. Where as the `full text search`_ query
 ``column1:japan`` would return all results where **column1** contains the word ``japan``.
 
-All queries can be constructed using the `boolean operators`_ *must*, *must_not*, and *should*. These are similar, although
-not equivalent, to the mysql operators *AND*, *NOT*, and *OR* respectively. The default operator is the *should* operator. The operators
-*must* and *must_not* are represented by prefixing the query expression with **+** and **-** respectively.
+All queries can be constructed using the sql operators *AND*, *OR*, and *NOT* as well as groupings within `()`;
 
-If there is only 1 *should* term (ex query. ``japan``), this is effectively a *must* query, and would return all results
-where a column contains the word ``japan``. However the query ``japan australia`` will return all results where a column
-contains the word ``japan`` **or** the word ``australia``.
-
-The query ``+expedition:myExpedition -japan`` would return all results in the *expedition* ``myExpedition`` which do not
+The query ``_expeditions_:myExpedition and !japan`` would return all results in the *expedition* ``myExpedition`` which do not
 contain the word ``japan``.
-
-Complex queries can be constructed using `grouping`_.
-
-See the `ElasticSearch Docs`_ for more information regarding the query syntax.
 
 Below you will find more information about the supported queries.
 
@@ -45,45 +25,51 @@ Supported Queries
 
 The following queries are supported:
 
-* `text`_
-* `phrase`_
-* `range`_
+* `full text search`_
+* `comparison`_
 * `expedition`_
-* `_exists_`_
-* `fuzziness`_
-* `proximity searches`_
-* `boosting`_
+* `bcid`_
+* `exists`_
+* `like`_
+* `range`_
+* `select`_
 
-We **do not** support the following:
+.. _`full text search`:
 
-* `regular expressions`_
-* `leading wildcard queries`_
-
-.. _text:
-
-text query
-^^^^^^^^^^
+full text search
+^^^^^^^^^^^^^^^^
 
 This the default query, and will perform a search on the :ref:`tokenized <tokenization>` version of the uploaded data.
 
+ ``col1:value`` - will perform a fts on ``col1`` for ``value``
+ ``col1:val*`` - will perform a fts on ``col1`` for words starting with ``val``
+ ``value`` - will preform a fts on all columns for ``value``
+ ``col1:!value`` - will returns results where ``col1`` does not match ``value``
+ 
+.. _comparison:
 
-.. _phrase:
+comparison
+^^^^^^^^^^
 
-phrase query
-^^^^^^^^^^^^
+This query is used to compare 2 values. The following operators are supported:
 
-This query will perform an exact match on the uploaded data. This is done by surrounding your query term in quotes.
-
-The query ``column1:"exact phrase"`` will return all results where ``column1`` has the exact value ``exact phrase``.
-
+ ``=`` - equals  
+ ``<>`` - not equals  
+ ``>`` - greater then
+ ``>=`` - greater then or equal to
+ ``<`` - less then
+ ``<=`` - less then or equal to
 
 .. _expedition:
 
 expedition query
 ^^^^^^^^^^^^^^^^
-This query is will filter the results based on the expedition that they belong to.
+This query is will filter the results based on the expedition(s) that they belong to.
 
-The query ``+expedition:myExpedition`` would return everything uploaded under ``myExpedition``
+The query ``_expeditions_:myExpedition`` would return everything uploaded under ``myExpedition``
+The query ``_expeditions_:[myExpedition1, myExpedition2]`` would return everything uploaded under ``myExpedition1`` or ``myExpedition2``
+
+.. _bcid:
 
 .. _`_exists_`:
 
@@ -93,39 +79,51 @@ _exists_ query
 This query returns results where a column has a value.
 
 The query ``_exists_:column1`` would return all results where ``column1`` has a value.
+The query ``_exists_:[column1, column2]`` would return all results where ``column1`` or ``column2`` has a value.
 
+.. _like:
+
+like query
+^^^^^^^^^^
+
+This query performs a sql ``ILIKE`` (case-insensitive ``LIKE``) query.
+
+``col1::"%value"`` - ``col1 ILIKE '%value'``
+
+.. _range:
+
+range query
+^^^^^^^^^^^
+
+This is a shorthanded way to perform a comparison query.
+
+``col1:[1 TO 10]`` - ``>= 1 AND <= 10``
+``col1:[1 TO 10}`` - ``>= 1 AND < 10``
+``col1:{1 TO 10}`` - ``> 1 AND < 10``
+``col1:{* TO 100]`` - ``<= 100``
+
+.. _select:
+
+select query
+^^^^^^^^^^^^
+
+Used to select related parent/child data along with the queried entity. The provided value should be the conceptAlias of the Entity to select.
+The provided conceptAlias' do need to be related to the query entity, but do not need to be directly related. For example, if you are querying a
+parent entity, you can also select the grandChildren and the grandParents. Any combination of related entities can be selected.
+
+``_select_:parentEntity`` - selects both child and parent entity results for the query
+``_select_:[parentEntity, grandParentEntity]`` - selects both child and parent entity results for the query
 
 .. _tokenization:
 
 Tokenization
 ------------
 
-Text fields go through a tokenization process before they are indexed. Currently the tokenization process splits words
-on any non-letter character or camelCase. The tokens are then lowercased and further processed to remove any possessives
-and plurals.
+Text fields go through a tokenization process before they are indexed. This process attempts to breakdown text into words
+and numbers as well as converting words to their normalized form.
 
 Tokenization Ex::
 
-    "manyDonkeys" -> ["many", "donkey"]
+    "many donkeys" -> ["many", "donkey"]
 
-The above result would match the following queries::
-
-    many
-
-    manyMore
-
-    many Donkeys
-
-    manyDonkeys
-
-    DONKEYS
-
-    donkey
-
-
-However it will not match::
-
-    manydonkeys
-
-For more information, you can view the `ElasticSearch Analysis`_. Our current anlyzer settings
-can be found :ref:`here <elastic_search_config-analyzer>`.
+For more information, you can view the `psql tokenization`_.
