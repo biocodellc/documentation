@@ -18,17 +18,18 @@ currently we have support for the following types:
 * `GenericRecord`
 * `FastaRecord`
 * `FastqRecord`
+* `PhotoRecord`
+
+RecordSet
+=========
+
+A collection of `Record` instances.
 
 Dataset
 =======
 
 A collection of `RecordSet` instances. If a `Dataset` has any `RecordSet`s for a child `Entity`, then the `Dataset` will contain the both the 
 parent and child `RecordSet`s. The `DatasetBuilder` should be used to help construct a valid `Dataset` instance.
-
-RecordSet
-=========
-
-A collection of `Record` instances.
 
 Data Readers
 ------------
@@ -40,6 +41,8 @@ if that reader can handle the provided ext.
 
 A current limitation of DataReaders is that if multiple `DataReader` implementations handle the same file ext, only 1 can be enabled at a given time.
 This restriction may be lifted in the future.
+
+TODO more info about current DataReader implementations
 
 Entity
 ------
