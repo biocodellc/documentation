@@ -1,10 +1,10 @@
-.. FIMS documentation
+.. GEOME documentation
 
 .. _`Biocode, LLC GitHub Organization`: https://github.com/biocodellc
 
 All source code mentioned in this documentation is open source and freely available and can be found in appropriate repositories living under the `Biocode, LLC GitHub Organization`_.  
 
-FIMS documentation
+GEOME documentation
 ==================
 
 .. toctree::
@@ -30,8 +30,4 @@ FIMS documentation
     developer/resolution
     developer/types_of_identifiers
 
-.. toctree::
-    :caption: Migrating from FIMS1 to FIMS2
-    
-    migration/fims_migration
-    migration/migration_guide
+
