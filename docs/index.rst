@@ -22,7 +22,6 @@ GEOME documentation
     developer/recordsets
     developer/services
     developer/user_accounts
-    developer/amphibian_disease_example
     developer/curl_examples
     developer/oauth2
     developer/resolution
