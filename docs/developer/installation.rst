@@ -3,18 +3,17 @@
 Installation
 ============
 
-This content is for people wishing to install Biocode-FIMS on their own server.
+This content is for people wishing to install GEOME on their own server.
 
 Details
 -------
 
-Biocode-FIMS consists of a core set of Java classes and REST services.  Developers have a choice of interacting with the REST services 
-running on the BiSciCol_ FIMS instance, which has built in EZID minting capabilities, or running their own 
-instance of biocode-fims-commons_ and installing their own EZID instance requiring a purchase of an `EZID account`_.
+GEOME consists of a core set of Java classes and REST services.  Developers have a choice of interacting with the REST services 
+running _BCID, which has built in EZID minting capabilities, or running their own 
+instance of _BCID and installing their own EZID instance requiring a purchase of an `EZID account`_.
 
-.. _BiSciCol: http://biscicol.org/
 .. _`EZID account`: http://ezid.cdlib.org/
-.. _biocode-fims-commons: http://github.com/biocodellc/biocode-fims-coomons
+.. _BCID: https://github.com/biocodellc/bcid
 
 To run an instance of FIMS you will need the following components:
 
@@ -25,13 +24,12 @@ To run an instance of FIMS you will need the following components:
 Installation and Build
 ----------------------
 
-  * Source code is available on this site via Subversion
-  * Building is done via an Ant build file (provided as part of the distribution)
+  * Source code is available on this site via github
+  * Building is done via an Gradle build file (provided as part of the distribution)
   * a properties file needs to be configured by copying biocode-fims.template to biocode-fims.props (in the root directory of the distribution) 
 
 Optional Component
 ------------------
-  * A triple-store database connection for storing datasets as RDF triples.  We have tested using [http://jena.apache.org/documentation/serving_data/ Apache Fuseki]
   * An ElasticSearch_ instance for indexing. See :doc:`ElasticSearch Configuration <elastic_search_config>` for configuration details.
 
 .. _ElasticSearch: https://www.elastic.co/products/elasticsearch
