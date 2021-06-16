@@ -11,7 +11,6 @@ GEOME documentation
     :caption: User Information
 
     fims/introduction
-    fims/fims
     fims/identifiers
     fims/query
 
