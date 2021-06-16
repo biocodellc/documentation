@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# FIMS documentation documentation build configuration file, created by
+# GEOME documentation documentation build configuration file, created by
 # sphinx-quickstart on Mon Feb  8 16:23:32 2016.
 #
 # This file is execfile()d with the current directory set to its
@@ -45,7 +45,7 @@ source_suffix = ['.rst', '.md']
 master_doc = 'index'
 
 # General information about the project.
-project = u'FIMS documentation'
+project = u'GEOME documentation'
 copyright = u'2016, John Deck, RJ Ewing'
 author = u'John Deck, RJ Ewing'
 
@@ -251,7 +251,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'fimsdocumentation', u'FIMS documentation Documentation',
+    (master_doc, 'fimsdocumentation', u'GEOME documentation Documentation',
      [author], 1)
 ]
 
@@ -265,7 +265,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'FIMSdocumentation', u'FIMS documentation Documentation',
+    (master_doc, 'FIMSdocumentation', u'GEOME documentation Documentation',
      author, 'FIMSdocumentation', 'One line description of project.',
      'Miscellaneous'),
 ]
