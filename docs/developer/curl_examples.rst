@@ -4,44 +4,6 @@
 curl Examples
 ===============
 
-NOTE: this page needs updating to show FIMS v2 service examples!
+Plenty of curl examples are available at our Swagger Application Programming Interface documentation at:
 
-This page explains how to call Biocode-Fims services using curl  --  For a list of Biocode-FIms service call options see the [http://biscicol.org/biocode-fims/rest/biocode-fims.wadl Service Descriptions].
-
-Public Content
------------------
-
-Attempt a simple call to resolve an ARK (return HTML)::
- 
-    curl -L http://biscicol.org/id/ark:/21547/R2
-
-Resolve an ARK, returning RDF/XML, for a group + suffix::
-
-    curl -L  -H "Accept: application/rdf+xml" http://biscicol.org/id/ark:/21547/R2MBIO56
-
-Secure Content
------------------
-
-First thing is to authenticate and set cookies.  Make sure to do this in a directory where you have write access::
-
-    curl --data "username=USER&password=PSWD" http://biscicol.org/biocode-fims/rest/authenticationService/login --location --cookie-jar cookies.txt
-
-Then, call the service in question, for example, to list all Identifiers associated with the account you authenticated as::
- 
-    curl http://biscicol.org/biocode-fims/rest/bcids/list --cookie cookies.txt
-
-If this is a new account without any datasets associated with it, if this request is successful, you will see the result::
-
-    {"0":"Create new group"}]
-
-Using the Creator
------------------
-
-The following is an example of how to create a new data group and register local IDs with BCID.    There are two main ways to create new data groups. The first way is to specify the resourceType in the request, such as::
-
-    curl -d  "title=This is a test&resourceType=dwc:MaterialSample&suffixPassThrough=true" http://biscicol.org/biocode-fims/rest/bcids/ --cookie cookies.txt
-
-The second way is to first lookup one of the standard resourceTypes in a list, and then using an integer to call the service::
-
-    curl http://biscicol.org/biocode-fims/rest/resourceTypes
-    curl -d  "title=This is a test&resourceTypesMinusDataset=3&suffixPassThrough=true" http://biscicol.org/biocode-fims/rest/bcids/ --cookie cookies.txt
+https://api.geome-db.org/apidocs/
