@@ -21,7 +21,6 @@ GEOME documentation
     developer/configuration_files
     developer/recordsets
     developer/services
-    developer/javadocs
     developer/user_accounts
     developer/amphibian_disease_example
     developer/curl_examples
