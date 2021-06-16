@@ -21,24 +21,29 @@ To run an instance of FIMS you will need the following components:
   * A java servlet container e.g. Tomcat, Glassfish, Jetty
   * Connection to a BCID service
 
-Installation and Build
+Installation and Build -- Migrating an existing installation
 ----------------------
 
   * Source code is available on this site via github
   * Building is done via an Gradle build file (provided as part of the distribution)
   * a properties file needs to be configured by copying biocode-fims.template to biocode-fims.props (in the root directory of the distribution) 
 
-Optional Component
-------------------
-  * An ElasticSearch_ instance for indexing. See :doc:`ElasticSearch Configuration <elastic_search_config>` for configuration details.
+Install the following software
+  * postgres
+  * jetty9
+  * java8
+  * bcid and geome-db repositories (from github)
+  
+Properties file
+   * update properties files in `src/main/environment/production`
 
-.. _ElasticSearch: https://www.elastic.co/products/elasticsearch
+gradle war
+deploy build/libs/geome-db.war
+(do the above for both bcid and geome-db)
 
-Additional Installation Instructions
-------------------------------------
-   * The source contains a sample property file called biocode-fims.template which should be copied to biocode-fims.props  -- you will need to adjust references in this document. 
-      * Note that references to URLs should begin with "www" as in www.biscicol.org instead of biscicol.org since some browsers (e.g. Firefox) automatically add the "www" and this changes the session designation and creates problems during logging in.
+generate openapi document using `gradle resolve`
 
-Notes
------
-  * It is recommended ALL service calls in the properties file begin with a "www" in the hostname.  
+
+
+
+
