@@ -2,10 +2,10 @@
 
 .. _psql tokenization: https://www.postgresql.org/docs/9.5/static/textsearch-intro.html#TEXTSEARCH-INTRO_CONFIGURATIONS
 
-FIMS Queries
+GEOME Queries
 ============
 
-FIMS provides a custom sql-like query syntax to help you find the data you need.
+GEOME provides a custom sql-like query syntax to help you find the data you need.  The following documentation supplements the Swagger Applicaiton Programming Interface.
 
 By default, the query terms are executed against all columns in the project. To execute a query against a specific column,
 you can construct the query in the form ``columnName:query``.
