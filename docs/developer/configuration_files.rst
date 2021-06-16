@@ -1,9 +1,9 @@
 .. _configuration_files:
 
-XML Configuration File
+Configuration Files
 ======================
 
-Each project contains its own xml configuration file. This is where the :ref:`projects` specific configuration is
+GEOME has a network level configuratino file which defines network level rules and all available data properties and entities.  Each project has its own configuration file as well which supplements the GEOME network configuration file.  All configuration files are written in JSON This is where the :ref:`projects` specific configuration is
 specified. This includes :ref:`resources`, attributes, validation rules, and relations.
 
 Attributes
