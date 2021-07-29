@@ -38,5 +38,5 @@ The following are valid identifiers:  "MVZ:Herp:1234", "Grinnell (1234)"
 The following would be invalid identifiers:  "MVZ-Herp-1234", "Grinnell/Alexander 1234"
 
 Once data is made loaded and made public, you can search for your newly minted globally unique and resolvable identifiers in the Query page, and they 
-will be listed under the "BCID" column.  If the identifier is shown as "ark:/21547/R2MBIO564" you can substitute "http://n2t.net/ark:" for the "ark:" to make a a resolvable identifier as `https://n2t.net/ark:/21547/CXs2MBIO564`_, where MBIO564 is the locally uinque identifier.
+will be listed under the "BCID" column.  If the identifier is shown as ark:/21547/CSs2MBIO564 you can substitute http://n2t.net/ark: for the "ark:" to make a a resolvable identifier as https://n2t.net/ark:/21547/CXs2MBIO564, where MBIO564 is the locally uinque identifier.
 
